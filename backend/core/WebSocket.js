@@ -3,40 +3,31 @@
  */
 'use strict';
 
-const express = require('express');
-const http = require('http');
-const socket = require('socket.io');
+const Server = require('./Server');
 
-class WebSocket{
+class WebSocket extends Server{
     constructor(port){
-        this.port = port;
-        this.app = express();
-        this.server = http.createServer(this.app);
-        this.io = socket.listen(this.server);
-        this._addRouter();
-        this._listenPort();
-        this._connectListen();
+        super(port);
     }
 
-    _listenPort(){
+    run(){
         this.server.listen(this.port);
-        console.log('Server listening 127.0.0.1:' + this.port);
+        console.log('WS no http router');
+        console.log('WS listening 127.0.0.1:' + this.port);
     }
 
-    _addRouter(){
-        this.app.get('/', (req, res) => {
-            res.send("Current path: /");
-        });
-    }
-
-    _connectListen(){
+    connect(){
         this.io.on('connection', (socket) => {
-            this._listenWS(socket);
+            this._addRouter(socket);
         });
     }
-    
-    _listenWS(socket){
+
+    _addRouter(socket){
         socket.emit('message', 'Hello Client');
+
+        socket.on('WS_MSG', function(topic, obj){
+            socket.emit(topic, obj);
+        });
     }
 }
 

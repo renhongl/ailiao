@@ -11,16 +11,29 @@ class MessageBus extends WebSocket{
         super(url);
     }
 
-    //Overwite for different behavior listening
-    _listenWS(){
-        this.socket.on('connect', () => {
+    run(){
+        let socket = this.socket;
+        socket.on('connect', function(){
             console.log("MessageBus connected");
         });
-        this.socket.on('open', (o) => {
+        socket.on('message', function(o){
             console.log(o);
         });
     }
 
+    createPlugin($){
+        let socket = this.socket;
+        $.extend({
+            publish: function(topic, obj){
+                socket.emit('WS_MSG', topic, obj);
+            },
+            subscribe : function(topic, callback){
+                socket.on(topic, callback);
+            }
+        });
+    }
+
+   
 }
 
 export default MessageBus;

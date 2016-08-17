@@ -5,14 +5,42 @@
 
 const WebSocket = require('./WebSocket');
 const Config = require('./Config');
+const Server = require('./Server');
 
 class Main{
-    constructor(){}
+    constructor(){
+        console.log('init main');
+    }
 
-    runWebSocket(){
-        this.ws = new WebSocket(Config.wsPort);
+    _runSystem(){
+        let server = new Server(Config.SERVER_PORT);
+        let webSocket = new WebSocket(Config.WS_PORT);
+        server.run();
+        webSocket.run();
+        webSocket.connect();
+    }
+
+    _testServer(){
+        let server = new Server(Config.SERVER_PORT);
+        server.run();
+    }
+
+    _testWebSocket(){
+        let webSocket = new WebSocket(Config.WS_PORT);
+        webSocket.run();
+        webSocket.connect();
+    }
+
+    run(){
+        const TEST = Config.TEST;
+        if(TEST){
+            this._testServer();
+            this._testWebSocket();
+        }else{
+            this._runSystem();
+        }
     }
 }
 
 let main = new Main();
-main.runWebSocket();
+main.run();
