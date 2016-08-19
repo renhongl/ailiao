@@ -2,11 +2,12 @@
 
 class Router{
     constructor(app){
-        this.app = app;
         console.log('init router');
+        this.app = app;
+        this._run();
     }
 
-    run(){
+    _run(){
         let app = this.app;
         app.get('/', function(req, res){
             res.send("Current path: /");

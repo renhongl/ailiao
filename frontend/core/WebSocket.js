@@ -9,12 +9,13 @@
 
 import io from '../libs/socket.io';
 
-class WebSocket{
+export default class WebSocket{
     constructor(url){
         this.socket = io.connect(url);
+        this._run();
     }
     
-    run(){
+    _run(){
         let socket = this.socket;
         socket.on('connect', function(){
             console.log("WS connected");
@@ -24,5 +25,3 @@ class WebSocket{
         });
     }
 }
-
-export default WebSocket;

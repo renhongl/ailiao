@@ -1,6 +1,6 @@
 'use strict';
 
-class QueryString{
+export default class QueryString{
     constructor(){
         let search = window.location.search.substring(1).split('&');//"?page=dashboard&name=1&age=2"
         let tempGroup = [];
@@ -9,6 +9,7 @@ class QueryString{
         }
         this.params = new Map(tempGroup);
     }
+    getValue(name){
+        return this.params.get(name);
+    }
 }
-
-export default QueryString;

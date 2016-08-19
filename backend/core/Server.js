@@ -14,12 +14,12 @@ class Server{
         this.app = express();
         this.server = http.createServer(this.app);
         this.io = socket.listen(this.server);
+        this._run();
     }
 
-    run(){
+    _run(){
         this.server.listen(this.port);
-        let router = new Router(this.app);
-        router.run();
+        new Router(this.app);
         console.log('Server listening 127.0.0.1:' + this.port);
     }
 }

@@ -10,37 +10,23 @@ const Server = require('./Server');
 class Main{
     constructor(){
         console.log('init main');
+        this._run();
     }
 
     _runSystem(){
-        let server = new Server(Config.SERVER_PORT);
-        let webSocket = new WebSocket(Config.WS_PORT);
-        server.run();
-        webSocket.run();
-        webSocket.connect();
+        new Server(Config.SERVER_PORT);
+        new WebSocket(Config.WS_PORT);
     }
 
-    _testServer(){
-        let server = new Server(Config.SERVER_PORT);
-        server.run();
-    }
-
-    _testWebSocket(){
-        let webSocket = new WebSocket(Config.WS_PORT);
-        webSocket.run();
-        webSocket.connect();
-    }
-
-    run(){
+    _run(){
         const TEST = Config.TEST;
         if(TEST){
-            this._testServer();
-            this._testWebSocket();
+            new Server(Config.SERVER_PORT);
+            new WebSocket(Config.WS_PORT);
         }else{
             this._runSystem();
         }
     }
 }
 
-let main = new Main();
-main.run();
+new Main();
