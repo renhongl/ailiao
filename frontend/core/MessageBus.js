@@ -27,7 +27,6 @@ export default class MessageBus extends WebSocket{
 
     _createPlugin(){
         let socket = this.socket;
-        window.$ = $;
         $.extend({
             publish: function(topic, obj){
                 socket.emit('WS_MSG', topic, obj);

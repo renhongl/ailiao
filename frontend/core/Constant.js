@@ -12,3 +12,4 @@ export default class Constant{
 
 Constant.WS_SERVER = 'ws://127.0.0.1:9090';
 Constant.TEST = true;
+Constant.BASE_SERVER = 'http://127.0.0.1:8080';

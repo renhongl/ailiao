@@ -4,6 +4,7 @@ import WebSocket from './WebSocket';
 import Constant from './Constant';
 import MessageBus from './MessageBus';
 import QueryString from './QueryString';
+import Page from './Page';
 
 export default class Test{
     constructor(){
@@ -12,9 +13,14 @@ export default class Test{
     }
 
     _run(){
-        this._testWebSocket();
-        this._testMessageBus();
-        this._testQueryString();
+        // this._testWebSocket();
+        // this._testMessageBus();
+        // this._testQueryString();
+        this._testPage();
+    }
+
+    _testPage(){
+        new Page("demo");
     }
 
     _testWebSocket(){

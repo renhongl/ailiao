@@ -1,11 +1,13 @@
 'use strict';
 
 import Constant from './Constant';
+import $ from 'jquery';
 import Test from './Test';
 
 class Main{
     constructor(){
         console.log("init main");
+        window.$ = $;
         this._run();
     }
 
