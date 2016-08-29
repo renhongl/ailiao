@@ -14,4 +14,12 @@ export default class Ajax{
             success: callback
         });
     }
+
+    static getScript(url, callback){
+        $.ajax({
+            dataType: 'script',
+            url: url,
+            success: callback
+        });
+    }
 }

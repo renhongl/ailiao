@@ -9,6 +9,7 @@ export default class QueryString{
         }
         this.params = new Map(tempGroup);
     }
+    
     getValue(name){
         return this.params.get(name);
     }

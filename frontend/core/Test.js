@@ -20,7 +20,7 @@ export default class Test{
     }
 
     _testPage(){
-        new Page("demo");
+        new Page();
     }
 
     _testWebSocket(){

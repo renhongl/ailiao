@@ -5,7 +5,6 @@
 'use strict';
 
 import WebSocket from './WebSocket';
-import $ from 'jquery';
 
 export default class MessageBus extends WebSocket{
     constructor(url){
