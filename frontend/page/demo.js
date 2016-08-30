@@ -1,14 +1,20 @@
 'use strict';
 
-class Demo{
-
-}
-
-let config = {
-    "title": "demo"
+export const config = {
+    title: 'demo',
+    dialogs: [
+        {
+            title: 'dialog1',
+            type: 'dialog',
+            width: '100px',
+            height: '100px',
+            child: 'demo',
+        }
+    ]
 };
 
-Demo.extend(config);
 
-return new Demo();
+
+
+
 

@@ -1,8 +1,11 @@
 'use strict';
 
-import Constant from './Constant';
-import $ from 'jquery';
-import Test from './Test';
+import Constant from './Constant'
+import $ from 'jquery'
+import Test from './Test'
+import QueryString from './QueryString'
+import Ajax from './Ajax'
+import Page from './Page'
 
 class Main{
     constructor(){
@@ -16,10 +19,18 @@ class Main{
         if(TEST){
             new Test();
         }else{
-            let url = "";
-            let page = new Page();
-            page.run();
+            this._loadPage();
         }
+    }
+
+    _loadPage(){
+        let qs = new QueryString();
+        let pageName = qs.getValue('page');
+        let pagePath = './page/' + pageName;
+        System.import(pagePath).then(function(result){
+            let page = new Page();
+            page.run(result.config);
+        });
     }
 }
 

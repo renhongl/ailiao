@@ -7,7 +7,7 @@
 
 'use strict';
 
-import io from '../libs/socket.io';
+import io from '../libs/socket.io'
 
 export default class WebSocket{
     constructor(url){

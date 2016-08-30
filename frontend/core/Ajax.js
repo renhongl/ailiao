@@ -1,6 +1,6 @@
 'use strict';
 
-import MessageBus from './MessageBus';
+import MessageBus from './MessageBus'
 
 export default class Ajax{
     constructor(){
@@ -21,5 +21,9 @@ export default class Ajax{
             url: url,
             success: callback
         });
+    }
+
+    static loadHTML($container, url, callback){
+        $container.load(url, callback);
     }
 }

@@ -4,7 +4,7 @@
 
 'use strict';
 
-import WebSocket from './WebSocket';
+import WebSocket from './WebSocket'
 
 export default class MessageBus extends WebSocket{
     constructor(url){

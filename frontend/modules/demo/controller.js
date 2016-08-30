@@ -1,9 +1,7 @@
 'use strict';
 
-class Controller{
+export class Controller{
     constructor(){
         console.log('test controller');
     }
 }
-
-new Controller();
