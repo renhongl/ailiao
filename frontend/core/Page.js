@@ -5,55 +5,54 @@ import Ajax from './Ajax'
 import Constant from './Constant'
 
 export default class Page{
-    constructor(){
-        console.log('init page');
-    }
-
-    run(config){
+    constructor({ config }){
         this.config = config;
         this._loadTitle();
         this._loadDialogs();
     }
 
     _loadTitle(){
-        $('title').html(this.config.title);
+        $('title').html(this.config.id);
     }
 
     _loadDialogs(){
         let dialogs = this.config.dialogs;
         for(let dialog of dialogs){
-            let $dialog = $(`<div id=${dialog.title} class='dialog'></div>`);
-            $dialog.attr('id', dialog.title + 'Dialog').width(dialog.width).height(dialog.height);
-            $('body').append($dialog);
-            this.viewPath = Constant.BASE_SERVER + 'modules/' + dialog.child + '/view.html';
-            this.controllerPath = Constant.BASE_SERVER + 'modules/' + dialog.child + '/controller';
-            this.modelPath = Constant.BASE_SERVER + 'modules/' + dialog.child + '/model';
-            this.stylePath = Constant.BASE_SERVER + 'modules/' + dialog.child + '/style.css';
-            this._loadView($dialog, this.viewPath);
+            this._loadDialog(dialog);
         }
     }
 
-    _loadView($dialog, viewPath){
-        let callback = (result) => {
-            this._loadStyle(this.stylePath);
-            this._loadController(this.controllerPath);
-            this._loadModel(this.modelPath);
-        };
-        Ajax.loadHTML($dialog, viewPath, callback);
+    _loadDialog(dialog){
+        let dialogPath = Constant.BASE_SERVER + 'modules/dialog/';
+        let dialogController = dialogPath + 'controller';
+        let dialogModel = dialogPath + 'model';
+        let dialogView = dialogPath + 'view.html';
+        let dialogStyle = dialogPath + 'style.css';
+
+        Ajax.loadHTML($('body'), dialogView, (result) => {
+            let $container = $(result);
+            this._loadStyle(dialogStyle);
+            this._loadController(dialogController, dialog, $container);
+            this._loadModel(dialogModel);
+        });
     }
 
-    _loadController(controllerPath){
-        System.import(controllerPath).then(function({Controller}){
-            new Controller();
+    _loadModule(module){
+        
+    }
+
+    _loadController(controllerPath, obj, $container){
+        System.import(controllerPath).then( ({ Controller }) => {
+            new Controller(obj, $container);
         });
     }
 
     _loadStyle(stylePath){
-        $('head').append(`<link rel='stylesheet' href=${stylePath} />`);
+        $('head').append(`<link rel='stylesheet' href=${ stylePath } />`);
     }
 
     _loadModel(modelPath){
-        System.import(modelPath).then(function({Model}){
+        System.import(modelPath).then( ({ Model }) => {
             new Model();
         });
     }

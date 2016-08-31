@@ -1,15 +1,42 @@
 'use strict';
 
 export const config = {
-    title: 'demo',
+    id: 'test',
     dialogs: [
         {
-            title: 'dialog1',
+            id: 'dialog1',
             type: 'dialog',
-            width: '100px',
-            height: '100px',
-            child: 'demo',
-        }
+            settings: {
+                width: '100px',
+                height: '100px',
+                x: '100px',
+                y: '100px',
+            },
+            child: {
+                id: 'demo',
+                type: 'module',
+                settings: {
+                    
+                }
+            },
+        },
+        // {
+        //     id: 'dialog2',
+        //     type: 'dialog',
+        //     settings: {
+        //         width: '100px',
+        //         height: '100px',
+        //         x: '300px',
+        //         y: '300px',
+        //     },
+        //     child: {
+        //         id: 'demo',
+        //         type: 'module',
+        //         settings: {
+
+        //         }
+        //     },
+        // }
     ]
 };
 

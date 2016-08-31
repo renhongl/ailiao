@@ -25,11 +25,10 @@ class Main{
 
     _loadPage(){
         let qs = new QueryString();
-        let pageName = qs.getValue('page');
+        let pageName = qs.getValue('page') || 'demo';
         let pagePath = './page/' + pageName;
         System.import(pagePath).then(function(result){
-            let page = new Page();
-            page.run(result.config);
+            new Page(result);
         });
     }
 }
