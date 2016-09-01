@@ -13,8 +13,7 @@ class WebSocket extends Server{
     _run(){
         this.server.listen(this.port);
         this._connect();
-        console.log('WS no http router');
-        console.log('WS listening 127.0.0.1:' + this.port);
+        console.log('WS listening: 127.0.0.1:' + this.port);
     }
 
     _connect(){

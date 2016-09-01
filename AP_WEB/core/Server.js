@@ -19,8 +19,9 @@ class Server{
 
     _run(){
         this.server.listen(this.port);
+        this.app.use(express.static(__dirname.replace(/core/, 'webapp')));
         new Router(this.app);
-        console.log('Server listening 127.0.0.1:' + this.port);
+        console.log('HTTP listening: 127.0.0.1:' + this.port);
     }
 }
 

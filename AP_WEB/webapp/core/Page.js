@@ -29,21 +29,24 @@ export default class Page{
         let dialogView = dialogPath + 'view.html';
         let dialogStyle = dialogPath + 'style.css';
 
-        Ajax.loadHTML($('body'), dialogView, (result) => {
-            let $container = $(result);
+        let callback = (result) => {
+            debugger;
+            let $dialog = $(result);
+            $dialog.attr('id', dialog.id);
             this._loadStyle(dialogStyle);
-            this._loadController(dialogController, dialog, $container);
+            this._loadController(dialogController, dialog);
             this._loadModel(dialogModel);
-        });
+        };
+        Ajax.loadHTML($('body'), dialogView, callback);
     }
 
     _loadModule(module){
         
     }
 
-    _loadController(controllerPath, obj, $container){
+    _loadController(controllerPath, obj){
         System.import(controllerPath).then( ({ Controller }) => {
-            new Controller(obj, $container);
+            new Controller(obj);
         });
     }
 

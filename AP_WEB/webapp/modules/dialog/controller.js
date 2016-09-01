@@ -3,8 +3,8 @@
 export class Controller{
     constructor(dialog, $container){
         console.log('dialog controller');
-        this._render(dialog, $container);
-        this._addEvent(dialog, $container);
+        // this._render(dialog, $container);
+        // this._addEvent(dialog, $container);
     }
 
     _render(dialog, $container){

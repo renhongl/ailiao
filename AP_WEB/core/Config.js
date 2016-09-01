@@ -8,7 +8,7 @@ class Config{
 }
 
 Config.WS_PORT = 9090;
-Config.SERVER_PORT = 9000;
+Config.SERVER_PORT = 8080;
 Config.TEST = true;
 
 module.exports = Config;
