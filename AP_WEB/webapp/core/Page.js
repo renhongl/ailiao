@@ -26,22 +26,10 @@ export default class Page{
         let dialogPath = Constant.BASE_SERVER + 'modules/dialog/';
         let dialogController = dialogPath + 'controller';
         let dialogModel = dialogPath + 'model';
-        let dialogView = dialogPath + 'view.html';
         let dialogStyle = dialogPath + 'style.css';
-
-        let callback = (result) => {
-            debugger;
-            let $dialog = $(result);
-            $dialog.attr('id', dialog.id);
-            this._loadStyle(dialogStyle);
-            this._loadController(dialogController, dialog);
-            this._loadModel(dialogModel);
-        };
-        Ajax.loadHTML($('body'), dialogView, callback);
-    }
-
-    _loadModule(module){
-        
+        this._loadController(dialogController, dialog);
+        this._loadStyle(dialogStyle);
+        this._loadModel(dialogModel);
     }
 
     _loadController(controllerPath, obj){
@@ -54,10 +42,10 @@ export default class Page{
         $('head').append(`<link rel='stylesheet' href=${ stylePath } />`);
     }
 
-    _loadModel(modelPath){
-        System.import(modelPath).then( ({ Model }) => {
-            new Model();
-        });
-    }
+    // _loadModel(modelPath){
+    //     System.import(modelPath).then( ({ Model }) => {
+    //         new Model();
+    //     });
+    // }
 
 }

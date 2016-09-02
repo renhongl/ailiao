@@ -12,7 +12,7 @@ export const config = {
                 x: '100px',
                 y: '100px',
             },
-            child: {
+            content: {
                 id: 'demo',
                 type: 'module',
                 settings: {
@@ -29,7 +29,7 @@ export const config = {
         //         x: '300px',
         //         y: '300px',
         //     },
-        //     child: {
+        //     content: {
         //         id: 'demo',
         //         type: 'module',
         //         settings: {

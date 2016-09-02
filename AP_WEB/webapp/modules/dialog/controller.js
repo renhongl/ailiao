@@ -1,18 +1,24 @@
 'use strict';
 
+import Ajax from '/core/Ajax'
+
 export class Controller{
-    constructor(dialog, $container){
-        console.log('dialog controller');
-        // this._render(dialog, $container);
-        // this._addEvent(dialog, $container);
+    constructor(dialog){
+        this.dialog = dialog;
+        this._renderTree();
+        this._handleEvent();
     }
 
-    _render(dialog, $container){
-        debugger;
-        $container.attr('id', dialog.id + 'Dialog').width(dialog.settings.width).height(dialog.settings.height);
+    _renderTree(){
+        let $dialog = $('<div>').attr('id', this.dialog.id).attr('class', 'dialog');
+        let url = 'modules/dialog/view.html';
+        let callback = () => {
+            $('body').append($dialog);
+        };
+        Ajax.loadHTML($dialog, url, callback);
     }
 
-    _addEvent(dialog, $container){
+    _handleEvent(){
 
     }
 }
