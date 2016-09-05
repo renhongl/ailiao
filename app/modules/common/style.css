@@ -3,15 +3,17 @@ html,body{
     width: 100%;
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 
 #loadingDiv{
     height: 100%;
     width: 100%;
-    background: #15191f;
+    background: #333333;
 }
 
 #loadingImg{
     display: block;
     margin: 0 auto;
+    padding-top: 200px;
 }

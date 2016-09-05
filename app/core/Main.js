@@ -10,7 +10,8 @@ import Page from './Page'
 class Main{
     constructor(){
         console.log("init main");
-        $('#loadingDiv').remove();
+        $('#loadingDiv').fadeOut(1000);
+        //$('#loadingDiv').remove();
         const TEST = Constant.TEST;
         if(TEST){
             new Test();
