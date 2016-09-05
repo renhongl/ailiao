@@ -5,7 +5,7 @@
             "name": "Launch",
             "type": "node",
             "request": "launch",
-            "program": "${workspaceRoot}/AP_WEB/core/Main.js",
+            "program": "${workspaceRoot}/server/core/Main.js",
             "stopOnEntry": false,
             "args": [],
             "cwd": "${workspaceRoot}",

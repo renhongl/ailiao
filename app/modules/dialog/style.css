@@ -1,0 +1,19 @@
+body .dialog{
+    border: 1px solid gray;
+    position: relative;
+    z-index: 1;
+}
+
+.dialog.current{
+    border: 1px solid red;
+    z-index: 2;
+}
+
+.dialog .title{
+    height:20%;
+    border: 1px solid gray;
+}
+
+.dialog .content{
+    height:80%;
+}
