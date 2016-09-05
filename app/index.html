@@ -10,17 +10,8 @@
 <body>
     <script src="jspm_packages/system.js"></script>
     <script src="config.js"></script>
+    <script src="core/preLoad.js"></script>
     <script>
-        (function(){
-            let body = document.querySelector('body');
-            let loadingDiv = document.createElement('div');
-            let loadingImg = document.createElement('img');
-            loadingDiv.id = 'loadingDiv';
-            loadingImg.id = 'loadingImg';
-            loadingImg.src = 'images/loading.gif';
-            loadingDiv.appendChild(loadingImg);
-            body.appendChild(loadingDiv);
-        })();
         System.import('./core/Main');
     </script>
 </body>
