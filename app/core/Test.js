@@ -1,10 +1,8 @@
 'use strict';
 
 import WebSocket from './WebSocket'
-import Constant from './Constant'
-import MessageBus from './MessageBus'
-import QueryString from './QueryString'
 import Page from './Page'
+import MessageBus from './MessageBus'
 
 export default class Test{
     constructor(){
@@ -19,11 +17,11 @@ export default class Test{
     }
 
     _testWebSocket(){
-        new WebSocket(Constant.WS_SERVER);
+        new WebSocket(AP.Constant.WS_SERVER);
     }
 
     _testMessageBus(){
-        new MessageBus(Constant.WS_SERVER);
+        new MessageBus(AP.Constant.WS_SERVER);
 
         $.subscribe("dataload", function(data){
             console.log(JSON.stringify(data));
@@ -35,7 +33,6 @@ export default class Test{
     }
 
     _testQueryString(){
-        let qs = new QueryString();
-        console.log(qs.getValue('page'));
+        console.log(AP.QueryString.getValue('page'));
     }
 }

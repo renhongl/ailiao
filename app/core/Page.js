@@ -1,9 +1,5 @@
 'use strict';
 
-import QueryString from './QueryString'
-import Ajax from './Ajax'
-import Constant from './Constant'
-
 export default class Page{
     constructor({ config }){
         this.config = config;
@@ -31,7 +27,9 @@ export default class Page{
         let dialogController = dialogPath + 'controller';
         System.import(dialogController).then( ({ controller }) => {
             $.subscribe(`${ dialog.id }-loaded`, () => {
-                this._loadModule(dialog.content, $(`#${ dialog.id } .content`));
+                if(dialog.content){
+                    this._loadModule(dialog.content, $(`#${ dialog.id } .content`));
+                }
             });
             new controller(dialog, $('body'));
         });

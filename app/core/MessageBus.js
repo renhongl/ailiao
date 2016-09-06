@@ -5,8 +5,6 @@
 'use strict';
 
 import WebSocket from './WebSocket'
-import $ from 'jquery'
-import Constant from './Constant'
 
 export default class MessageBus extends WebSocket{
     constructor(url){
@@ -36,8 +34,6 @@ export default class MessageBus extends WebSocket{
                 socket.on(topic, callback);
             }
         });
-        window.$ = $;
     }
 }
 
-new MessageBus(Constant.WS_SERVER);

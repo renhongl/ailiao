@@ -9,10 +9,10 @@ export class controller extends Controller{
     }
 
     _renderTree(){
-       new model();
+       new model(this.obj);
     }
 
     _handleEvents(){
-        console.log('demo handle events');
+        
     }
 }

@@ -1,7 +1,5 @@
 'use strict';
 
-import Ajax from './Ajax'
-
 export default class Model{
     constructor(config){
         this.config = config;

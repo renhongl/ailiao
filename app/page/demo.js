@@ -1,40 +1,26 @@
 'use strict';
 
 export const config = {
-    title: 'demo',
+    title: 'AP Demo',
     dialogs: [
         {
-            id: 'dialog1',
+            id: 'Demo',
             type: 'dialog',
             settings: {
-                width: '100px',
-                height: '100px',
-                x: '100px',
-                y: '100px',
-            },
-            content: {
-                id: 'demo',
-                type: 'module',
-                settings: {
-                    
-                },
+                width: AP.width * 0.3,
+                height: AP.width * 0.3,
+                x: AP.width * 0.3,
+                y: AP.height * 0.3,
             },
         },
         {
-            id: 'dialog2',
+            id: 'Demo2',
             type: 'dialog',
             settings: {
-                width: '100px',
-                height: '100px',
-                x: '300px',
-                y: '300px',
-            },
-            content: {
-                id: 'demo2',
-                type: 'module',
-                settings: {
-
-                },
+                width: AP.width * 0.3,
+                height: AP.width * 0.3,
+                x: AP.width * 0.3,
+                y: AP.height * 0.3,
             },
         },
     ]

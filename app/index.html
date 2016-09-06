@@ -12,7 +12,9 @@
     <script src="config.js"></script>
     <script src="core/preLoad.js"></script>
     <script>
-        System.import('./core/Main');
+        System.import('./core/Main').then(({ Main }) => {
+            new Main();
+        });
     </script>
 </body>
 

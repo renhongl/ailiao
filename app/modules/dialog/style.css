@@ -1,5 +1,5 @@
 body .dialog{
-    border: 1px solid gray;
+    border: 1px solid black;
     position: relative;
     z-index: 1;
 }
@@ -10,8 +10,8 @@ body .dialog{
 }
 
 .dialog .title{
-    height:20%;
-    border: 1px solid gray;
+    height:20px;
+    border: 0px solid black;
 }
 
 .dialog .content{
