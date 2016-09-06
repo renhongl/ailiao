@@ -9,14 +9,23 @@ export default class Draggable{
     _handleEvents(){
         let $container = this.$container;
         $container.on('mousedown', (e) => {
+            if( $(e.target).hasClass('button') ){
+                return;
+            }
             this._handleMousedown(e);
         });
 
         $container.on('mousemove', (e) => {
+            if( $(e.target).hasClass('button') ){
+                return;
+            }
             this._handleMousemove(e);
         });
 
         $container.on('mouseup', (e) => {
+            if( $(e.target).hasClass('button') ){
+                return;
+            }
             this._handleMouseup(e);
         });
     }

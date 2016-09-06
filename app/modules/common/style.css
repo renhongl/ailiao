@@ -6,6 +6,11 @@ html,body{
     overflow: hidden;
 }
 
+div{
+    margin: 0;
+    padding: 0;
+}
+
 #loadingDiv{
     height: 100%;
     width: 100%;

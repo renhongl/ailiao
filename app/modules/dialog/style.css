@@ -1,19 +1,38 @@
 body .dialog{
-    border: 1px solid black;
-    position: relative;
+    border: 0px solid black;
+    position: fixed;
     z-index: 1;
+    border-radius: 4px;
+    color: #fff;
+}
+
+body{
+    background: lightseagreen;
 }
 
 .dialog.current{
-    border: 1px solid red;
+    border: 0px solid #fff;
     z-index: 2;
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.5);
 }
 
 .dialog .title{
-    height:20px;
-    border: 0px solid black;
+    height:10%;
+    border: 0px solid #000;
+    background: #353030;
+    border-radius: 4px 4px 0px 0px;
 }
 
 .dialog .content{
-    height:80%;
+    height:90%;
+    background: #1f9c6e;
+    border-radius: 0px 0px 4px 4px;
+}
+
+.dialog .dialogCtrl{
+    display: inline-block;
+    height: 100%;
+    width: 50px;
+    border: 0px solid black;
+    float: right;
 }
