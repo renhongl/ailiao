@@ -10,7 +10,10 @@ define([
     'use strict';
     class Main {
         constructor() {
-            $('#loadingDiv').fadeOut(1000);
+            $('#loadingDiv').fadeOut(500);
+            setTimeout(function(){
+                $('#loadingDiv').remove();
+            }, 1000);
             this._beforeLoad();
         }
 

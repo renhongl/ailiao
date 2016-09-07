@@ -16,6 +16,10 @@ define([
             $('.dialog').off('click').on('click', (e) => {
                 this._handleClick(e);
             });
+
+            $('.dialog').on('mousedown', (e) => {
+                this._handleClick(e);
+            });
         }
 
         _handleClick(e) {
