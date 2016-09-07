@@ -1,17 +1,20 @@
-'use strict';
+define([
+    'Model'
+], function(Model) {
+    'use strict';
+    class model extends Model {
+        constructor(config) {
+            super(config);
+        }
 
-import Model from '/core/Model'
+        _loadData() {
 
-export default class model extends Model{
-    constructor(config){
-        super(config);
+        }
+
+        _refresh() {
+
+        }
     }
 
-    _loadData(){
-        
-    }
-
-    _refresh(){
-         
-    }
-}
+    return model;
+});

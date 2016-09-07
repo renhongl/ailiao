@@ -1,38 +1,43 @@
-'use strict';
+define([
+    'WebSocket',
+    'Page',
+    'MessageBus'
+], function(WebSocket, Page, MessageBus) {
+    'use strict';
+    class Test {
+        constructor() {
+            console.log('init test');
+            this._run();
+        }
 
-import WebSocket from './WebSocket'
-import Page from './Page'
-import MessageBus from './MessageBus'
+        _run() {
+            this._testWebSocket();
+            this._testMessageBus();
+            this._testQueryString();
+        }
 
-export default class Test{
-    constructor(){
-        console.log('init test');
-        this._run();
+        _testWebSocket() {
+            new WebSocket(AP.Constant.WS_SERVER);
+        }
+
+        _testMessageBus() {
+            new MessageBus(AP.Constant.WS_SERVER);
+
+            $.subscribe("dataload", function(data) {
+                console.log(JSON.stringify(data));
+            });
+
+            setTimeout(function() {
+                $.publish("dataload", {
+                    "name": "lrh"
+                });
+            }, 5000);
+        }
+
+        _testQueryString() {
+            console.log(AP.QueryString.getValue('page'));
+        }
     }
 
-    _run(){
-        this._testWebSocket();
-        this._testMessageBus();
-        this._testQueryString();
-    }
-
-    _testWebSocket(){
-        new WebSocket(AP.Constant.WS_SERVER);
-    }
-
-    _testMessageBus(){
-        new MessageBus(AP.Constant.WS_SERVER);
-
-        $.subscribe("dataload", function(data){
-            console.log(JSON.stringify(data));
-        });
-
-        setTimeout(function(){
-            $.publish("dataload", {"name": "lrh"});
-        }, 5000);
-    }
-
-    _testQueryString(){
-        console.log(AP.QueryString.getValue('page'));
-    }
-}
+    return Test;
+});

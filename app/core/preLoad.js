@@ -1,6 +1,5 @@
-
-
-(function () {
+'use strict';
+(function() {
 
     let body = document.querySelector('body');
     let loadingDiv = document.createElement('div');
@@ -10,5 +9,5 @@
     loadingImg.src = 'images/loading.gif';
     loadingDiv.appendChild(loadingImg);
     body.appendChild(loadingDiv);
-    
+
 })();

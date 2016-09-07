@@ -1,18 +1,21 @@
-'use strict';
+define([
+    'Controller',
+    'model'
+], function(Controller, model) {
+    'use strict';
+    class controller extends Controller {
+        constructor(obj, $container) {
+            super(obj, $container);
+        }
 
-import Controller from '/core/Controller'
-import model from './model'
+        _renderTree() {
+            new model(this.obj);
+        }
 
-export class controller extends Controller{
-    constructor(obj, $container){
-        super(obj, $container);
+        _handleEvents() {
+
+        }
     }
 
-    _renderTree(){
-       new model(this.obj);
-    }
-
-    _handleEvents(){
-        
-    }
-}
+    return controller;
+});
