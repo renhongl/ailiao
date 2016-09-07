@@ -3,9 +3,7 @@ define([
 ], function() {
     'use strict';
     class Page {
-        constructor({
-            config
-        }) {
+        constructor(config) {
             this.config = config;
             this._loadTitle();
             this._loadDialogs();
@@ -29,9 +27,7 @@ define([
         _loadDialog(dialog) {
             let dialogPath = 'modules/dialog/';
             let dialogController = dialogPath + 'controller';
-            System.import(dialogController).then(({
-                controller
-            }) => {
+            require([dialogController + '.js'], (controller) => {
                 $.subscribe(`${ dialog.id }-loaded`, () => {
                     if (dialog.content) {
                         this._loadModule(dialog.content, $(`#${ dialog.id } .content`));
@@ -48,9 +44,7 @@ define([
 
             $('head').append(`<link rel='stylesheet' href=${ moduleStyle } />`);
 
-            System.import(moduleController).then(({
-                controller
-            }) => {
+            require([moduleController + '.js'], (controller) => {
                 new controller(module, $container);
             });
         }

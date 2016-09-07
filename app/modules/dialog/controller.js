@@ -1,8 +1,7 @@
 define([
     'Controller',
-    'model',
     'Draggable'
-], function(Controller, model, Draggable) {
+], function(Controller, Draggable) {
     'use strict';
     class controller extends Controller {
         constructor(obj, $container) {
@@ -10,7 +9,6 @@ define([
         }
 
         _renderTree() {
-            new model(this.obj);
             new Draggable($(`#${ this.obj.id }`));
         }
 

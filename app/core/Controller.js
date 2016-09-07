@@ -24,11 +24,16 @@ define([
             }
 
             let callback = () => {
+                let modelPath = `modules/${ this.obj.id }/model.js`;
                 this.$container.append($dialog);
                 this._renderTree();
                 this._handleEvents();
                 if (obj.type === 'dialog') {
                     $.publish(`${ obj.id }-loaded`);
+                }else{
+                    require([modelPath], (model) => {
+                        new model(this.obj);
+                    });
                 }
             };
 
@@ -43,4 +48,6 @@ define([
 
         }
     }
+
+    return Controller;
 });

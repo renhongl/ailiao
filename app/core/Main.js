@@ -1,5 +1,3 @@
-
-
 define([
     'jquery', 
     'MessageBus', 
@@ -37,9 +35,9 @@ define([
 
         _loadPage() {
             let pageName = QueryString.getValue('page') || AP.Constant.DEFAULT_PAGE;
-            let pagePath = './page/' + pageName;
-            require([pagePath]), (function(result) {
-                new Page(result);
+            let pagePath = 'page/' + pageName;
+            require([pagePath + '.js'], function(config) {
+                new Page(config);
             });
         }
     }

@@ -1,7 +1,6 @@
 define([
-    'Controller',
-    'model'
-], function(Controller, model) {
+    'Controller'
+], function(Controller) {
     'use strict';
     class controller extends Controller {
         constructor(obj, $container) {
@@ -9,7 +8,7 @@ define([
         }
 
         _renderTree() {
-            new model(this.obj);
+            
         }
 
         _handleEvents() {
