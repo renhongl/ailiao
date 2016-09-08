@@ -17,7 +17,7 @@ body{
 }
 
 .dialog .title{
-    height:20px;
+    height:30px;
     width: 100%;
     border: 0px solid #000;
     background: #353030;
@@ -38,4 +38,27 @@ body{
     width: 50px;
     border: 0px solid black;
     float: right;
+}
+
+.title span{
+    display: inline-block;
+    display: inline-block;
+    float: left;
+    margin-top: 4px;
+    width: 28px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+}
+
+.title span:hover{
+    background: #656161;
+}
+
+.title .glyphicon-remove:hover{
+    background: #de2a2a;
+}
+
+.title .glyphicon-remove{
+    margin-left:5px;
 }

@@ -7,26 +7,28 @@ define([], function() {
     class Draggable {
         constructor($container) {
             this.$container = $container;
-            this._handleEvents();
+            for(let subContainer of $container.children()){
+                this._handleEvents($(subContainer));
+            }
         }
 
-        _handleEvents() {
-            let $container = this.$container;
-            $container.on('mousedown', (e) => {
+        _handleEvents($subContainer) {
+            
+            $subContainer.on('mousedown', (e) => {
                 if ($(e.target).hasClass('button')) {
                     return;
                 }
                 this._handleMousedown(e);
             });
 
-            $container.on('mousemove', (e) => {
+            $subContainer.on('mousemove', (e) => {
                 if ($(e.target).hasClass('button')) {
                     return;
                 }
                 this._handleMousemove(e);
             });
 
-            $container.on('mouseup', (e) => {
+            $subContainer.on('mouseup', (e) => {
                 if ($(e.target).hasClass('button')) {
                     return;
                 }
@@ -35,8 +37,8 @@ define([], function() {
         }
 
         _handleMousedown(e) {
-            let left = parseInt($(e.currentTarget).css('left').split('px')[0]);
-            let top = parseInt($(e.currentTarget).css('top').split('px')[0]);
+            let left = parseInt(this.$container.css('left').split('px')[0]);
+            let top = parseInt(this.$container.css('top').split('px')[0]);
             this.offsetX = left - e.clientX;
             this.offsetY = top - e.clientY;
             this.mouseDown = true;
@@ -46,11 +48,11 @@ define([], function() {
             if (this.mouseDown) {
                 let x = e.clientX;
                 let y = e.clientY;
-                let left = parseInt($(e.currentTarget).css('left').split('px')[0]);
-                let top = parseInt($(e.currentTarget).css('top').split('px')[0]);
+                let left = parseInt(this.$container.css('left').split('px')[0]);
+                let top = parseInt(this.$container.css('top').split('px')[0]);
                 let positionX = x + this.offsetX;
                 let positionY = y + this.offsetY;
-                $(e.currentTarget).css('left', positionX + 'px').css('top', positionY + 'px');
+                this.$container.css('left', positionX + 'px').css('top', positionY + 'px');
             }
         }
 

@@ -1,5 +1,5 @@
 
-define(['Controller','Draggable'], function(Controller, Draggable) {
+define(['Controller', 'Draggable', 'Tipy'], function(Controller, Draggable, Tipy) {
     'use strict';
     class controller extends Controller {
         constructor(obj, $container) {
@@ -8,6 +8,7 @@ define(['Controller','Draggable'], function(Controller, Draggable) {
 
         _renderTree() {
             new Draggable($(`#${ this.obj.id }`));
+            this._addTipy();
         }
 
         _handleEvents() {
@@ -18,6 +19,12 @@ define(['Controller','Draggable'], function(Controller, Draggable) {
             $('.dialog').off('mousedown').on('mousedown', (e) => {
                 this._handleClick(e);
             });
+        }
+
+        _addTipy(){
+            for(let button of $('.dialog').find('span')){
+                Tipy.tipy($(button));
+            }
         }
 
         _handleClick(e) {

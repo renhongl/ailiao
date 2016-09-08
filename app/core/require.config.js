@@ -16,6 +16,7 @@ require.config({
         Test: 'core/Test',
         WebSocket: 'core/WebSocket',
         Ajax: 'core/Ajax',
+        Tipy: 'core/Tipy',
         
         //libs
         jquery: 'libs/jquery',
