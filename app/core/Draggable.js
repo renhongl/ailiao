@@ -21,14 +21,14 @@ define([], function() {
                 this._handleMousedown(e);
             });
 
-            $subContainer.on('mousemove', (e) => {
+            $(document).on('mousemove', (e) => {
                 if ($(e.target).hasClass('button')) {
                     return;
                 }
                 this._handleMousemove(e);
             });
 
-            $subContainer.on('mouseup', (e) => {
+            $(document).on('mouseup', (e) => {
                 if ($(e.target).hasClass('button')) {
                     return;
                 }
@@ -46,6 +46,7 @@ define([], function() {
 
         _handleMousemove(e) {
             if (this.mouseDown) {
+                $(e.target).css('cursor', 'default');
                 let x = e.clientX;
                 let y = e.clientY;
                 let left = parseInt(this.$container.css('left').split('px')[0]);
@@ -57,6 +58,7 @@ define([], function() {
         }
 
         _handleMouseup(e) {
+            $(e.target).css('cursor', 'default');
             this.mouseDown = false;
         }
     }
