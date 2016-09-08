@@ -1,6 +1,9 @@
-define([
-
-], function() {
+/**
+ * 解析每个page配置的核心代码
+ * 通过浏览器url找到对应page的配置
+ * 通过配置载入各个窗口和内容
+ */
+define([], function() {
     'use strict';
     class Page {
         constructor(config) {

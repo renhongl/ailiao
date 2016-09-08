@@ -1,6 +1,5 @@
-define([
-    'Controller'
-], function(Controller) {
+
+define(['Controller'], function(Controller) {
     'use strict';
     class controller extends Controller {
         constructor(obj, $container) {

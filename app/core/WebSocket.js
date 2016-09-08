@@ -1,6 +1,8 @@
-define([
-    'io'
-], function(io) {
+/**
+ * 用于连接服务器的WebSocket
+ * 可作为任何需要使用WebSocket类的父类
+ */
+define(['io'], function(io) {
     'use strict';
     class WebSocket {
         constructor(url) {

@@ -20,5 +20,6 @@ require.config({
         //libs
         jquery: 'libs/jquery',
         io: 'libs//socket.io',
+        bootstrap: 'libs/bootstrap/js/bootstrap.min',
     }
 });

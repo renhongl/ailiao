@@ -4,6 +4,7 @@ html,body{
     margin: 0;
     padding: 0;
     overflow: hidden;
+    font-size: 12px;
 }
 
 div{
@@ -22,5 +23,5 @@ div{
 #loadingImg{
     display: block;
     margin: 0 auto;
-    padding-top: 200px;
+    padding-top: 100px;
 }

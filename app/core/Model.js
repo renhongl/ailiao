@@ -1,6 +1,9 @@
-define([
-
-], function() {
+/**
+ * 所有模块的model的父类
+ * 设置config属性
+ * 载入loadData和refresh方法
+ */
+define([], function() {
     'use strict';
     class Model {
         constructor(config) {

@@ -1,3 +1,6 @@
+/**
+ * 应用的运行入口
+ */
 define([
     'jquery', 
     'MessageBus', 
@@ -18,22 +21,24 @@ define([
         }
 
         _beforeLoad() {
-            window.$ = $;
-            window.AP = {
-                Constant,
-                Ajax,
-                QueryString,
-                width: $(window).width(),
-                height: $(window).height(),
-                PC: $(window).width() > 700 ? true : false,
-            };
-            const TEST = Constant.TEST;
-            if (TEST) {
-                new Test();
-            } else {
-                new MessageBus(Constant.WS_SERVER);
-                this._loadPage();
-            }
+            require(['bootstrap'], () => {
+                window.$ = $;
+                window.AP = {
+                    Constant,
+                    Ajax,
+                    QueryString,
+                    width: $(window).width(),
+                    height: $(window).height(),
+                    PC: $(window).width() > 700 ? true : false,
+                };
+                const TEST = Constant.TEST;
+                if (TEST) {
+                    new Test();
+                } else {
+                    new MessageBus(Constant.WS_SERVER);
+                    this._loadPage();
+                }
+            });
         }
 
         _loadPage() {

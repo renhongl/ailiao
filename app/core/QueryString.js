@@ -1,6 +1,9 @@
-define([
-
-], function() {
+/**
+ * 查询浏览器url中的各个参数值
+ * 属于工具类，放在AP对象中
+ * 使用时直接使用其静态方法getValue
+ */
+define([], function() {
     'use strict';
     class QueryString {
         static getValue(name) {

@@ -1,9 +1,6 @@
 {
     "name": "common",
-    "description": "common",
+    "description": "用于配置应用基本、共同的样式，所以只需要style",
     "author": "liangrenhong",
-    "view": "view.html",
-    "controller": "controller.js",
-    "model": "model.js",
     "style": "style.css"
 }

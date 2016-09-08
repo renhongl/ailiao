@@ -1,6 +1,8 @@
-define([
-
-], function() {
+/**
+ * 构造时，接收一个用于拖动的对象
+ * 如果这个拖动的对象有button这样的class，将不会执行拖动
+ */
+define([], function() {
     'use strict';
     class Draggable {
         constructor($container) {

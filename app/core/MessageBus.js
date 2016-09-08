@@ -1,10 +1,8 @@
 /**
- * Use to publish and subscribe message, based on class WebSocket
+ * 基于WebSocket，做的jquery扩展功能。
+ * 任何$.subscribe将会收到相同话题$.publish的消息(在发布前先订阅)
  */
-
-define([
-    'WebSocket'
-], function(WebSocket) {
+define(['WebSocket'], function(WebSocket) {
     'use strict';
     class MessageBus extends WebSocket {
         constructor(url) {

@@ -1,7 +1,5 @@
-define([
-    'Controller',
-    'Draggable'
-], function(Controller, Draggable) {
+
+define(['Controller','Draggable'], function(Controller, Draggable) {
     'use strict';
     class controller extends Controller {
         constructor(obj, $container) {
@@ -17,7 +15,7 @@ define([
                 this._handleClick(e);
             });
 
-            $('.dialog').on('mousedown', (e) => {
+            $('.dialog').off('mousedown').on('mousedown', (e) => {
                 this._handleClick(e);
             });
         }

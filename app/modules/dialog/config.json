@@ -1,6 +1,6 @@
 {
     "name": "didalog",
-    "description": "dialog",
+    "description": "所有的应用都会放在一个dialog中",
     "author": "liangrenhong",
     "view": "view.html",
     "controller": "controller.js",

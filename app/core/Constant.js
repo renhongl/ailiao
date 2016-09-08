@@ -1,15 +1,12 @@
 /**
- * Save all frontend constants
+ * 存储所有的静态变量
+ * 属于工具类，放在AP对象中
  */
 
-define([
-
-], function() {
+define([], function() {
     'use strict';
     class Constant {
-        constructor() {
-            console.log("init constant");
-        }
+        
     }
 
     Constant.WS_SERVER = 'ws://127.0.0.1:9090/'; //lrh.apws.ngrok.cc

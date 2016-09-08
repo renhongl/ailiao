@@ -17,14 +17,17 @@ body{
 }
 
 .dialog .title{
-    height:10%;
+    height:20px;
+    width: 100%;
     border: 0px solid #000;
     background: #353030;
     border-radius: 4px 4px 0px 0px;
+    float:left;
 }
 
 .dialog .content{
-    height:90%;
+    height:100%;
+    width:100%;
     background: #1f9c6e;
     border-radius: 0px 0px 4px 4px;
 }

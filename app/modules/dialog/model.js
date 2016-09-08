@@ -1,6 +1,5 @@
-define([
-    'Model'
-], function(Model) {
+
+define(['Model'], function(Model) {
     'use strict';
     class model extends Model {
         constructor(config) {

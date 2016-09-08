@@ -1,21 +1,29 @@
-define([
-    
-], function() {
+/**
+ * 是所有模块中controller的父类
+ * 1： 根据配置信息，设置窗口大小和位置
+ * 2： 载入html和model
+ * 3： 引入renderTree和handleEvents方法
+ */
+define([], function() {
     'use strict';
     class Controller {
         constructor(obj, $container) {
             this.obj = obj;
             this.$container = $container;
             let $dialog = $('<div>').attr('id', obj.id).attr('class', obj.type);
-            $dialog.width(obj.settings.width).height(obj.settings.height);
-            if (obj.id === 'dialog') {
+            
+            if (obj.type === 'dialog') {
                 if (AP.PC) {
                     $dialog.css('left', obj.settings.x).css('top', obj.settings.y);
+                    $dialog.width(obj.settings.width).height(obj.settings.height);
                 } else {
-                    $dialog.css('left', '0px').css('top', '0px');
+                    //Should use phone version.
+                    $dialog.css('left', '0px').css('top', AP.height * 0 + 'px');
+                    $dialog.width('100%').height('100%');
                 }
             } else {
                 $dialog.css('left', obj.settings.x).css('top', obj.settings.y);
+                $dialog.width(obj.settings.width).height(obj.settings.height);
             }
 
             let url = 'modules/dialog/view.html';
@@ -38,6 +46,14 @@ define([
             };
 
             AP.Ajax.loadHTML($dialog, url, callback);
+        }
+
+        _setContainer(){
+
+        }
+
+        _loadHtml(){
+            
         }
 
         _renderTree() {
