@@ -9,7 +9,7 @@ define(['WebSocket'], function(WebSocket) {
             super(url);
         }
 
-        _run() {
+        run() {
             let socket = this.socket;
             this._createPlugin();
 

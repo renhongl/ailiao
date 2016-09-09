@@ -8,9 +8,6 @@
 define([], function() {
     'use strict';
     class Ajax {
-        constructor() {
-            console.log('init ajax');
-        }
 
         static getJSON(url, callback) {
             $.ajax({

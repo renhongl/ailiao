@@ -34,9 +34,8 @@ div{
     background: #353030;
     color: white;
     border-radius: 2px;
-    height: 30px;
-    width: 80px;
-    line-height: 25px;
+    height: 25px;
+    line-height: 20px;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
 

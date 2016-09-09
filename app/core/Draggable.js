@@ -5,16 +5,14 @@
 define([], function() {
     'use strict';
     class Draggable {
-        constructor($container) {
+        constructor($container){
             this.$container = $container;
-            for(let subContainer of $container.children()){
-                this._handleEvents($(subContainer));
-            }
+            this._handleEvents();
         }
 
-        _handleEvents($subContainer) {
-            
-            $subContainer.on('mousedown', (e) => {
+        _handleEvents() {
+            let $title = this.$container.find('.title');
+            $title.on('mousedown', (e) => {
                 if ($(e.target).hasClass('button')) {
                     return;
                 }

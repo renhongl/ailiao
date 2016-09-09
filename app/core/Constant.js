@@ -13,6 +13,7 @@ define([], function() {
     Constant.TEST = false;
     Constant.BASE_SERVER = 'http://127.0.0.1:8080/'; //lrh.ngrok.cc
     Constant.DEFAULT_PAGE = 'demo';
+    Constant.SKIP_AUTH = true;
 
     return Constant;
 });
