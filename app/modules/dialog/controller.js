@@ -40,6 +40,7 @@ define(['Controller'], function(Controller) {
         }
 
         _normalDialog(){
+            $(`#${ this.obj.id }`).find('.content').css('display', 'block');
             $(`#${ this.obj.id }`).find('.glyphicon-unchecked').css('display', 'inline-block');
             $(`#${ this.obj.id }`).find('.glyphicon-th-large').css('display', 'none');
             $(`#${ this.obj.id }`).find('.glyphicon-minus').css('display', 'inline-block');
@@ -48,6 +49,7 @@ define(['Controller'], function(Controller) {
         }
 
         _minDialog(){
+            $(`#${ this.obj.id }`).find('.content').css('display', 'none');
             $(`#${ this.obj.id }`).find('.glyphicon-th-large').css('display', 'inline-block');
 
             $(`#${ this.obj.id }`).find('.glyphicon-unchecked').css('display', 'none');

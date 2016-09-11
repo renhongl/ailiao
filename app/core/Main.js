@@ -37,7 +37,7 @@ define([
                     Draggable,
                     width: $(window).width(),
                     height: $(window).height(),
-                    PC: $(window).width() > 700 ? true : false,
+                    PC: $(window).width() > 1000 ? true : false,
                 };
                 let messageBus = new MessageBus(Constant.WS_SERVER);
                 messageBus.run();

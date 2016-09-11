@@ -11,7 +11,7 @@ define([], function(require, factory) {
             
             $button.on('mouseover', (e) => {
                 $button.append($tip);
-                $('.tipy').width(15 * len + 'px').css('font-size', '10px');
+                $('.tipy').width(15 * len + 5 + 'px').css('font-size', '10px');
             });
 
             $button.on('mouseout', (e) => {

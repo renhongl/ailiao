@@ -7,12 +7,13 @@ define([], function() {
     class Draggable {
         constructor($container){
             this.$container = $container;
-            this._handleEvents();
+            for(let subContainer of $container.children()){
+                this._handleEvents($(subContainer));
+            }
         }
 
-        _handleEvents() {
-            let $title = this.$container.find('.title');
-            $title.on('mousedown', (e) => {
+        _handleEvents($subContainer) {
+            $subContainer.on('mousedown', (e) => {
                 if ($(e.target).hasClass('button')) {
                     return;
                 }
