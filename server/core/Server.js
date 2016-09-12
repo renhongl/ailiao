@@ -4,7 +4,6 @@
 'use strict';
 
 const express = require('express');
-const cors = require('cors');
 const http = require('http');
 const socket = require('socket.io');
 const Router = require('./Router');
@@ -20,7 +19,6 @@ class Server{
 
     _run(){
         this.server.listen(this.port);
-        this.app.use(cors());
         this.app.use(express.static(__dirname.replace(/server\\core/, 'app')));
         new Router(this.app);
         console.log('HTTP listening: 127.0.0.1:' + this.port);
