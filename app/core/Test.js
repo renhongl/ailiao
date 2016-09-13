@@ -2,43 +2,17 @@
  * 用于几个技能核心功能的测试
  */
 define([
-    'WebSocket',
-    'Page',
-    'MessageBus'
-], function(WebSocket, Page, MessageBus) {
+    
+], function() {
     'use strict';
     class Test {
         constructor() {
-            console.log('init test');
-            this._run();
-        }
-
-        _run() {
-            this._testWebSocket();
-            this._testMessageBus();
-            this._testQueryString();
-        }
-
-        _testWebSocket() {
-            new WebSocket(AP.Constant.WS_SERVER);
-        }
-
-        _testMessageBus() {
-            new MessageBus(AP.Constant.WS_SERVER);
-
-            $.subscribe("dataload", function(data) {
-                console.log(JSON.stringify(data));
+            console.log('Running Test');
+            $.subscribe('test', function(data){
+                console.log(data);
             });
 
-            setTimeout(function() {
-                $.publish("dataload", {
-                    "name": "lrh"
-                });
-            }, 5000);
-        }
-
-        _testQueryString() {
-            console.log(AP.QueryString.getValue('page'));
+            $.publish('test', 'hehehhe');
         }
     }
 

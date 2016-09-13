@@ -39,8 +39,8 @@ define([
                     height: $(window).height(),
                     PC: $(window).width() > 1000 ? true : false,
                 };
-                let messageBus = new MessageBus(Constant.WS_SERVER);
-                messageBus.run();
+                // let messageBus = new MessageBus(Constant.WS_SERVER);
+                // messageBus.run();
                 this._verifyLogin();
             });
         }
