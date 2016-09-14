@@ -1,22 +1,28 @@
 /**
- * 应用的运行入口
+ * 是应用的总入口。
+ * 1：加载所有的库，和全局类。
+ * 2：加载完成后说明应用已经可以很快显示，所以删除正在载入的画面。
+ * 3：将加载得类绑定在全局变量AP上。以后使用很方便，直接在AP下面找，而且全局变量只有一个。
+ * 4：如果是测试某一个文件，进入测试类。如果不是测试，就根据url加载页面。
  */
 define([
-    'jquery',
-    'MessageBus',
     'Constant',
     'Test',
     'QueryString',
     'Ajax',
     'Page',
     'Tipy',
-    'Draggable'
-], function($, MessageBus, Constant, Test, QueryString, Ajax, Page, Tipy, Draggable) {
+    'Draggable',
+    'Observer',
+    'bootstrap'
+], function(Constant, Test, QueryString, Ajax, Page, Tipy, Draggable, Observer) {
     'use strict';
     class Main {
         constructor() {
+            new Observer();
             this._removeLoading();
             this._loadGlobal();
+            this._verifyLogin();
         }
 
         _removeLoading() {
@@ -27,22 +33,16 @@ define([
         }
 
         _loadGlobal() {
-            require(['bootstrap'], () => {
-                window.$ = $;
-                window.AP = {
-                    Constant,
-                    Ajax,
-                    QueryString,
-                    Tipy,
-                    Draggable,
-                    width: $(window).width(),
-                    height: $(window).height(),
-                    PC: $(window).width() > 1000 ? true : false,
-                };
-                // let messageBus = new MessageBus(Constant.WS_SERVER);
-                // messageBus.run();
-                this._verifyLogin();
-            });
+            window.AP = {
+                Constant,
+                Ajax,
+                QueryString,
+                Tipy,
+                Draggable,
+                width: $(window).width(),
+                height: $(window).height(),
+                PC: $(window).width() > 1000 ? true : false,
+            };
         }
 
         _verifyLogin() {

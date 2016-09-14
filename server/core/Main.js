@@ -6,13 +6,13 @@
 const WebSocket = require('./WebSocket');
 const Config = require('./Config');
 const Server = require('./Server');
+const Test = require('./Test');
 
 class Main{
     constructor(){
         const TEST = Config.TEST;
         if(TEST){
-            new Server(Config.SERVER_PORT);
-            new WebSocket(Config.WS_PORT);
+            new Test();
         }else{
             this._runSystem();
         }
@@ -20,7 +20,6 @@ class Main{
 
     _runSystem(){
         new Server(Config.SERVER_PORT);
-        new WebSocket(Config.WS_PORT);
     }
 }
 

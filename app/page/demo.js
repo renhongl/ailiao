@@ -1,6 +1,5 @@
-define([
 
-], function() {
+define([], function() {
     'use strict';
     const config = {
         title: 'AP Demo',

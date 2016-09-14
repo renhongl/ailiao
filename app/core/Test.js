@@ -1,5 +1,5 @@
 /**
- * 用于几个技能核心功能的测试
+ * 用于核心类的测试
  */
 define([
     
@@ -8,11 +8,15 @@ define([
     class Test {
         constructor() {
             console.log('Running Test');
-            $.subscribe('test', function(data){
-                console.log(data);
+            $.subscribe('test', function(e, args){
+                console.log(args);
             });
 
-            $.publish('test', 'hehehhe');
+            //$.unsubscribe('test');
+
+            setTimeout(function() {
+                $.publish('test', 'TestData');
+            }, 2000);
         }
     }
 

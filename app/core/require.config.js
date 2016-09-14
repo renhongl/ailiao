@@ -4,6 +4,7 @@ require.config({
     waitSeconds: 0,  
     paths: {
         //core
+        PreLoad: 'core/PreLoad',
         Main: 'core/Main',
         Constant: 'core/Constant',
         Controller: 'core/Controller',
@@ -11,12 +12,12 @@ require.config({
         MessageBus: 'core/MessageBus',
         Model: 'core/Model',
         Page: 'core/Page',
-        preLoad: 'core/preLoad',
         QueryString: 'core/QueryString',
         Test: 'core/Test',
         WebSocket: 'core/WebSocket',
         Ajax: 'core/Ajax',
         Tipy: 'core/Tipy',
+        Observer: 'core/Observer',
         
         //libs
         jquery: 'libs/jquery',

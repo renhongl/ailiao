@@ -1,7 +1,7 @@
 /**
  * 所有模块的model的父类
- * 设置config属性
- * 载入loadData和refresh方法
+ * 1：设置config属性
+ * 2：载入loadData和refresh方法
  */
 define([], function() {
     'use strict';
@@ -13,11 +13,11 @@ define([], function() {
         }
 
         _loadData() {
-            console.log('Model/loadData');
+            
         }
 
         _refresh() {
-            console.log('Model/refresh');
+            
         }
     }
 
