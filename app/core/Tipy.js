@@ -7,6 +7,9 @@ define([], function(require, factory) {
     'use strict';
     class Tipy{
         static tipy($button){
+            if(!AP.PC){
+                return;
+            }
             let msg = $button.attr('tipy') || 'No msg';
             let $tip = $(`<div class='tipyFoot'></div><div class='tipy'>${ msg }</div>`);
             let len = msg.length;

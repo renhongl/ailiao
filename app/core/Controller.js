@@ -24,13 +24,17 @@ define([], function() {
                     $dialog.css('left', obj.settings.x).css('top', obj.settings.y);
                     $dialog.width(obj.settings.width).height(obj.settings.height);
                 } else {
-                    //TODO Should use phone version.
                     $dialog.css('left', '0px').css('top', AP.height * 0 + 'px');
                     $dialog.width('100%').height('100%');
                 }
             } else {
-                $dialog.css('left', obj.settings.x).css('top', obj.settings.y);
-                $dialog.width(obj.settings.width).height(obj.settings.height);
+                if(AP.PC){
+                    $dialog.width('100%').height('100%');
+                    $dialog.css('padding-top', '30px');
+                }else{
+                    $dialog.width('100%').height('100%');
+                    $dialog.css('padding-top', '12%');
+                }
             }
         }
 
@@ -50,6 +54,12 @@ define([], function() {
                 this._renderTree();
                 this._handleEvents();
                 if (obj.type === 'dialog') {
+                    if(!AP.PC){
+                        $dialog.find('.title').addClass('phone');
+                        $dialog.find('.title').find('span').addClass('phone');
+                        $dialog.find('.title').find('.glyphicon-unchecked').remove();
+                        $dialog.find('.title').find('.glyphicon-minus').remove();
+                    }
                     $.publish(`${ obj.id }-loaded`);
                 }else{
                     require([modelPath], (model) => {

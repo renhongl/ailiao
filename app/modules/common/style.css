@@ -29,7 +29,7 @@ div{
 .tipy{
     position: absolute;
     z-index: 10;
-    top: 35px;
+    top: 40px;
     left: 5px;
     background: #353030;
     color: white;
@@ -42,7 +42,7 @@ div{
 .tipyFoot{
     position: absolute;
     z-index: 11;
-    top: 28px;
+    top: 33px;
     left: 5px;
     width: 0;
     height: 0;
@@ -50,3 +50,4 @@ div{
     border-right: 10px solid transparent;
     border-bottom: 11px solid #353030;
 }
+

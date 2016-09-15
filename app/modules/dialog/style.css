@@ -42,13 +42,13 @@ body{
 
 .title span{
     display: inline-block;
-    display: inline-block;
     float: left;
-    margin-top: 4px;
-    width: 28px;
-    height: 20px;
-    line-height: 20px;
+    width: 40px;
+    height: 100%;
     text-align: center;
+    margin: 0;
+    top: 0px;
+    padding-top: 9px;
 }
 
 .title span:hover{
@@ -60,5 +60,16 @@ body{
 }
 
 .title .glyphicon-remove{
-    margin-left:5px;
+    border-radius: 4px 0px 0px 0px;
+}
+
+.title.phone{
+    height: 8% !important;
+}
+
+span.phone{
+    font-size: 5em;
+    top: 0px;
+    width: 13%;
+    padding-top: 4%;
 }
