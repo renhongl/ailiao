@@ -6,17 +6,21 @@
 define([], function() {
     'use strict';
     class QueryString {
-        static getValue(name) {
+        constructor(){
             let search = window.location.search.substring(1).split('&'); //"?page=dashboard&name=1&age=2"
             let tempGroup = [];
 
             for (let p of search) {
                 tempGroup.push(p.split('='));
             }
-            let params = new Map(tempGroup);
-            return params.get(name);
+            this.params = new Map(tempGroup);
+        }
+
+        getValue(name){
+            return this.params.get(name);
         }
     }
 
-    return QueryString;
+    let queryString = new QueryString();
+    return queryString;
 });

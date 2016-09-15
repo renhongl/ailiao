@@ -14,12 +14,12 @@ define([
     'Tipy',
     'Draggable',
     'Observer',
-    'bootstrap'
-], function(Constant, Test, QueryString, Ajax, Page, Tipy, Draggable, Observer) {
+    'bootstrap',
+    'Rain'
+], function(Constant, Test, QueryString, Ajax, Page, Tipy, Draggable) {
     'use strict';
     class Main {
         constructor() {
-            new Observer();
             this._removeLoading();
             this._loadGlobal();
             this._verifyLogin();

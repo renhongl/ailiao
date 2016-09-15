@@ -27,5 +27,6 @@ define([], function () {
         }
     }
 
-    return Observer;
+    let observer = new Observer();
+    return observer;
 });

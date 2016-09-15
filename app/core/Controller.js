@@ -56,6 +56,7 @@ define([], function() {
                 if (obj.type === 'dialog') {
                     if(!AP.PC){
                         $dialog.find('.title').addClass('phone');
+                        $dialog.find('.content').addClass('phone');
                         $dialog.find('.title').find('span').addClass('phone');
                         $dialog.find('.title').find('.glyphicon-unchecked').remove();
                         $dialog.find('.title').find('.glyphicon-minus').remove();

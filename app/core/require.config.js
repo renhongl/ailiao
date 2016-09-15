@@ -1,7 +1,7 @@
 'use strict';
 
 require.config({
-    waitSeconds: 0,  
+    waitSeconds: 60000,  
     paths: {
         //core
         PreLoad: 'core/PreLoad',
@@ -18,6 +18,7 @@ require.config({
         Ajax: 'core/Ajax',
         Tipy: 'core/Tipy',
         Observer: 'core/Observer',
+        Rain: 'core/Rain',
         
         //libs
         jquery: 'libs/jquery',

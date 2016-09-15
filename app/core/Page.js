@@ -53,6 +53,6 @@ define([], function() {
             });
         }
     }
-
+    
     return Page;
 });

@@ -67,9 +67,13 @@ body{
     height: 8% !important;
 }
 
+.content.phone{
+    font-size: 5em;
+}
+
 span.phone{
     font-size: 5em;
     top: 0px;
     width: 13%;
-    padding-top: 4%;
+    padding-top: 3%;
 }
