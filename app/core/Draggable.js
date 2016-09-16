@@ -17,51 +17,52 @@ define([], function() {
 
         _handleEvents($subContainer) {
             $subContainer.on('mousedown', (e) => {
-                if ($(e.target).hasClass('button')) {
-                    return;
+                if (!$(e.target).hasClass('button')) {
+                    this._handleMousedown(e);
                 }
-                this._handleMousedown(e);
             });
 
             $(document).on('mousemove', (e) => {
-                if ($(e.target).hasClass('button')) {
-                    return;
+                if (!$(e.target).hasClass('button')) {
+                    this._handleMousemove(e);
                 }
-                this._handleMousemove(e);
             });
 
             $(document).on('mouseup', (e) => {
-                if ($(e.target).hasClass('button')) {
-                    return;
+                if (!$(e.target).hasClass('button')) {
+                    this._handleMouseup(e);
                 }
-                this._handleMouseup(e);
             });
         }
 
         _handleMousedown(e) {
-            let left = parseInt(this.$container.css('left').split('px')[0]);
-            let top = parseInt(this.$container.css('top').split('px')[0]);
-            this.offsetX = left - e.clientX;
-            this.offsetY = top - e.clientY;
+            let {left, top} = this.$container.css(['left', 'top']);
+            this.offsetX = this._parseStr(left) - e.clientX;
+            this.offsetY = this._parseStr(top) - e.clientY;
             this.mouseDown = true;
         }
 
         _handleMousemove(e) {
+            $(e.target).css('cursor', 'default');
             if (this.mouseDown) {
-                $(e.target).css('cursor', 'default');
                 let x = e.clientX;
                 let y = e.clientY;
-                let left = parseInt(this.$container.css('left').split('px')[0]);
-                let top = parseInt(this.$container.css('top').split('px')[0]);
                 let positionX = x + this.offsetX;
                 let positionY = y + this.offsetY;
-                this.$container.css('left', positionX + 'px').css('top', positionY + 'px');
+                this.$container.css({
+                    left: positionX,
+                    top: positionY,
+                });
             }
         }
 
         _handleMouseup(e) {
             $(e.target).css('cursor', 'default');
             this.mouseDown = false;
+        }
+
+        _parseStr(str){
+            return Number(str.split('px')[0]);
         }
     }
 

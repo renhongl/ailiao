@@ -16,24 +16,41 @@ define([], function() {
 
         _setContainer(){
             let obj = this.obj;
-            let $dialog = $('<div>').attr('id', obj.id).attr('class', obj.type);
+            let $dialog = $('<div>').attr({
+                id: obj.id,
+                class: obj.type,
+            });
             this.$dialog = $dialog;
             
             if (obj.type === 'dialog') {
                 if (AP.PC) {
-                    $dialog.css('left', obj.settings.x).css('top', obj.settings.y);
-                    $dialog.width(obj.settings.width).height(obj.settings.height);
+                    $dialog.css({
+                        left: obj.settings.x,
+                        top: obj.settings.y,
+                        width: obj.settings.width,
+                        height: obj.settings.height,
+                    });
                 } else {
-                    $dialog.css('left', '0px').css('top', AP.height * 0 + 'px');
-                    $dialog.width('100%').height('100%');
+                    $dialog.css({
+                        left: '0px',
+                        top: '0px',
+                        width: '100%',
+                        height: '100%',
+                    });
                 }
             } else {
                 if(AP.PC){
-                    $dialog.width('100%').height('100%');
-                    $dialog.css('padding-top', '30px');
+                    $dialog.css({
+                        width: '100%',
+                        height: '100%',
+                        paddingTop: '30px',
+                    });
                 }else{
-                    $dialog.width('100%').height('100%');
-                    $dialog.css('padding-top', '12%');
+                    $dialog.css({
+                        width: '100%',
+                        height: '100%',
+                        paddingTop: '12%',
+                    });
                 }
             }
         }

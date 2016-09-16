@@ -54,9 +54,6 @@ div{
 .rain{
     position: fixed;
     z-index: 100;
-    width: 20px;
-    height: 20px;
-    border: 1px solid #fff;
-    border-radius: 10px;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+    border-style: solid;
 }

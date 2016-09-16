@@ -14,8 +14,7 @@ define([
     'Tipy',
     'Draggable',
     'Observer',
-    'bootstrap',
-    'Rain'
+    'bootstrap'
 ], function(Constant, Test, QueryString, Ajax, Page, Tipy, Draggable) {
     'use strict';
     class Main {
@@ -51,7 +50,9 @@ define([
                 if (TEST) {
                     new Test();
                 } else {
-                    this._loadPage();
+                    require(['Rain'], () =>　{
+                        this._loadPage();
+                    });
                 }
             }
         }
