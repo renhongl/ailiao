@@ -13,7 +13,10 @@ define([], function() {
             $.ajax({
                 dataType: 'json',
                 url: url,
-                success: callback
+                success: function(result){
+                    new AP.Message().success('GET', '获取JSON成功。');
+                    callback(result);
+                }
             });
         }
 
@@ -21,12 +24,46 @@ define([], function() {
             $.ajax({
                 dataType: 'script',
                 url: url,
-                success: callback
+                success: function(result){
+                    new AP.Message().success('GET', '获取Javascript成功。');
+                    callback(result);
+                }
             });
         }
 
         static loadHTML($container, url, callback) {
             $container.load(url, callback);
+        }
+
+        static get(url, callback){
+            $.ajax({
+                url: url,
+                method: 'GET',
+                dataType: 'json',
+                success: function(result,status){
+                    new AP.Message().success(status, 'GET请求成功。');
+                    callback(result);
+                },
+                error: function(e){
+                    new AP.Message().error(e.status, e.responseText);
+                }
+            })
+        }
+
+        static post(url, postData, callback){
+            $.ajax({
+                url: url,
+                method: 'POST',
+                data: postData,
+                dataType: 'json',
+                success: function(result,status){
+                    new AP.Message().success(status, 'POST请求成功。');
+                    callback(result);
+                },
+                error: function(e){
+                    new AP.Message().error(e.status, e.responseText);
+                }
+            })
         }
     }
 

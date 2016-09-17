@@ -27,6 +27,7 @@ body .dialog{
     background: #fff;
     border-radius: 4px 4px 4px 4px;
     border: 2px solid #353030;
+    color:#353030;
 }
 
 .dialog .dialogCtrl{

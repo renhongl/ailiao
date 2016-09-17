@@ -13,9 +13,11 @@ define([
     'Page',
     'Tipy',
     'Draggable',
+    'Rain',
     'Observer',
+    'Message',
     'bootstrap'
-], function(Constant, Test, QueryString, Ajax, Page, Tipy, Draggable) {
+], function(Constant, Test, QueryString, Ajax, Page, Tipy, Draggable, Rain, Observer, Message) {
     'use strict';
     class Main {
         constructor() {
@@ -38,10 +40,13 @@ define([
                 QueryString,
                 Tipy,
                 Draggable,
+                Message,
                 width: $(window).width(),
                 height: $(window).height(),
                 PC: $(window).width() > 1000 ? true : false,
             };
+            new Rain();
+            new Observer();
         }
 
         _verifyLogin() {
@@ -50,9 +55,7 @@ define([
                 if (TEST) {
                     new Test();
                 } else {
-                    require(['Rain'], () =>　{
-                        this._loadPage();
-                    });
+                    this._loadPage();
                 }
             }
         }

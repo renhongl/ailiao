@@ -78,6 +78,5 @@ define([], function() {
 
     }
 
-    let rain = new Rain();
-    return rain;
+    return Rain;
 });

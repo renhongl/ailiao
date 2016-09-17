@@ -39,19 +39,28 @@ define([], function() {
                     });
                 }
             } else {
-                if(AP.PC){
-                    $dialog.css({
-                        width: '100%',
-                        height: '100%',
-                        paddingTop: '30px',
-                    });
+                if(this.obj.showTitle){
+                    if(AP.PC){
+                        $dialog.css({
+                            width: '100%',
+                            height: '100%',
+                            paddingTop: '30px',
+                        });
+                    }else{
+                        $dialog.css({
+                            width: '100%',
+                            height: '100%',
+                            paddingTop: '12%',
+                        });
+                    }
                 }else{
                     $dialog.css({
                         width: '100%',
                         height: '100%',
-                        paddingTop: '12%',
+                        paddingTop: 0,
                     });
                 }
+                
             }
         }
 

@@ -1,0 +1,9 @@
+{
+    "name": "login",
+    "description": "最小模块模板",
+    "author": "liangrenhong",
+    "view": "view.html",
+    "controller": "controller.js",
+    "model": "model.js",
+    "style": "style.css"
+}

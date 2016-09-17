@@ -19,6 +19,7 @@ require.config({
         Tipy: 'core/Tipy',
         Observer: 'core/Observer',
         Rain: 'core/Rain',
+        Message: 'core/Message',
         
         //libs
         jquery: 'libs/jquery',

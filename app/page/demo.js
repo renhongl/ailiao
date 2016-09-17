@@ -39,15 +39,19 @@ define([], function() {
                 y: AP.height * 0.45 + 25,
             },
         }, {
-            id: 'Demo4',
+            id: 'login',
             type: 'dialog',
-            showTitle: true,
+            showTitle: false,
             settings: {
-                width: AP.width * 0.45,
+                width: AP.width * 0.25,
                 height: AP.height * 0.45,
                 x: AP.width * 0.49 + 10,
                 y: AP.height * 0.45 + 25,
             },
+            content: {
+                id: 'login',
+                type: 'module',
+            }
         }, 
         ]
     };

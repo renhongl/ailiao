@@ -7,7 +7,7 @@ define(['Model'], function(Model) {
         }
 
         _loadData() {
-           
+            
         }
 
         _refresh() {
