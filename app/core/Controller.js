@@ -78,6 +78,11 @@ define([], function() {
                         $dialog.find('.title').find('.glyphicon-unchecked').remove();
                         $dialog.find('.title').find('.glyphicon-minus').remove();
                     }
+                    if(!this.obj.showTitle){
+                        $dialog.find('.title').css({
+                            display: 'none',
+                        });
+                    }
                     $.publish(`${ obj.id }-loaded`);
                 }else{
                     require([modelPath], (model) => {

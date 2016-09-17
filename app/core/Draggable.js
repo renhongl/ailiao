@@ -5,34 +5,56 @@
  * 如果这个拖动的对象有button这样的class，将不被拖动。
  * 属于工具类，放在AP中。
  */
-define([], function() {
+define([], function () {
     'use strict';
     class Draggable {
-        constructor($container){
+        constructor($container) {
             this.$container = $container;
-            for(let subContainer of $container.children()){
+            for (let subContainer of $container.children()) {
                 this._handleEvents($(subContainer));
             }
         }
 
         _handleEvents($subContainer) {
-            $subContainer.on('mousedown', (e) => {
-                if (!$(e.target).hasClass('button')) {
-                    this._handleMousedown(e);
-                }
-            });
+            if (AP.PC) {
+                $subContainer.on('mousedown', (e) => {
+                    if (!$(e.target).hasClass('button')) {
+                        this._handleMousedown(e);
+                    }
+                });
 
-            $(document).on('mousemove', (e) => {
-                if (!$(e.target).hasClass('button')) {
-                    this._handleMousemove(e);
-                }
-            });
+                $(document).on('mousemove', (e) => {
+                    if (!$(e.target).hasClass('button')) {
+                        this._handleMousemove(e);
+                    }
+                });
 
-            $(document).on('mouseup', (e) => {
-                if (!$(e.target).hasClass('button')) {
-                    this._handleMouseup(e);
-                }
-            });
+                $(document).on('mouseup', (e) => {
+                    if (!$(e.target).hasClass('button')) {
+                        this._handleMouseup(e);
+                    }
+                });
+            } else {
+                //TODO 加手机触摸事件。
+                $subContainer.get(0).addEventListener('touchstart', (e) => {
+                    if (!$(e.target).hasClass('button')) {
+                        this._handleMousedown(e);
+                    }
+                });
+
+                $(document).get(0).addEventListener('touchmove', (e) => {
+                    if (!$(e.target).hasClass('button')) {
+                        this._handleMousemove(e);
+                    }
+                });
+
+                $(document).on('mouseup', (e) => {
+                    if (!$(e.target).hasClass('button')) {
+                        this._handleMouseup(e);
+                    }
+                });
+            }
+
         }
 
         _handleMousedown(e) {
@@ -61,7 +83,7 @@ define([], function() {
             this.mouseDown = false;
         }
 
-        _parseStr(str){
+        _parseStr(str) {
             return Number(str.split('px')[0]);
         }
     }

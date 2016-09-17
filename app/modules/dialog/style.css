@@ -6,10 +6,6 @@ body .dialog{
     color: #fff;
 }
 
-body{
-    background: lightseagreen;
-}
-
 .dialog.current{
     border: 0px solid #fff;
     z-index: 2;
@@ -28,8 +24,9 @@ body{
 .dialog .content{
     height:100%;
     width:100%;
-    background: #1f9c6e;
-    border-radius: 0px 0px 4px 4px;
+    background: #fff;
+    border-radius: 4px 4px 4px 4px;
+    border: 2px solid #353030;
 }
 
 .dialog .dialogCtrl{

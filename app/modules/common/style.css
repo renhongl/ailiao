@@ -5,6 +5,7 @@ html,body{
     padding: 0;
     overflow: hidden;
     font-size: 1em;
+    background: #fff;
 }
 
 div{
@@ -15,7 +16,7 @@ div{
 #loadingDiv{
     height: 100%;
     width: 100%;
-    background: #333333;
+    background: #fff;
     position: relative;
     z-index: 10;
 }
