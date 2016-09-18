@@ -1,16 +1,16 @@
 'use strict';
 
-const Login = require('./Login');
+const User = require('./User');
 
 class Router{
     constructor(app){
         this.app = app;
         this._run();
+        new User(app);
     }
 
     _run(){
         let app = this.app;
-        new Login(app);
         app.get('/test', function(req, res){
             res.send("Current path: /test");
         });

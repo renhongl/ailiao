@@ -1,32 +1,18 @@
-.module .login{
+.module .register{
     height: 100%;
 }
 
-.login .row{
+.register .row{
     margin-top: 20px;
 }
 
-.login #loginButton{
+.register #registerButton{
     width: 100%;
     background: #353030;
     color: white;
 }
 
-.login #registerButton{
-    color: blue;
-    text-decoration: underline;
-}
-
-.login #registerButton:hover{
-    cursor: pointer;
-}
-
-.login .registerRow{
-    text-align: right;
-    font-size: 14px;
-}
-
-.login .name{
+.register .name{
     cursor: default;
     font-size: 27px;
     font-weight: bold;
@@ -35,9 +21,13 @@
     text-align: center;
 }
 
-.login .name div{
+.register .name div{
     cursor: default;
     text-align: left;
     font-size: 20px;
     margin-top: 29px;
 }
+
+
+
+

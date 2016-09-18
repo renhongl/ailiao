@@ -4,7 +4,7 @@
  * 2： 加载html,如果是dialog继续加载其中的模块，如果不是，直接加载dialog的model类。
  * 3： 引入renderTree和handleEvents方法
  */
-define([], function() {
+define([], function () {
     'use strict';
     class Controller {
         constructor(obj, $container) {
@@ -14,15 +14,23 @@ define([], function() {
             this._loadHtml();
         }
 
-        _setContainer(){
+        _setContainer() {
             let obj = this.obj;
             let $dialog = $('<div>').attr({
                 id: obj.id,
                 class: obj.type,
             });
             this.$dialog = $dialog;
-            
+
             if (obj.type === 'dialog') {
+                if (obj.show === false) {
+                    $dialog.css({
+                        display: 'none',
+                    });
+                    $.subscribe(`${obj.id}-show`, () => {
+                        $dialog.slideDown();
+                    });
+                }
                 if (AP.PC) {
                     $dialog.css({
                         left: obj.settings.x,
@@ -39,40 +47,40 @@ define([], function() {
                     });
                 }
             } else {
-                if(this.obj.showTitle){
-                    if(AP.PC){
+                if (this.obj.showTitle) {
+                    if (AP.PC) {
                         $dialog.css({
                             width: '100%',
                             height: '100%',
                             paddingTop: '30px',
                         });
-                    }else{
+                    } else {
                         $dialog.css({
                             width: '100%',
                             height: '100%',
                             paddingTop: '12%',
                         });
                     }
-                }else{
+                } else {
                     $dialog.css({
                         width: '100%',
                         height: '100%',
                         paddingTop: 0,
                     });
                 }
-                
+
             }
         }
 
-        _loadHtml(){
+        _loadHtml() {
             let obj = this.obj;
             let $container = this.$container;
             let $dialog = this.$dialog;
             let url = 'modules/dialog/view.html';
-            let modelPath = `modules/${ obj.id }/model.js`;
+            let modelPath = `modules/${obj.id}/model.js`;
 
             if (obj.type !== 'dialog') {
-                url = `modules/${ obj.id }/view.html`
+                url = `modules/${obj.id}/view.html`
             }
 
             let callback = () => {
@@ -80,20 +88,20 @@ define([], function() {
                 this._renderTree();
                 this._handleEvents();
                 if (obj.type === 'dialog') {
-                    if(!AP.PC){
+                    if (!AP.PC) {
                         $dialog.find('.title').addClass('phone');
                         $dialog.find('.content').addClass('phone');
                         $dialog.find('.title').find('span').addClass('phone');
                         $dialog.find('.title').find('.glyphicon-unchecked').remove();
                         $dialog.find('.title').find('.glyphicon-minus').remove();
                     }
-                    if(!this.obj.showTitle){
+                    if (!this.obj.showTitle) {
                         $dialog.find('.title').css({
                             display: 'none',
                         });
                     }
-                    $.publish(`${ obj.id }-loaded`);
-                }else{
+                    $.publish(`${obj.id}-loaded`);
+                } else {
                     require([modelPath], (model) => {
                         new model(this.obj);
                     });

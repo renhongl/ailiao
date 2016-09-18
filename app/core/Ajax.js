@@ -57,8 +57,13 @@ define([], function() {
                 data: postData,
                 dataType: 'json',
                 success: function(result,status){
-                    new AP.Message().success(status, 'POST请求成功。');
-                    callback(result);
+                    if(result.status === 'error'){
+                        new AP.Message().error(result.status, result.text);
+                        return;
+                    }else{
+                        //new AP.Message().success(result.status, result.text);
+                        callback(result);
+                    }
                 },
                 error: function(e){
                     new AP.Message().error(e.status, e.responseText);

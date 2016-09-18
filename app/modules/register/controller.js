@@ -11,44 +11,38 @@ define(['Controller'], function (Controller) {
         }
 
         _handleEvents() {
-            $('.login #loginButton').on('click', () => {
-                this._login();
-            });
-
-            $('.login #registerButton').on('click', () => {
+            $('.register #registerButton').on('click', () => {
                 this._register();
             });
         }
 
         _register() {
-            $.publish('register-show');
-        }
-
-        _login() {
             if (this._verify()) {
-                let loginURL = AP.Constant.LOGIN;
+                let regiterURL = AP.Constant.REGISTER;
                 let postData = {
-                    username: $('#userName').val(),
-                    password: $('#password').val(),
+                    username: $('#userNameRg').val(),
+                    password: $('#passwordRg').val(),
                 };
-                AP.Ajax.post(loginURL, postData, function (result) {
-                    window.location = '?page=dashboard';
+                AP.Ajax.post(regiterURL, postData, function (result) {
+                    new AP.Message().success(result.status, result.text);
+                    $('#register').slideUp();
                 });
             }
         }
 
         _verify() {
             let noError = true;
-            if ($('#userName').val() === '') {
+            if ($('#userNameRg').val() === '') {
                 new AP.Message().error('账号信息', '请输入账号。');
                 noError = false;
             }
-            if ($('#password').val() === '') {
+            if ($('#passwordRg').val() === '') {
                 new AP.Message().error('密码信息', '请输入密码。');
                 noError = false;
             }
             return noError;
         }
+
     }
 
     return controller;

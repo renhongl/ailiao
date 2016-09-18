@@ -73,7 +73,7 @@ define([], function() {
                 class: icon,
             });
             this.$content.text(msg);
-            this.$title.text(title + ':');
+            this.$title.text(title.toUpperCase() + ':');
             this.$Message.fadeIn();
 
             this._clearMsg();
