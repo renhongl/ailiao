@@ -1,10 +1,16 @@
 /**
- * 
+ * 全局显示消息。
+ * 工具类，放在AP中。
+ * 1：创建时需要传入两个参数，第一个是消息头，第二个是消息内容。
+ * 2：创建之后还要根据需要调用不同的方法。四个外部方法：infor(),success(),error(),warning()。
+ * 可以通过单词意思理解。
  */
 define([], function() {
     'use strict';
     class Message{
-        constructor(){
+        constructor(type, title, content){
+            this.title = title;
+            this.content = content;
             this.showTime = 5000;
             this.clearTime = 2000;
             this.clearThread = null;
@@ -52,6 +58,23 @@ define([], function() {
                 width: '88%',
                 paddingBottom: 5,
             }).addClass('msgContent').appendTo(this.$Message);
+
+            switch(type){
+                case 'infor': 
+                    this._infor();
+                    break;
+                case 'success': 
+                    this._success();
+                    break;
+                case 'error': 
+                    this._error();
+                    break;
+                case 'warning': 
+                    this._warning();
+                    break;
+                default: 
+                    break;
+            }
         }
 
         _getHeight(){
@@ -62,7 +85,7 @@ define([], function() {
             return allHeight;
         }
 
-        _getInstance({ color, icon, msg, title }){
+        _getInstance({ color, icon, content, title }){
             let allHeight = this._getHeight();
             this.$Message.appendTo($('body'));
             this.$Message.css({
@@ -72,7 +95,7 @@ define([], function() {
             this.$icon.attr({
                 class: icon,
             });
-            this.$content.text(msg);
+            this.$content.text(content);
             this.$title.text(title.toUpperCase() + ':');
             this.$Message.fadeIn();
 
@@ -108,46 +131,45 @@ define([], function() {
             });
         }
 
-        infor(title, msg){
+        _infor(){
             let options = {
                 color: '#4a5ce4',
                 icon: 'fa fa-info-circle',
-                title,
-                msg,
+                title: this.title,
+                content: this.content,
             };
             this._getInstance(options);
         }
 
-        success(title, msg){
+        _success(){
             let options = {
                 color: '#00af4f',
                 icon: 'fa fa-check-circle',
-                title,
-                msg,
+                title: this.title,
+                content: this.content,
             };
             this._getInstance(options);
         }
 
-        error(title, msg){
+        _error(){
             let options = {
                 color: '#bf4141',
                 icon: 'fa fa-exclamation-circle',
-                title,
-                msg,
+                title: this.title,
+                content: this.content,
             };
             this._getInstance(options);
         }
 
-        warning(title, msg){
+        _warning(){
             let options = {
                 color: '#d6990b',
                 icon: 'fa fa-bell',
-                title,
-                msg,
+                title: this.title,
+                content: this.content,
             };
             this._getInstance(options);
         }
-
     }
 
     return Message;

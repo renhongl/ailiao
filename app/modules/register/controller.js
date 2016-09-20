@@ -24,7 +24,7 @@ define(['Controller'], function (Controller) {
                     password: $('#passwordRg').val(),
                 };
                 AP.Ajax.post(regiterURL, postData, function (result) {
-                    new AP.Message().success(result.status, result.text);
+                    new AP.Message('success', result.status, result.text);
                     $('#register').slideUp();
                 });
             }
@@ -33,11 +33,11 @@ define(['Controller'], function (Controller) {
         _verify() {
             let noError = true;
             if ($('#userNameRg').val() === '') {
-                new AP.Message().error('账号信息', '请输入账号。');
+                new AP.Message('error', '账号信息', '请输入账号。');
                 noError = false;
             }
             if ($('#passwordRg').val() === '') {
-                new AP.Message().error('密码信息', '请输入密码。');
+                new AP.Message('error', '密码信息', '请输入密码。');
                 noError = false;
             }
             return noError;

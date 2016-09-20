@@ -1,8 +1,8 @@
 /**
  * 拖动功能的实现。
  * 构造时，接收一个用于拖动的元素，那么这个元素的直接子元素都可以拖动。
- * 为什么不直接让这个元素可拖动：因为子元素，例如title和content可能覆盖父元素。目前只想到这么做。
- * 如果这个拖动的对象有button这样的class，将 不被拖动。
+ * 为什么不直接让这个元素可拖动：content覆盖了整个dialog，还没找到原因。
+ * 如果这个拖动的对象有button这样的class，将不被拖动。
  * 属于工具类，放在AP中。
  */
 define([], function () {
@@ -36,25 +36,7 @@ define([], function () {
                 });
             } else {
                 //TODO 加手机触摸事件。
-                $subContainer.get(0).addEventListener('touchstart', (e) => {
-                    if (!$(e.target).hasClass('button')) {
-                        this._handleMousedown(e);
-                    }
-                });
-
-                $(document).get(0).addEventListener('touchmove', (e) => {
-                    if (!$(e.target).hasClass('button')) {
-                        this._handleMousemove(e);
-                    }
-                });
-
-                $(document).on('mouseup', (e) => {
-                    if (!$(e.target).hasClass('button')) {
-                        this._handleMouseup(e);
-                    }
-                });
             }
-
         }
 
         _handleMousedown(e) {

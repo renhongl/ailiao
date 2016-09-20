@@ -9,7 +9,7 @@ define(['Controller'], function(Controller) {
         _renderTree() {
             new AP.Draggable($(`#${ this.obj.id }`));
             for(let button of $(`#${ this.obj.id }`).find('span')){
-                AP.Tipy.tipy($(button));
+                new AP.Tipy($(button));
             }
         }
 

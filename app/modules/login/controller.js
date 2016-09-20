@@ -40,11 +40,11 @@ define(['Controller'], function (Controller) {
         _verify() {
             let noError = true;
             if ($('#userName').val() === '') {
-                new AP.Message().error('账号信息', '请输入账号。');
+                new AP.Message('error', '账号信息', '请输入账号。');
                 noError = false;
             }
             if ($('#password').val() === '') {
-                new AP.Message().error('密码信息', '请输入密码。');
+                new AP.Message('error', '密码信息', '请输入密码。');
                 noError = false;
             }
             return noError;

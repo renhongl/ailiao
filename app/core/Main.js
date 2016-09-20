@@ -2,8 +2,10 @@
  * 是应用的总入口。
  * 1：加载所有的库，和全局类。
  * 2：加载完成后说明应用已经可以很快显示，所以删除正在载入的画面。
- * 3：将加载得类绑定在全局变量AP上。以后使用很方便，直接在AP下面找，而且全局变量只有一个。
+ * 3：将加载的类绑定在全局变量AP上。以后使用很方便，直接在AP下面找，而且全局变量只有一个。
  * 4：如果是测试某一个文件，进入测试类。如果不是测试，就根据url加载页面。
+ * 5：有些类全局只需要运行一次，就不放在AP中，而是在之后new一个。
+ * 6：工具类的规则：尽量将工具的css全部写在类里，这样如果其他项目需要这个工具，可以只应用这个js文件。
  */
 define([
     'Constant',
@@ -27,24 +29,23 @@ define([
         }
 
         _removeLoading() {
-            $('#loadingDiv').fadeOut(500);
-            setTimeout(function() {
-                $('#loadingDiv').remove();
-            }, 1000);
+            $('#loadingDiv').fadeOut(500, () => {$('#loadingDiv').remove();});
         }
 
         _loadGlobal() {
             window.AP = {
-                Constant,
-                Ajax,
-                QueryString,
-                Tipy,
-                Draggable,
-                Message,
-                width: $(window).width(),
-                height: $(window).height(),
-                PC: $(window).width() > 1000 ? true : false,
+                Constant,//只有静态属性
+                Ajax,//只有静态方法
+                QueryString,//只需一个实例，并且需要放在AP中，所以在类定义时就创建一个实例返回
+                Tipy,//
+                Draggable,//创建时需要传入需要拖动的元素
+                Message,//创建时需要传入需要显示的消息，包括title和content
+                width: $(window).width(),//当前浏览器宽度
+                height: $(window).height(),//当前浏览器高度
+                PC: $(window).width() > 1000 ? true : false,//判断是否是电脑
             };
+
+            //运行一次就能在全局出现效果
             new Rain();
             new Observer();
         }

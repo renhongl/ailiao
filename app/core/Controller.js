@@ -68,7 +68,6 @@ define([], function () {
                         paddingTop: 0,
                     });
                 }
-
             }
         }
 

@@ -12,35 +12,36 @@ define([], function() {
                 opacity: 0.7,
                 borderRadius: AP.PC ? '5px' : '25px',
                 borderWidth: AP.PC ? '5px' : '25px',
-                maxWidth: AP.PC ? 50 : 150,
+                maxWidth: AP.PC ? 100 : 150,
                 widthOffset: 2,
                 radiusOffset: AP.PC ? 1 : 2,
-                opacityOffset: AP.PC ? 0.04 : 0.01,
+                opacityOffset: AP.PC ? 0.02 : 0.01,
                 borderOffset: 1,
             };
-            this.$rain = $(`<div class='rain'></div>`);
             this._handleEvents();
         }
 
         _handleEvents() {
             $(document).on('click', (e) => {
-                if ($('.rain').length !== 0) {
-                    $('.rain').remove();
-                }
-                $('body').append(this.$rain);
+                let $rain = $('<div>').attr('class', 'rain').css({
+                    position: 'fixed',
+                    zIndex: 100,
+                    borderStyle: 'solid',
+                });
+                $('body').append($rain);
                 let x = e.clientX;
                 let y = e.clientY;
-                this._initRain(x, y);
-                this._updateRain(x, y);
+                this._initRain($rain, x, y);
+                this._updateRain($rain, x, y);
             });
         }
 
-        _updateRain(x, y) {
+        _updateRain($rain, x, y) {
             let settings = this.settings;
             let rainThread = setInterval( () => {
                 let {width, height,top, left, opacity, borderWidth, borderRadius} = 
-                    this.$rain.css(['width', 'height','top', 'left', 'opacity', 'borderWidth', 'borderRadius']);
-                this.$rain.css({
+                    $rain.css(['width', 'height','top', 'left', 'opacity', 'borderWidth', 'borderRadius']);
+                $rain.css({
                     width: this._parseStr(width) + settings.widthOffset,
                     height: this._parseStr(height) + settings.widthOffset,
                     top: y - this._parseStr(height) / 2,
@@ -51,16 +52,14 @@ define([], function() {
                 });
                 if (this._parseStr(width) > settings.maxWidth) {
                     clearInterval(rainThread);
-                    if ($('.rain').length !== 0) {
-                        $('.rain').remove();
-                    }
+                    $rain.remove();
                 }
             }, 10);
         }
 
-        _initRain(x, y) {
+        _initRain($rain, x, y) {
             let settings = this.settings;
-            this.$rain.css({
+            $rain.css({
                 width: settings.width,
                 height: settings.height,
                 borderColor: settings.borderColor,
