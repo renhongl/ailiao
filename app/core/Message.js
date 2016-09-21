@@ -12,7 +12,7 @@ define([], function() {
             this.title = title;
             this.content = content;
             this.showTime = 5000;
-            this.clearTime = 2000;
+            this.clearTime = 0;
             this.clearThread = null;
             this.timeThread = null;
             this.$Message = $('<div>').css({
@@ -26,7 +26,7 @@ define([], function() {
                 position: 'absolute',
                 right: 2,
                 top: 2,
-                boxShadow: '4px 4px 4px rgba(0,0,0,0.5)',
+                //boxShadow: '4px 4px 4px rgba(0,0,0,0.5)',
             }).addClass('message');
 
             this.$icon = $('<i>').css({
@@ -124,10 +124,17 @@ define([], function() {
             this.$Message.on('mouseover', () => {
                 clearTimeout(this.clearThread);
                 clearInterval(this.timeThread);
+                this.$Message.css({
+                    boxShadow: '0 0 10px rgba(0, 0, 0, 0.5)',
+                });
+                this.$time.text('');
             });
 
             this.$Message.on('mouseout', () => {
                 this._clearMsg();
+                this.$Message.css({
+                    boxShadow: 'none',
+                });
             });
         }
 
