@@ -1,9 +1,13 @@
 /**
- * WebSocket server for all WebSocket client
+ * WebSocket的服务器端。
+ * 1：创建时传入需要监听的端口。
+ * 2：连接后测试是否连通。
+ * 3：addRouter方法创建其他需要使用WS的实例。
  */
 'use strict';
 
 const Server = require('./Server');
+const Test = require('../wsRouter/Test');
 
 class WebSocket extends Server{
     constructor(port){
@@ -18,16 +22,13 @@ class WebSocket extends Server{
 
     _connect(){
         this.io.on('connection', (socket) => {
+            socket.emit('message', 'WebSocket working successfully!');
             this._addRouter(socket);
         });
     }
 
     _addRouter(socket){
-        socket.emit('message', 'Hello Client');
-
-        socket.on('WS_MSG', function(topic, obj){
-            socket.emit(topic, obj);
-        });
+        new Test(socket);
     }
 }
 

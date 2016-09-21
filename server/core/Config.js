@@ -1,11 +1,9 @@
 /**
- * Save backend constants
+ * 存储后端所有的静态数据。
  */
 'use strict';
 
-class Config{
-    constructor(){}
-}
+class Config{}
 
 Config.WS_PORT = 9090;
 Config.SERVER_PORT = 8080;

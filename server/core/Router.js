@@ -1,20 +1,30 @@
+/**
+ * 服务器的路由。
+ * 1：创建是需要传入服务器的app。
+ * 2：测试路由是否正常工作。
+ * 3：引入其他部分的路由。例如：User。
+ */
 'use strict';
 
-const User = require('./User');
+const User = require('../serverRouter/User');
 
 class Router{
     constructor(app){
         this.app = app;
-        this._run();
-        new User(app);
+        this._test();
+        this._addRouter();
     }
 
-    _run(){
-        let app = this.app;
-        app.get('/test', function(req, res){
-            res.send("Current path: /test");
+    _test(){
+        this.app.get('/test', function(req, res){
+            res.send("Server working successfully!");
         });
     }
+
+    _addRouter(){
+        new User(this.app);
+    }
+
 }
 
 module.exports = Router;

@@ -1,5 +1,6 @@
 /**
- * Backend main function
+ * 后台程序测试或者运行的入口
+ * 
  */
 'use strict';
 
@@ -10,8 +11,7 @@ const Test = require('./Test');
 
 class Main{
     constructor(){
-        const TEST = Config.TEST;
-        if(TEST){
+        if(Config.TEST){
             new Test();
         }else{
             this._runSystem();

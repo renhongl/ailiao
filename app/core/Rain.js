@@ -1,5 +1,7 @@
 /**
- * 
+ * 鼠标点击网页的雨滴效果。
+ * 1：创建时设置所有雨滴的基本属性。
+ * 2：监听鼠标点击事件，点击后将创建一个新的雨滴，初始化，并且一直更新状态，知道消失。
  */
 define([], function() {
     'use strict';
@@ -17,16 +19,21 @@ define([], function() {
                 radiusOffset: AP.PC ? 1 : 2,
                 opacityOffset: AP.PC ? 0.02 : 0.01,
                 borderOffset: 1,
+                position: 'fixed',
+                zIndex: 100,
+                borderStyle: 'solid',
+                class: 'rain',
             };
             this._handleEvents();
         }
 
         _handleEvents() {
+            let settings = this.settings;
             $(document).on('click', (e) => {
-                let $rain = $('<div>').attr('class', 'rain').css({
-                    position: 'fixed',
-                    zIndex: 100,
-                    borderStyle: 'solid',
+                let $rain = $('<div>').attr('class', settings.class).css({
+                    position: settings.position,
+                    zIndex: settings.zIndex,
+                    borderStyle: settings.borderStyle,
                 });
                 $('body').append($rain);
                 let x = e.clientX;

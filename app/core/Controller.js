@@ -28,6 +28,8 @@ define([], function () {
                         display: 'none',
                     });
                     $.subscribe(`${obj.id}-show`, () => {
+                        $('.dialog').removeClass('current');
+                        $dialog.addClass('current');
                         $dialog.slideDown();
                     });
                 }
