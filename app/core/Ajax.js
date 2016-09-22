@@ -50,14 +50,14 @@ define([], function() {
                 },
                 success(result,status){
                     if(result.status === 'error'){
-                        new AP.Message('error', result.status, result.text);
+                        new AP.Message('error', result.text);
                         return;
                     }else{
                         callback(result);
                     }
                 },
                 error(e){
-                    new AP.Message('error', e.status, e.text);
+                    new AP.Message('error', e.text);
                 },
                 complete(){
 
@@ -80,14 +80,14 @@ define([], function() {
                 },
                 success: function(result,status){
                     if(result.status === 'error'){
-                        new AP.Message('error', result.status, result.text);
+                        new AP.Message('error', result.text);
                         return;
                     }else{
                         callback(result);
                     }
                 },
                 error: function(e){
-                    new AP.Message('error', e.status, e.text);
+                    new AP.Message('error', e.text);
                 },
                 complete(){
 
@@ -110,14 +110,14 @@ define([], function() {
                 },
                 success: function(result,status){
                     if(result.status === 'error'){
-                        new AP.Message('error', result.status, result.text);
+                        new AP.Message('error', result.text);
                         return;
                     }else{
                         callback(result);
                     }
                 },
                 error: function(e){
-                    new AP.Message('error', e.status, e.responseText);
+                    new AP.Message('error', e.responseText);
                 },
                 complete(){
 
@@ -140,14 +140,14 @@ define([], function() {
                 },
                 success: function(result,status){
                     if(result.status === 'error'){
-                        new AP.Message('error', result.status, result.text);
+                        new AP.Message('error', result.text);
                         return;
                     }else{
                         callback(result);
                     }
                 },
                 error: function(e){
-                    new AP.Message('error', e.status, e.text);
+                    new AP.Message('error', e.text);
                 },
                 complete(){
 

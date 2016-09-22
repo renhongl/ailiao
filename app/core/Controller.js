@@ -39,6 +39,8 @@ define([], function () {
                         top: obj.settings.y,
                         width: obj.settings.width,
                         height: obj.settings.height,
+                        resize: 'both',
+                        overflow: 'hidden',
                     });
                 } else {
                     $dialog.css({

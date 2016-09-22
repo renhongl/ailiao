@@ -8,8 +8,8 @@
 define([], function() {
     'use strict';
     class Message{
-        constructor(type, title, content){
-            this.title = title;
+        constructor(type, content){
+            this.title = '';
             this.content = content;
             this.showTime = 5000;
             this.clearTime = 0;
@@ -26,7 +26,8 @@ define([], function() {
                 position: 'absolute',
                 right: 2,
                 top: 2,
-                //boxShadow: '4px 4px 4px rgba(0,0,0,0.5)',
+                boxShadow: '0px 0px 10px rgba(255, 255, 255, 0.5)',
+                opacity: 0.8,
             }).addClass('message');
 
             this.$icon = $('<i>').css({
@@ -34,8 +35,8 @@ define([], function() {
                 float: 'left',
                 width: '10%',
                 textAlign: 'center',
-                marginTop: '0%',
-                fontSize: '2em',
+                marginTop: 5,
+                fontSize: '1.2em',
                 margin: 2,
             }).addClass('msgIcon').appendTo(this.$Message);
 
@@ -43,7 +44,7 @@ define([], function() {
                     height: '45%',
                     width: '88%',
                     float: 'right',
-                    fontSize: '1.5em',
+                    fontSize: '1.2em',
             }).addClass('msgTitle').appendTo(this.$Message);
 
             this.$time = $('<span>').css({
@@ -57,19 +58,24 @@ define([], function() {
                 height: '56%',
                 width: '88%',
                 paddingBottom: 5,
+                fontSize: '0.8em',
             }).addClass('msgContent').appendTo(this.$Message);
 
             switch(type){
                 case 'infor': 
+                    this.title = 'INFORMATION';
                     this._infor();
                     break;
                 case 'success': 
+                    this.title = 'SUCCESS';
                     this._success();
                     break;
                 case 'error': 
+                    this.title = 'ERROR';
                     this._error();
                     break;
                 case 'warning': 
+                    this.title = 'WARNING';
                     this._warning();
                     break;
                 default: 
@@ -85,7 +91,7 @@ define([], function() {
             return allHeight;
         }
 
-        _getInstance({ color, icon, content, title }){
+        _getInstance({ color, icon, content }){
             let allHeight = this._getHeight();
             this.$Message.appendTo($('body'));
             this.$Message.css({
@@ -96,7 +102,7 @@ define([], function() {
                 class: icon,
             });
             this.$content.text(content);
-            this.$title.text(title.toUpperCase() + ':');
+            this.$title.text(this.title + ':');
             this.$Message.fadeIn();
 
             this._clearMsg();
@@ -126,6 +132,7 @@ define([], function() {
                 clearInterval(this.timeThread);
                 this.$Message.css({
                     boxShadow: '0 0 10px rgba(0, 0, 0, 0.5)',
+                    opacity: 1
                 });
                 this.$time.text('');
             });
@@ -133,7 +140,8 @@ define([], function() {
             this.$Message.on('mouseout', () => {
                 this._clearMsg();
                 this.$Message.css({
-                    boxShadow: 'none',
+                    boxShadow: '0px 0px 10px rgba(255, 255, 255, 0.5)',
+                    opacity: 0.8,
                 });
             });
         }
