@@ -32,7 +32,8 @@ define(['Controller'], function (Controller) {
                     password: $('#password').val(),
                 };
                 AP.Ajax.post(loginURL, postData, function (result) {
-                    window.location = '?page=dashboard';
+                    localStorage.name = result.result.name;
+                    location = '?page=dashboard';
                 });
             }
         }

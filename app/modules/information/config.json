@@ -1,6 +1,6 @@
 {
-    "name": "demo",
-    "description": "最小模块模板",
+    "name": "information",
+    "description": "",
     "author": "liangrenhong",
     "view": "view.html",
     "controller": "controller.js",

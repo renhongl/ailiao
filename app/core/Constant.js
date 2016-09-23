@@ -17,6 +17,7 @@ define([], function() {
     Constant.WS_SERVER = 'ws://127.0.0.1:9090/'; //lrh.apws.ngrok.cc
     Constant.LOGIN = Constant.BASE_SERVER + 'login';
     Constant.REGISTER = Constant.BASE_SERVER + 'register';
+    Constant.GETINFOR = Constant.BASE_SERVER + 'getInfor';
 
     return Constant;
 });

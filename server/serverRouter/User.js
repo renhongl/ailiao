@@ -10,6 +10,28 @@ class User {
         this.userCollection = 'user';
         this._login();
         this._regiser();
+        this._getInfor();
+    }
+
+    _getInfor(){
+        this.app.get('/getInfor', (req, res) => {
+            let queryData = {
+                name: req.query.name,
+            };
+            let callback = (db) => {
+                let collection = db.collection(this.userCollection);
+                collection.find(queryData).toArray(function(err, result){
+                    assert.equal(null, err);
+                    db.close();
+                    if(result.length !== 0){
+                        res.send({'status':'success', result: {infor: result[0]}});
+                    }else{
+                        res.send({'status':'error', 'text': '没有此账号'});
+                    }
+                });
+            };
+            new MongoDB(this.currentDB, callback);
+        });
     }
 
     _login(){
@@ -24,7 +46,7 @@ class User {
                     assert.equal(null, err);
                     db.close();
                     if(result.length !== 0){
-                        res.send({'status':'success', 'text': '登陆成功。'});
+                        res.send({'status':'success', result: {name: queryData.name}});
                     }else{
                         res.send({'status':'error', 'text': '账号或密码错误。'});
                     }

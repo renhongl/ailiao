@@ -25,8 +25,8 @@ define([], function() {
                 clear: 'both',
                 position: 'absolute',
                 right: 2,
-                top: 2,
-                boxShadow: '0px 0px 10px rgba(255, 255, 255, 0.5)',
+                top: 4,
+                boxShadow: '0px 0px 10px rgba(255, 255, 255, 1)',
                 opacity: 0.8,
             }).addClass('message');
 
@@ -35,9 +35,8 @@ define([], function() {
                 float: 'left',
                 width: '10%',
                 textAlign: 'center',
-                marginTop: 5,
                 fontSize: '1.2em',
-                margin: 2,
+                margin: '12px 2px',
             }).addClass('msgIcon').appendTo(this.$Message);
 
             this.$title = $('<div>').css({
@@ -84,9 +83,9 @@ define([], function() {
         }
 
         _getHeight(){
-            let allHeight = 0;
+            let allHeight = 4;
             for(let one of $('body').find('.message')){
-                allHeight = allHeight + $(one).height() + 4;
+                allHeight = allHeight + $(one).height() + 6;
             }
             return allHeight;
         }
@@ -131,7 +130,7 @@ define([], function() {
                 clearTimeout(this.clearThread);
                 clearInterval(this.timeThread);
                 this.$Message.css({
-                    boxShadow: '0 0 10px rgba(0, 0, 0, 0.5)',
+                    boxShadow: '0 0 10px rgba(0, 0, 0, 1)',
                     opacity: 1
                 });
                 this.$time.text('');
@@ -140,7 +139,7 @@ define([], function() {
             this.$Message.on('mouseout', () => {
                 this._clearMsg();
                 this.$Message.css({
-                    boxShadow: '0px 0px 10px rgba(255, 255, 255, 0.5)',
+                    boxShadow: '0px 0px 10px rgba(255, 255, 255, 1)',
                     opacity: 0.8,
                 });
             });
