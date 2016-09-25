@@ -14,6 +14,7 @@ define(['Controller'], function(Controller) {
         }
 
         _handleEvents() {
+
             $(`#${ this.obj.id }`).off('click').on('click', (e) => {
                 this._addFocusStyle(e);
             });
