@@ -2,24 +2,23 @@
 ### [AP_WEB设计思路](https://github.com/renhongl/AP_WEB)
 ***
 
-* **动机：** 
-
 * **前端：**
     * 封装基本功能：
-        * 独特的Dialog。
-        * Ajax请求。
-        * 观察者模式。
-        * 可拖动。
-        * 全局消息提示。
-        * 按钮功能提示。
-        * 点击雨滴效果。
+        * 模块父类Controller.js、Model.js
+        * Ajax请求Ajax.js。
+        * 观察者模式Observer.js。
+        * 元素可拖动Draggable.js。
+        * 全局消息提示Message.js。
+        * 按钮功能提示Tipy.js。
+        * 点击雨滴效果Rain.js。
     * 模块设计：
-        * 登录模块。
-        * 聊天模块。
-        * 五指棋。
+        * 独特的Dialog。
+        * 登录/注册模块。
+        * 类似lync的聊天模块。
         * 记事本。
-        * TODOlist。
-    * 扩展框架：
+        * 小游戏：五指棋，打飞机等。
+    * 基于的框架/整合的框架：
+        * RequireJS
         * Bootstrap, 
         * Angular, 
         * vue。  
