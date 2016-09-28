@@ -2,7 +2,7 @@
 define([], function() {
     'use strict';
     const config = {
-        title: 'AP Demo',
+        title: '演示',
         dialogs: [{
             id: 'Demo',
             type: 'dialog',

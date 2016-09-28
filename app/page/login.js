@@ -2,7 +2,7 @@
 define([], function () {
     'use strict';
     const config = {
-        title: 'AP Login',
+        title: '登录',
         dialogs: [
             {
                 id: 'login',

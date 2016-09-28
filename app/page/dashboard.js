@@ -2,7 +2,7 @@
 define([], function () {
     'use strict';
     const config = {
-        title: 'AP Dashboard',
+        title: '主页',
         dialogs: [
             {
                 id: 'InformationManagement',

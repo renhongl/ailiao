@@ -37,20 +37,22 @@ define([], function() {
                         this._loadModule(dialog.content, $(`#${ dialog.id } .content`));
                     }
                 });
-                new controller(dialog, $('body'));
+                new controller(dialog, $('body'), {});
             });
         }
 
         _loadModule(module, $container) {
-            let modulePath = `modules/${ module.id }/`;
-            let moduleController = modulePath + 'controller';
-            let moduleStyle = `modules/${ module.id }/style.css`;
-
-            $('head').append(`<link rel='stylesheet' href=${ moduleStyle } />`);
-
-            require([moduleController + '.js'], (controller) => {
-                new controller(module, $container);
-            });
+            let config = `modules/${ module.id }/config.json`;
+            let callback = function(config){
+                let modulePath = `modules/${ module.id }/`;
+                let moduleController = modulePath + 'controller';
+                let moduleStyle = `modules/${ module.id }/style.css`;
+                $('head').append(`<link rel='stylesheet' href=${ moduleStyle } />`);
+                require([moduleController + '.js'], (controller) => {
+                    new controller(module, $container, config);
+                });
+            };
+            AP.Ajax.getJSON(config, callback);
         }
     }
     

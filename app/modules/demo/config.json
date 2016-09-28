@@ -1,9 +1,5 @@
 {
     "name": "demo",
-    "description": "最小模块模板",
-    "author": "liangrenhong",
-    "view": "view.html",
-    "controller": "controller.js",
-    "model": "model.js",
-    "style": "style.css"
+    "description": "config文件用于配置一些静态变量。",
+    "author": "liangrenhong"
 }

@@ -6,7 +6,8 @@
 define([], function() {
     'use strict';
     class Model {
-        constructor(config) {
+        constructor(obj, config) {
+            this.obj = obj;
             this.config = config;
             this._loadData();
             this._refresh();

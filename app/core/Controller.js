@@ -7,9 +7,10 @@
 define([], function () {
     'use strict';
     class Controller {
-        constructor(obj, $container) {
+        constructor(obj, $container, config) {
             this.obj = obj;
             this.$container = $container;
+            this.config = config;
             this._setContainer();
             this._loadHtml();
         }
@@ -30,7 +31,7 @@ define([], function () {
                     $.subscribe(`${obj.id}-show`, () => {
                         $('.dialog').removeClass('current');
                         $dialog.addClass('current');
-                        $dialog.slideDown();
+                        $dialog.fadeIn();
                     });
                 }
                 if (AP.PC) {
@@ -106,7 +107,7 @@ define([], function () {
                     $.publish(`${obj.id}-loaded`);
                 } else {
                     require([modelPath], (model) => {
-                        new model(this.obj);
+                        new model(this.obj, this.config);
                     });
                 }
             };

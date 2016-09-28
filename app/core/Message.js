@@ -33,15 +33,15 @@ define([], function() {
             this.$icon = $('<i>').css({
                 display: 'inline-block',
                 float: 'left',
-                width: '10%',
+                marginLeft: 10,
+                width: 20,
                 textAlign: 'center',
                 fontSize: '1.2em',
-                margin: '12px 2px',
             }).addClass('msgIcon').appendTo(this.$Message);
 
             this.$title = $('<div>').css({
                     height: '45%',
-                    width: '88%',
+                    width: 260,
                     float: 'right',
                     fontSize: '1.2em',
             }).addClass('msgTitle').appendTo(this.$Message);
@@ -50,31 +50,33 @@ define([], function() {
                 position: 'absolute',
                 top: 2,
                 right: 2,
+                fontSize: '0.7em',
             }).addClass('msgTime').appendTo(this.$Message);
 
             this.$content = $('<div>').css({
                 float: 'right',
                 height: '56%',
-                width: '88%',
+                width: 260,
                 paddingBottom: 5,
+                paddingRight: 5,
                 fontSize: '0.8em',
             }).addClass('msgContent').appendTo(this.$Message);
 
             switch(type){
                 case 'infor': 
-                    this.title = 'INFORMATION';
+                    this.title = '提示';
                     this._infor();
                     break;
                 case 'success': 
-                    this.title = 'SUCCESS';
+                    this.title = '成功';
                     this._success();
                     break;
                 case 'error': 
-                    this.title = 'ERROR';
+                    this.title = '错误';
                     this._error();
                     break;
                 case 'warning': 
-                    this.title = 'WARNING';
+                    this.title = '警告';
                     this._warning();
                     break;
                 default: 
@@ -97,11 +99,17 @@ define([], function() {
                 background: color,
                 top: allHeight,
             });
+            
+            this.$content.text(content);
+            this.$title.text(this.title + ':');
+
             this.$icon.attr({
                 class: icon,
             });
-            this.$content.text(content);
-            this.$title.text(this.title + ':');
+            this.$icon.css({
+                marginTop: this.$Message.height() / 2 - 10,
+            });
+
             this.$Message.fadeIn();
 
             this._clearMsg();

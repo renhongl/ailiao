@@ -2,8 +2,8 @@
 define(['Controller'], function (Controller) {
     'use strict';
     class controller extends Controller {
-        constructor(obj, $container) {
-            super(obj, $container);
+        constructor(obj, $container, config) {
+            super(obj, $container, config);
         }
 
         _renderTree() {

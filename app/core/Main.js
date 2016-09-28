@@ -42,7 +42,7 @@ define([
                 Message,//创建时需要传入需要显示的消息，包括title和content
                 width: $(window).width(),//当前浏览器宽度
                 height: $(window).height(),//当前浏览器高度
-                PC: $(window).width() > 1000 ? true : false,//判断是否是电脑
+                PC: $(window).width() > 400 ? true : false,//判断是否是电脑
             };
 
             //运行一次就能在全局出现效果

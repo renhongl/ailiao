@@ -1,9 +1,5 @@
 {
     "name": "register",
     "description": "register",
-    "author": "liangrenhong",
-    "view": "view.html",
-    "controller": "controller.js",
-    "model": "model.js",
-    "style": "style.css"
+    "author": "liangrenhong"
 }
