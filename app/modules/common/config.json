@@ -1,6 +1,5 @@
 {
     "name": "common",
     "description": "用于配置应用基本、共同的样式，所以只需要style",
-    "author": "liangrenhong",
-    "style": "style.css"
+    "author": "liangrenhong"
 }

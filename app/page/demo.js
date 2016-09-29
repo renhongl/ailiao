@@ -2,7 +2,7 @@
 define([], function() {
     'use strict';
     const config = {
-        title: '演示',
+        title: 'Demo',
         dialogs: [{
             id: 'Demo',
             type: 'dialog',
@@ -38,21 +38,7 @@ define([], function() {
                 x: AP.width * 0.04 + 5,
                 y: AP.height * 0.45 + 25,
             },
-        }, {
-            id: 'login',
-            type: 'dialog',
-            showTitle: false,
-            settings: {
-                width: AP.width * 0.25,
-                height: AP.height * 0.45,
-                x: AP.width * 0.49 + 10,
-                y: AP.height * 0.45 + 25,
-            },
-            content: {
-                id: 'login',
-                type: 'module',
-            }
-        }, 
+        },
         ]
     };
 

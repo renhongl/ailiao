@@ -1,5 +1,6 @@
 {
     "name": "demo",
-    "description": "config文件用于配置一些静态变量。",
+    "description": "当要做一个新的模块时，复制demo模块，改名成新模块。按照demo模块的规则去写新的模块。",
+    "text": "如果controller和model里面需要一些静态配置，或者测试数据，都可以放在本文件。",
     "author": "liangrenhong"
 }

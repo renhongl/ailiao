@@ -6,7 +6,7 @@
         <div class="col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-2">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-                <input id="userName" type="text" class="form-control button" placeholder="请输入用户名">
+                <input id="userName" type="text" class="form-control button" placeholder="请输入用户名" v-model="userName">
             </div>
         </div>
     </div>
@@ -14,19 +14,19 @@
         <div class="col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-2">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
-                <input id="password" type="password" class="form-control button" placeholder="请输入密码">
+                <input id="password" type="password" class="form-control button" placeholder="请输入密码" v-model="password">
             </div>
         </div>
     </div>
 
     <div class="row">
         <div class="col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-2">
-            <button type="button" class="btn btn-default button" id="loginButton">登录</button>
+            <button type="button" class="btn btn-default button" id="loginButton" v-on:click="login">登录</button>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-2 registerRow">
-            <span>新用户?点击<span id="registerButton" class="button">这里</span>注册</span>
+            <span>新用户?点击<span id="registerButton" class="button" v-on:click="register">这里</span>注册</span>
         </div>
     </div>
 </div>

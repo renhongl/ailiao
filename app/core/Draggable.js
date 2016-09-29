@@ -5,7 +5,7 @@
  * 如果这个拖动的对象有button这样的class，将不被拖动。
  * 属于工具类，放在AP中。
  */
-define([], function () {
+define([], function() {
     'use strict';
     class Draggable {
         constructor($container) {
@@ -16,31 +16,30 @@ define([], function () {
         }
 
         _handleEvents($subContainer) {
-            if (AP.PC) {
-                $subContainer.on('mousedown', (e) => {
-                    if (!$(e.target).hasClass('button')) {
-                        this._handleMousedown(e);
-                    }
-                });
+            $subContainer.on('mousedown', (e) => {
+                if (!$(e.target).hasClass('button')) {
+                    this._handleMousedown(e);
+                }
+            });
 
-                $(document).on('mousemove', (e) => {
-                    if (!$(e.target).hasClass('button')) {
-                        this._handleMousemove(e);
-                    }
-                });
+            $(document).on('mousemove', (e) => {
+                if (!$(e.target).hasClass('button')) {
+                    this._handleMousemove(e);
+                }
+            });
 
-                $(document).on('mouseup', (e) => {
-                    if (!$(e.target).hasClass('button')) {
-                        this._handleMouseup(e);
-                    }
-                });
-            } else {
-                //TODO 加手机触摸事件。
-            }
+            $(document).on('mouseup', (e) => {
+                if (!$(e.target).hasClass('button')) {
+                    this._handleMouseup(e);
+                }
+            });
         }
 
         _handleMousedown(e) {
-            let {left, top} = this.$container.css(['left', 'top']);
+            let {
+                left,
+                top
+            } = this.$container.css(['left', 'top']);
             this.offsetX = this._parseStr(left) - e.clientX;
             this.offsetY = this._parseStr(top) - e.clientY;
             this.mouseDown = true;
@@ -66,6 +65,9 @@ define([], function () {
         }
 
         _parseStr(str) {
+            if(typeof str !== 'string'){
+                str += ''; 
+            }
             return Number(str.split('px')[0]);
         }
     }

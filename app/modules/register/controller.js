@@ -24,7 +24,7 @@ define(['Controller'], function (Controller) {
                     password: $('#passwordRg').val(),
                 };
                 AP.Ajax.post(regiterURL, postData, function (result) {
-                    new AP.Message('success', result.status, result.text);
+                    new AP.Message('success', '账号注册成功！');
                     $('#register').slideUp();
                 });
             }

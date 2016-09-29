@@ -4,7 +4,7 @@
  * 2： 加载html,如果是dialog继续加载其中的模块，如果不是，直接加载dialog的model类。
  * 3： 引入renderTree和handleEvents方法
  */
-define([], function () {
+define([], function() {
     'use strict';
     class Controller {
         constructor(obj, $container, config) {
@@ -29,43 +29,28 @@ define([], function () {
                         display: 'none',
                     });
                     $.subscribe(`${obj.id}-show`, () => {
-                        $('.dialog').removeClass('current');
-                        $dialog.addClass('current');
-                        $dialog.fadeIn();
+                        setTimeout(function(){
+                            $('.dialog').removeClass('current');
+                            $dialog.addClass('current');
+                            $dialog.slideDown();
+                        }, 1000);
                     });
                 }
-                if (AP.PC) {
-                    $dialog.css({
-                        left: obj.settings.x,
-                        top: obj.settings.y,
-                        width: obj.settings.width,
-                        height: obj.settings.height,
-                        resize: 'both',
-                        overflow: 'hidden',
-                    });
-                } else {
-                    $dialog.css({
-                        left: '0px',
-                        top: '0px',
-                        width: '100%',
-                        height: '100%',
-                    });
-                }
+                $dialog.css({
+                    left: obj.settings.x,
+                    top: obj.settings.y,
+                    width: obj.settings.width,
+                    height: obj.settings.height,
+                    resize: 'both',
+                    overflow: 'hidden',
+                });
             } else {
                 if (this.obj.showTitle) {
-                    if (AP.PC) {
-                        $dialog.css({
-                            width: '100%',
-                            height: '100%',
-                            paddingTop: '30px',
-                        });
-                    } else {
-                        $dialog.css({
-                            width: '100%',
-                            height: '100%',
-                            paddingTop: '12%',
-                        });
-                    }
+                    $dialog.css({
+                        width: '100%',
+                        height: '100%',
+                        paddingTop: '30px',
+                    });
                 } else {
                     $dialog.css({
                         width: '100%',
@@ -91,14 +76,8 @@ define([], function () {
                 $container.append($dialog);
                 this._renderTree();
                 this._handleEvents();
+                this._runVue();
                 if (obj.type === 'dialog') {
-                    if (!AP.PC) {
-                        $dialog.find('.title').addClass('phone');
-                        $dialog.find('.content').addClass('phone');
-                        $dialog.find('.title').find('span').addClass('phone');
-                        $dialog.find('.title').find('.glyphicon-unchecked').remove();
-                        $dialog.find('.title').find('.glyphicon-minus').remove();
-                    }
                     if (!this.obj.showTitle) {
                         $dialog.find('.title').css({
                             display: 'none',
@@ -113,6 +92,10 @@ define([], function () {
             };
 
             AP.Ajax.loadHTML($dialog, url, callback);
+        }
+
+        _runVue(){
+            
         }
 
         _renderTree() {

@@ -6,49 +6,32 @@ define(['Controller'], function (Controller) {
             super(obj, $container, config);
         }
 
-        _renderTree() {
-
+        _runVue(){
+            let that = this;
+            let vue = new AP.Vue({
+                el: '.login',
+                data: {
+                    userName: '',
+                    password: '',
+                },
+                methods: {
+                    login: that._login,
+                    register: that._regiser,
+                    verify: that._verify
+                }
+            });
         }
 
-        _handleEvents() {
-            $('.login #loginButton').on('click', () => {
-                this._login();
-            });
-
-            $('.login #registerButton').on('click', () => {
-                this._register();
-            });
-        }
-
-        _register() {
+        _regiser(){
             $.publish('register-show');
         }
 
-        _login() {
-            if (this._verify()) {
-                let loginURL = AP.Constant.LOGIN;
-                let postData = {
-                    username: $('#userName').val(),
-                    password: $('#password').val(),
-                };
-                AP.Ajax.post(loginURL, postData, function (result) {
-                    localStorage.name = result.result.name;
-                    location = '?page=dashboard';
-                });
-            }
+        _login(){
+            this.verify();
         }
 
-        _verify() {
-            let noError = true;
-            if ($('#userName').val() === '') {
-                new AP.Message('error', '请输入账号。');
-                noError = false;
-            }
-            if ($('#password').val() === '') {
-                new AP.Message('error', '请输入密码。');
-                noError = false;
-            }
-            return noError;
+        _verify(){
+            debugger;
         }
     }
 

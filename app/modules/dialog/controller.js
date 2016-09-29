@@ -56,7 +56,7 @@ define(['Controller'], function(Controller) {
             $(`#${ this.obj.id }`).find('.glyphicon-unchecked').css('display', 'none');
             $(`#${ this.obj.id }`).find('.glyphicon-minus').css('display', 'none');
 
-            $(`#${ this.obj.id }`).css('top', this.obj.settings.y * 0.1 + 'px').css('left', this.obj.settings.x * 0.5 + 'px');
+            $(`#${ this.obj.id }`).css('top', this.obj.settings.y * 0.1 + 'px').css('left', this.obj.settings.x * 0.1 + 'px');
             $(`#${ this.obj.id }`).width('250px').height('30px');
         }
 

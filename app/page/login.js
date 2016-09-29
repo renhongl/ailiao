@@ -29,7 +29,7 @@ define([], function () {
                     width: 430,
                     height: 430,
                     x: AP.width * 0.35,
-                    y: 450,
+                    y: 10,
                 },
                 content: {
                     id: 'register',

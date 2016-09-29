@@ -8,16 +8,16 @@ define([], function() {
     class Rain {
         constructor() {
             this.settings = {
-                width: AP.PC ? '10px' : '50px',
-                height: AP.PC ? '10px' : '50px',
+                width: 10,
+                height: 10,
                 borderColor: '#c6cac9',
                 opacity: 0.7,
-                borderRadius: AP.PC ? '5px' : '25px',
-                borderWidth: AP.PC ? '5px' : '25px',
-                maxWidth: AP.PC ? 100 : 150,
+                borderRadius: 5,
+                borderWidth: 5,
+                maxWidth: 100,
                 widthOffset: 2,
-                radiusOffset: AP.PC ? 1 : 2,
-                opacityOffset: AP.PC ? 0.02 : 0.01,
+                radiusOffset: 1,
+                opacityOffset: 0.02,
                 borderOffset: 1,
                 position: 'fixed',
                 zIndex: 100,
@@ -79,6 +79,9 @@ define([], function() {
         }
 
         _parseStr(str){
+            if(typeof str !== 'string'){
+                str += ''; 
+            }
             return Number(str.split('px')[0]);
         }
 

@@ -2,20 +2,20 @@
 define([], function () {
     'use strict';
     const config = {
-        title: '主页',
+        title: 'Vue Demo',
         dialogs: [
             {
-                id: 'APChat',
+                id: 'demoVue',
                 type: 'dialog',
                 showTitle: true,
                 settings: {
                     width: AP.width * 0.25,
-                    height: AP.height * 0.8,
-                    x: AP.width * 0 + 20,
+                    height: AP.height * 0.45,
+                    x: AP.width * 0.24,
                     y: AP.height * 0 + 20,
                 },
                 content: {
-                    id: 'chat/chatHome',
+                    id: 'demoVue',
                     type: 'module',
                     showTitle: true,
                 }

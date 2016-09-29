@@ -25,5 +25,7 @@ require.config({
         jquery: 'libs/jquery',
         io: 'libs//socket.io',
         bootstrap: 'libs/bootstrap/js/bootstrap.min',
+        Vue: 'libs/vue',
+
     }
 });

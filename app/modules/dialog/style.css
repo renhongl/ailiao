@@ -60,18 +60,3 @@ body .dialog{
 .title .glyphicon-remove{
     border-radius: 4px 0px 0px 0px;
 }
-
-.title.phone{
-    height: 8% !important;
-}
-
-.content.phone{
-    font-size: 5em;
-}
-
-span.phone{
-    font-size: 5em;
-    top: 0px;
-    width: 13%;
-    padding-top: 3%;
-}
