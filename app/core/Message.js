@@ -27,7 +27,7 @@ define([], function() {
                 right: 2,
                 top: 4,
                 boxShadow: '0px 0px 10px rgba(255, 255, 255, 1)',
-                opacity: 0.8,
+                opacity: 0.9,
             }).addClass('message');
 
             this.$icon = $('<i>').css({

@@ -6,7 +6,7 @@
     margin-top: 20px;
 }
 
-.register #registerButton{
+.register .registerBt{
     width: 100%;
     background: #353030;
     color: white;

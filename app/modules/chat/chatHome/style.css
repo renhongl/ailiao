@@ -1,3 +1,81 @@
 .module .chatHome{
     height: 100%;
 }
+
+.chatHome .intro, .search{
+    display: block;
+    width: 98%;
+    margin: 0 auto;
+    height: 4%;
+    margin-top: 5px;
+}
+
+/*.chatHome .search:focus{
+    border: 1px solid black;
+    box-shadow: 0px 0px 4px rgba(0,0,0,0.5);
+}
+
+.chatHome .intro:focus{
+    border: 1px solid black;
+    box-shadow: 0px 0px 4px rgba(0,0,0,0.5);
+}*/
+
+.chatHome .head{
+    cursor: default;
+    height: 13%;
+    margin-top: 5px;
+    width: 98%;
+    margin: 5px auto;
+}
+
+.chatHome img{
+    display: block;
+    width: 20%;
+    height: 100%;
+    float: left;
+    border-radius: 50%;
+}
+
+.chatHome span{
+    display: block;
+    margin: 5px 10px;
+    width: 70%;
+    float: left;
+}
+
+.chatHome .status{
+    cursor: default;
+    width: 70%;
+    float: left;
+    margin: 0 10px;
+}
+
+.chatHome .location{
+    cursor: default;
+    width: 70%;
+    float: left;
+    margin: 5px 10px;
+}
+
+.items i{
+    cursor: default;
+    display: block;
+    width: 10%;
+    font-size: 40px;
+    text-align: center;
+    margin-left: 5px;
+    float: left;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.items i:hover{
+    color: #2d92d6;
+}
+
+.chatHome .fa-search{
+    cursor: default;
+    position: relative;
+    top: -25px;
+    left: 94%;
+}

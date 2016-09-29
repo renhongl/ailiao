@@ -13,7 +13,7 @@ define([], function () {
                     width: 430,
                     height: 430,
                     x: AP.width * 0.35,
-                    y: 10,
+                    y: 100,
                 },
                 content: {
                     id: 'login',
@@ -24,12 +24,12 @@ define([], function () {
                 id: 'register',
                 type: 'dialog',
                 show: false,
-                showTitle: false,
+                showTitle: true,
                 settings: {
                     width: 430,
                     height: 430,
                     x: AP.width * 0.35,
-                    y: 10,
+                    y: 100,
                 },
                 content: {
                     id: 'register',

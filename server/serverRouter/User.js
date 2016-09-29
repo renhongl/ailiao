@@ -37,7 +37,7 @@ class User {
     _login(){
         this.app.post('/login', (req, res) => {
             let queryData = {
-                name: req.body.username,
+                name: req.body.userName,
                 pwd: req.body.password,
             };
             let callback = (db) => {
@@ -59,10 +59,10 @@ class User {
     _regiser(){
         this.app.post('/register', (req, res) => {
             let queryData = {
-                name: req.body.username,
+                name: req.body.userName,
             };
             let insertData = {
-                name: req.body.username,
+                name: req.body.userName,
                 pwd: req.body.password,
             };
             let callback = (db) => {

@@ -6,37 +6,44 @@ define(['Controller'], function (Controller) {
             super(obj, $container, config);
         }
 
-        _renderTree() {
-
-        }
-
-        _handleEvents() {
-            $('.register #registerButton').on('click', () => {
-                this._register();
+        _runVue(){
+            let that = this;
+            let vue = new AP.Vue({
+                el: '.register',
+                data: {
+                    userName: '',
+                    password: '',
+                },
+                methods: {
+                    register: that._register,
+                    verify: that._verify,
+                }
             });
         }
 
         _register() {
-            if (this._verify()) {
-                let regiterURL = AP.Constant.REGISTER;
+            if (this.verify()) {
+                let url = AP.Constant.REGISTER;
                 let postData = {
-                    username: $('#userNameRg').val(),
-                    password: $('#passwordRg').val(),
+                    userName: this.userName,
+                    password: this.password,
                 };
-                AP.Ajax.post(regiterURL, postData, function (result) {
+                AP.Ajax.post(url, postData, function (result) {
                     new AP.Message('success', '账号注册成功！');
-                    $('#register').slideUp();
+                    setTimeout(function(){
+                        $('#register').slideUp();
+                    }, 1000);
                 });
             }
         }
 
         _verify() {
             let noError = true;
-            if ($('#userNameRg').val() === '') {
+            if (this.userName === '') {
                 new AP.Message('error', '请输入账号。');
                 noError = false;
             }
-            if ($('#passwordRg').val() === '') {
+            if (this.password === '') {
                 new AP.Message('error', '请输入密码。');
                 noError = false;
             }

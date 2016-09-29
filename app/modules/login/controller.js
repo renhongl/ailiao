@@ -27,11 +27,31 @@ define(['Controller'], function (Controller) {
         }
 
         _login(){
-            this.verify();
+            if(this.verify()){
+                let url = AP.Constant.LOGIN;
+                let postData = {
+                    userName: this.userName,
+                    password: this.password,
+                };
+                let callback = function(result){
+                    localStorage.name = result.result.name;
+                    location = '/?page=dashboard';
+                };
+                AP.Ajax.post(url, postData, callback);
+            }
         }
 
         _verify(){
-            debugger;
+            let noError = true;
+            if(this.userName === ''){
+                noError = false;
+                new AP.Message('error', '请输入账号。');
+            }
+            if(this.password === ''){
+                noError = false;
+                new AP.Message('error', '请输入密码。');
+            }
+            return noError;
         }
     }
 
