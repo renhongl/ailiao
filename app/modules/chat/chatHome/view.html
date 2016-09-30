@@ -1,19 +1,25 @@
 <div class="chatHome">
-    <input type="text" class="intro button"  placeholder="说点什么？">
+    <div class="introDiv">
+        <input type="text" class="intro button"  placeholder="" v-model="intro">
+        <div class="introFoot"></div>
+    </div>
     <div class="head">
         <img src="/images/defaultUser.jpg"/>
-        <span>用户名</span>
+        <span>{{ name }}</span>
         <div class="status">
-            状态
+            {{ status }}
         </div>
         <div class="location">
-            位置
+            {{ location }}
         </div>
     </div>
     <div class="items">
         <i class="fa fa-user contact" aria-hidden="true"></i>
         <i class="fa fa-users group" aria-hidden="true"></i>
     </div>
-    <input type="text" class="search button"  placeholder="查找联系人">
-    <i class="fa fa-search" aria-hidden="true"></i>
+    <div class="searchDiv">
+        <input type="text" class="search button"  placeholder="查找联系人">
+        <i class="fa fa-search" aria-hidden="true"></i>
+    </div>
+    
 </div>

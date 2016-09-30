@@ -7,18 +7,7 @@
     width: 98%;
     margin: 0 auto;
     height: 4%;
-    margin-top: 5px;
 }
-
-/*.chatHome .search:focus{
-    border: 1px solid black;
-    box-shadow: 0px 0px 4px rgba(0,0,0,0.5);
-}
-
-.chatHome .intro:focus{
-    border: 1px solid black;
-    box-shadow: 0px 0px 4px rgba(0,0,0,0.5);
-}*/
 
 .chatHome .head{
     cursor: default;
@@ -38,30 +27,34 @@
 
 .chatHome span{
     display: block;
-    margin: 5px 10px;
+    margin-left: 10px;
     width: 70%;
     float: left;
+    font-size: 0.8em;
+    height: 33%;
 }
 
 .chatHome .status{
-    cursor: default;
     width: 70%;
     float: left;
-    margin: 0 10px;
+    margin-left: 10px;
+    font-size: 0.8em;
+    height: 33%;
 }
 
 .chatHome .location{
-    cursor: default;
     width: 70%;
     float: left;
-    margin: 5px 10px;
+    margin-left: 10px;
+    font-size: 0.8em;
+    height: 33%;
 }
 
 .items i{
     cursor: default;
     display: block;
     width: 10%;
-    font-size: 40px;
+    font-size: 2em;
     text-align: center;
     margin-left: 5px;
     float: left;
@@ -75,7 +68,45 @@
 
 .chatHome .fa-search{
     cursor: default;
+    position: absolute;
+    top: 3px;
+    right: 10px;
+}
+
+.chatHome .searchDiv{
     position: relative;
-    top: -25px;
-    left: 94%;
+    clear: both;
+}
+
+.chatHome .introFoot{
+    position: absolute;
+    top: 18px;
+    left: 53px;
+    width: 15px;
+    height: 15px;
+    border-right: 1px solid #b7b5b5;
+    border-bottom: 1px solid #b7b5b5;
+    transform: rotate(45deg);
+    background: #b7b5b5;
+}
+
+.chatHome .intro{
+    background: #b7b5b5;
+    color: #353030;
+    font-size: 0.8em;
+    padding: 5px 10px 5px 10px;
+    border: 1px solid #b7b5b5;
+    box-shadow: none;
+    border-radius: 3px;
+}
+
+.chatHome .intro:focus{
+    background: #fff;
+    color: #353030;
+    border: 1px solid #b7b5b5;
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.5);
+}
+
+.chatHome .introDiv{
+    position: relative;
 }
