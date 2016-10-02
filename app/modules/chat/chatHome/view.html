@@ -1,6 +1,6 @@
 <div class="chatHome">
     <div class="introDiv">
-        <input type="text" class="intro button"  placeholder="" v-model="intro">
+        <input type="text" class="intro button"  placeholder="" v-model="intro" v-on:keyup.enter="changeIntro">
         <div class="introFoot"></div>
     </div>
     <div class="head">

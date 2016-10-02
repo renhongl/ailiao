@@ -6,16 +6,21 @@ define(['Controller'], function(Controller) {
             super(obj, $container, config);
         }
 
-        _renderTree() {
-            let vue = new AP.Vue({
+        _runVue(){
+            let config = {
                 el: '#test',
                 data: {
                     message: 'Hello Vue.js'
                 }
-            });
-            setTimeout(function(){
-                vue.message = 'Hello World';
+            };
+            this.vue = new AP.Vue(config);
+            setTimeout( () => {
+                this.vue.message = 'Hello World';
             }, 3000);
+        }
+
+        _renderTree() {
+            
         }
 
         _handleEvents() {

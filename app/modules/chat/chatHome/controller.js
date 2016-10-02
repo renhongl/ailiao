@@ -16,14 +16,9 @@ define(['Controller'], function(Controller) {
                     location: '',
                     intro: '',
                 },
-                computed: {
-                    intro: {
-                        get: function(){
-                            return '';
-                        },
-                        set: function(newValue){
-                            debugger;
-                        }
+                methods: {
+                    changeIntro: function(){
+                        console.log(this.intro);
                     }
                 }
             };

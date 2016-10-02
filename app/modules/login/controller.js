@@ -8,7 +8,7 @@ define(['Controller'], function (Controller) {
 
         _runVue(){
             let that = this;
-            let vue = new AP.Vue({
+            let config = {
                 el: '.login',
                 data: {
                     userName: '',
@@ -19,7 +19,8 @@ define(['Controller'], function (Controller) {
                     register: that._regiser,
                     verify: that._verify
                 }
-            });
+            };
+            this.vue = new AP.Vue(config);
         }
 
         _regiser(){
