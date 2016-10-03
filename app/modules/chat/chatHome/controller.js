@@ -33,8 +33,8 @@ define(['Controller'], function(Controller) {
         _handleEvents() {
             $.subscribe('userInfo-loaded', (o, args) => {
                 this.vue.name = args.infor.name;
-                this.vue.status = '在线';
-                this.vue.email = args.infor.email || '修改email地址';
+                this.vue.status = '/images/online.png';
+                this.vue.email = args.infor.email || '';
                 this.vue.intro = args.infor.intro || '说点什么？';
                 this.vue.face = args.infor.face || AP.Constant.FACEURL;
                 this._setStatus();
@@ -43,12 +43,18 @@ define(['Controller'], function(Controller) {
             $('.chatHome .intro').on('focus', function(){
                 $('.chatHome .introFoot').css({
                     background: '#fff',
+                    borderRight: '1px solid #353030',
+                    borderBottom: '1px solid #353030',
+                    boxShadow: '2px 2px 2px #b7b5b5',
                 });
             });
 
             $('.chatHome .intro').on('blur', function(){
                 $('.chatHome .introFoot').css({
                     background: '#b7b5b5',
+                    borderRight: '1px solid #b7b5b5',
+                    borderBottom: '1px solid #b7b5b5',
+                    boxShadow: 'none',
                 });
             });
 
@@ -58,7 +64,7 @@ define(['Controller'], function(Controller) {
 
             $('.statusSelect li').on('click', (e) => {
                 $('.statusSelect').toggle();
-                this.vue.status = $(e.target).find('span').text() || $(e.target).text();
+                this.vue.status = $(e.target).find('img').attr('src') || $(e.target).parent().find('img').attr('src');
                 this._setStatus();
             });
         }

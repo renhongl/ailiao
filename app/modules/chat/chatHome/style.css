@@ -2,11 +2,22 @@
     height: 100%;
 }
 
-.chatHome .intro, .search{
+.chatHome .intro{
     display: block;
     width: 98%;
     margin: 0 auto;
     height: 4%;
+}
+
+.chatHome .search{
+    display: block;
+    width: 98%;
+    margin: 0 auto;
+    height: 4%;
+    border-radius: 3px;
+    border: 1px solid #353030;
+    padding-left: 10px;
+    height: 30px;
 }
 
 .chatHome .head{
@@ -31,7 +42,7 @@
     width: 70%;
     float: left;
     font-size: 0.8em;
-    height: 33%;
+    height: 30%;
 }
 
 .chatHome .status{
@@ -44,7 +55,7 @@
     border: 1px solid #fff;
 }
 
-.chatHome .status:hover{
+.chatHome .statusValue:hover{
     border: 1px solid #353030;
 }
 
@@ -52,6 +63,8 @@
     list-style-type: none;
     height: 20px;
     padding-left: 5px;
+    width: 99%;
+    margin: 1px auto;
 }
 
 .status li:hover{
@@ -62,14 +75,15 @@
 .status ul{
     position: absolute;
     background: #fff;
-    height: 100px;
+    height: 66px;
     z-index: 10;
     border: 1px solid #353030;
     width: 150px;
     padding: 0;
     display: none;
-    top: 22px;
-    left: -1px;
+    top: 29px;
+    left: 0px;
+    border-radius: 3px;
 }
 
 .statusValue div{
@@ -80,8 +94,21 @@
     border-right: 7px solid transparent;
     z-index: 20;
     position: absolute;
-    left: 30px;
-    top: 4px;
+    left: 34px;
+    top: 5px;
+}
+
+.statusValue img{
+    width: 20px;
+    height: 20px;
+    margin: 3px;
+}
+
+.statusValue{
+    width: 30px;
+    border-radius: 3px;
+    border: 1px solid #fff;
+    height: 100%;
 }
 
 .statusSelect img{
@@ -102,6 +129,7 @@
     margin-left: 10px;
     font-size: 0.8em;
     height: 33%;
+    margin-top: 9px;
 }
 
 .email input{
@@ -132,8 +160,8 @@
 .chatHome .fa-search{
     cursor: default;
     position: absolute;
-    top: 3px;
-    right: 10px;
+    top: 6px;
+    right: 14px;
 }
 
 .chatHome .searchDiv{
@@ -167,10 +195,16 @@
 .chatHome .intro:focus{
     background: #fff;
     color: #353030;
-    border: 1px solid #b7b5b5;
+    border: 1px solid #353030;
     box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
 }
 
 .chatHome .introDiv{
     position: relative;
+    margin-top: 5px;
 }
+
+.group li{
+    list-style-type: none;
+}
+

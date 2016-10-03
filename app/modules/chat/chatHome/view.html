@@ -8,16 +8,16 @@
         <span class="name">{{ name }}</span>
         <div class="status">
             <div class="statusValue button">
-                <span>{{ status }}</span><div></div>
+                <img v-bind:src="status">
             </div>
             <ul class="statusSelect button">
                 <li><img src="/images/online.png"><span>在线</span></li>
-                <li><img src="/images/offline.png"><span>离线</span></li>
-                <li><img src="/images/busy.png"><span>忙碌</span></li>
+                <li><img src="/images/offline.jpg"><span>离线</span></li>
+                <li><img src="/images/busy.jpg"><span>忙碌</span></li>
             </ul>
         </div>
         <div class="email">
-            <input type="text" class="button" v-model="email" v-on:blur="setEmail">
+            <input type="text" class="button" v-model="email" v-on:blur="setEmail" placeholder="Email地址">
         </div>
     </div>
     <div class="items">
