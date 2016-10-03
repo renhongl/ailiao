@@ -32,7 +32,7 @@ define([], function() {
                         setTimeout(function(){
                             $('.dialog').removeClass('current');
                             $dialog.addClass('current');
-                            $dialog.slideDown();
+                            $dialog.fadeIn();
                         }, 1000);
                     });
                 }

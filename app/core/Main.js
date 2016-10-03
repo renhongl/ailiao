@@ -19,8 +19,9 @@ define([
     'Observer',
     'Message',
     'Vue',
+    'Auth',
     'bootstrap'
-], function(Constant, Test, QueryString, Ajax, Page, Tipy, Draggable, Rain, Observer, Message, Vue) {
+], function(Constant, Test, QueryString, Ajax, Page, Tipy, Draggable, Rain, Observer, Message, Vue, Auth) {
     'use strict';
     class Main {
         constructor() {
@@ -49,6 +50,7 @@ define([
             //运行一次就能在全局出现效果
             new Rain();
             new Observer();
+            new Auth();
         }
 
         _verifyLogin() {

@@ -8,30 +8,31 @@ define(['Controller'], function (Controller) {
 
         _runVue(){
             let that = this;
-            let vue = new AP.Vue({
+            let config = {
                 el: '.register',
                 data: {
                     userName: '',
                     password: '',
                 },
                 methods: {
-                    register: that._register,
-                    verify: that._verify,
+                    register: that._register.bind(that),
+                    verify: that._verify.bind(that),
                 }
-            });
+            };
+            this.vue = new AP.Vue(config);
         }
 
         _register() {
-            if (this.verify()) {
+            if (this.vue.verify()) {
                 let url = AP.Constant.REGISTER;
                 let postData = {
-                    userName: this.userName,
-                    password: this.password,
+                    userName: this.vue.userName,
+                    password: this.vue.password,
                 };
                 AP.Ajax.post(url, postData, function (result) {
                     new AP.Message('success', '账号注册成功！');
                     setTimeout(function(){
-                        $('#register').slideUp();
+                        $('#register').fadeOut();
                     }, 1000);
                 });
             }
@@ -39,11 +40,11 @@ define(['Controller'], function (Controller) {
 
         _verify() {
             let noError = true;
-            if (this.userName === '') {
+            if (this.vue.userName === '') {
                 new AP.Message('error', '请输入账号。');
                 noError = false;
             }
-            if (this.password === '') {
+            if (this.vue.password === '') {
                 new AP.Message('error', '请输入密码。');
                 noError = false;
             }

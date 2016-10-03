@@ -1,25 +1,38 @@
 <div class="chatHome">
     <div class="introDiv">
-        <input type="text" class="intro button"  placeholder="" v-model="intro" v-on:keyup.enter="changeIntro">
+        <input type="text" class="intro button" v-model="intro" v-on:blur="setIntro">
         <div class="introFoot"></div>
     </div>
     <div class="head">
-        <img src="/images/defaultUser.jpg"/>
-        <span>{{ name }}</span>
+        <img class="face" v-bind:src="face" />
+        <span class="name">{{ name }}</span>
         <div class="status">
-            {{ status }}
+            <div class="statusValue button">
+                <span>{{ status }}</span><div></div>
+            </div>
+            <ul class="statusSelect button">
+                <li><img src="/images/online.png"><span>在线</span></li>
+                <li><img src="/images/offline.png"><span>离线</span></li>
+                <li><img src="/images/busy.png"><span>忙碌</span></li>
+            </ul>
         </div>
-        <div class="location">
-            {{ location }}
+        <div class="email">
+            <input type="text" class="button" v-model="email" v-on:blur="setEmail">
         </div>
     </div>
     <div class="items">
         <i class="fa fa-user contact" aria-hidden="true"></i>
-        <i class="fa fa-users group" aria-hidden="true"></i>
+        <i class="fa fa-commenting" aria-hidden="true"></i>
     </div>
     <div class="searchDiv">
-        <input type="text" class="search button"  placeholder="查找联系人">
+        <input type="text" class="search button" placeholder="查找联系人">
         <i class="fa fa-search" aria-hidden="true"></i>
     </div>
-    
+    <div class="group">
+        <ul>
+            <li v-for="group in groups">
+                {{ group }}
+            </li>
+        </ul>
+    </div>
 </div>

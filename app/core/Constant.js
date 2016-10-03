@@ -11,6 +11,7 @@ define([], function() {
     Constant.TEST = false;
     Constant.DEFAULT_PAGE = 'login';
     Constant.SKIP_AUTH = true;
+    Constant.FACEURL = '/images/defaultUser.jpg';
 
     //URL
     Constant.BASE_SERVER = 'http://127.0.0.1:8080/'; //lrh.ngrok.cc
@@ -18,6 +19,7 @@ define([], function() {
     Constant.LOGIN = Constant.BASE_SERVER + 'login';
     Constant.REGISTER = Constant.BASE_SERVER + 'register';
     Constant.GETINFOR = Constant.BASE_SERVER + 'getInfor';
-
+    Constant.SETINFOR = Constant.BASE_SERVER + 'setInfor';
+    
     return Constant;
 });

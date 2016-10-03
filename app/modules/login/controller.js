@@ -15,9 +15,9 @@ define(['Controller'], function (Controller) {
                     password: '',
                 },
                 methods: {
-                    login: that._login,
-                    register: that._regiser,
-                    verify: that._verify
+                    login: that._login.bind(that),
+                    register: that._regiser.bind(that),
+                    verify: that._verify.bind(that)
                 }
             };
             this.vue = new AP.Vue(config);
@@ -28,11 +28,11 @@ define(['Controller'], function (Controller) {
         }
 
         _login(){
-            if(this.verify()){
+            if(this.vue.verify()){
                 let url = AP.Constant.LOGIN;
                 let postData = {
-                    userName: this.userName,
-                    password: this.password,
+                    userName: this.vue.userName,
+                    password: this.vue.password,
                 };
                 let callback = function(result){
                     localStorage.name = result.result.name;
@@ -44,11 +44,11 @@ define(['Controller'], function (Controller) {
 
         _verify(){
             let noError = true;
-            if(this.userName === ''){
+            if(this.vue.userName === ''){
                 noError = false;
                 new AP.Message('error', '请输入账号。');
             }
-            if(this.password === ''){
+            if(this.vue.password === ''){
                 noError = false;
                 new AP.Message('error', '请输入密码。');
             }

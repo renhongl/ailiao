@@ -20,6 +20,7 @@ require.config({
         Observer: 'core/Observer',
         Rain: 'core/Rain',
         Message: 'core/Message',
+        Auth: 'core/Auth',
         
         //libs
         jquery: 'libs/jquery',

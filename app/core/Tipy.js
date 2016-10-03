@@ -14,7 +14,7 @@ define([], function(require, factory) {
             }).appendTo($button);
             this.$tipyFoot = $('<div>').attr('class', 'tipyFoot').css({
                 position: 'absolute',
-                zIndex: 11,
+                zIndex: 55,
                 top: '33px',
                 left: '5px',
                 width: 0,
@@ -26,7 +26,7 @@ define([], function(require, factory) {
 
             this.$tipyContent = $('<div>').attr('class', 'tipyContent').text(this.msg).css({
                 position: 'absolute',
-                zIndex: 10,
+                zIndex: 54,
                 top: '40px',
                 left: '5px',
                 background: '#353030',
@@ -44,7 +44,7 @@ define([], function(require, factory) {
 
         _handleEvents(){
             this.$button.on('mouseover', (e) => {
-                this.$tipy.fadeIn(500);
+                this.$tipy.fadeIn(50);
             });
 
             this.$button.on('mouseout', (e) => {

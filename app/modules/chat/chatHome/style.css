@@ -17,7 +17,7 @@
     margin: 5px auto;
 }
 
-.chatHome img{
+.chatHome .face{
     display: block;
     width: 20%;
     height: 100%;
@@ -25,7 +25,7 @@
     border-radius: 50%;
 }
 
-.chatHome span{
+.chatHome .name{
     display: block;
     margin-left: 10px;
     width: 70%;
@@ -35,6 +35,68 @@
 }
 
 .chatHome .status{
+    width: 16%;
+    float: left;
+    margin-left: 10px;
+    font-size: 0.8em;
+    height: 33%;
+    position: relative;
+    border: 1px solid #fff;
+}
+
+.chatHome .status:hover{
+    border: 1px solid #353030;
+}
+
+.status li{
+    list-style-type: none;
+    height: 20px;
+    padding-left: 5px;
+}
+
+.status li:hover{
+    background: #353030;
+    color: white;
+}
+
+.status ul{
+    position: absolute;
+    background: #fff;
+    height: 100px;
+    z-index: 10;
+    border: 1px solid #353030;
+    width: 150px;
+    padding: 0;
+    display: none;
+    top: 22px;
+    left: -1px;
+}
+
+.statusValue div{
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-top: 7px solid #353030;
+    border-right: 7px solid transparent;
+    z-index: 20;
+    position: absolute;
+    left: 30px;
+    top: 4px;
+}
+
+.statusSelect img{
+    height: 15px;
+    width: 15px;
+    border-radius: 10px;
+}
+
+.statusSelect span{
+    display: inline-block;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+.chatHome .email{
     width: 70%;
     float: left;
     margin-left: 10px;
@@ -42,12 +104,13 @@
     height: 33%;
 }
 
-.chatHome .location{
-    width: 70%;
-    float: left;
-    margin-left: 10px;
-    font-size: 0.8em;
-    height: 33%;
+.email input{
+    border: 1px solid #fff;
+}
+
+.email input:focus{
+    border: 1px solid #353030;
+    border-radius: 3px;
 }
 
 .items i{
@@ -88,6 +151,7 @@
     border-bottom: 1px solid #b7b5b5;
     transform: rotate(45deg);
     background: #b7b5b5;
+    border-radius: 10px 0px 0px 0px;
 }
 
 .chatHome .intro{
@@ -104,7 +168,7 @@
     background: #fff;
     color: #353030;
     border: 1px solid #b7b5b5;
-    box-shadow: 4px 4px 4px rgba(0,0,0,0.5);
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
 }
 
 .chatHome .introDiv{
