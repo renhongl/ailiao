@@ -17,6 +17,7 @@ define(['Controller'], function(Controller) {
                     intro: '',
                     face: '',
                     groups: [],
+                    allUsers: [],
                 },
                 methods:{
                     setIntro: that._setIntro.bind(that),
@@ -80,6 +81,19 @@ define(['Controller'], function(Controller) {
             $('.items i').on('click', function(){
                 $('.items i').removeClass('selected');
                 $(this).addClass('selected');
+            });
+
+            $('.search').on('focus', () => {
+                $('.searchContainer').show();
+                let url = AP.Constant.QUERYALL;
+                let callback = (result) => {
+                    this.vue.allUsers = result.result;
+                };
+                AP.Ajax.get(url, callback);
+            });
+
+            $('.search').on('blur', () => {
+                $('.searchContainer').hide();
             });
 
         }

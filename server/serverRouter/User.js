@@ -12,6 +12,21 @@ class User {
         this._regiser();
         this._getInfor();
         this._setInfor();
+        this._queryAll();
+    }
+
+    _queryAll(){
+        this.app.get('/queryAll', (req, res) => {
+            let callback = (db) => {
+                let collection = db.collection(this.userCollection);
+                collection.find({}, {name: 1, face: 1, status: 1, intro: 1}).toArray(function(err, result){
+                    assert.equal(null, err);
+                    db.close();
+                    res.send({status: 'success', result: result});
+                });
+            };
+            new MongoDB(this.currentDB, callback);
+        });
     }
 
     _setInfor(){

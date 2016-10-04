@@ -25,8 +25,18 @@
         <i class="fa fa-commenting button" aria-hidden="true"></i>
     </div>
     <div class="searchDiv">
-        <input type="text" class="search button" placeholder="查找联系人">
+        <input type="text" class="search button" placeholder="查找联系人" v-model="filterName">
         <i class="fa fa-search" aria-hidden="true"></i>
+        <div style="display:none" class="searchContainer">
+            <template v-for="user in allUsers | filterBy filterName in 'name'">
+                <div>
+                    <img v-bind:src="user.face" width="20" height="20">
+                    <img v-bind:src="user.status" width="20" height="20">
+                    <span>{{ user.name }}</span>
+                    <span>{{ user.intro }}</span>
+                </div>
+            </template>
+        </div>
     </div>
     <div class="groups">
         <template v-for="group in groups">

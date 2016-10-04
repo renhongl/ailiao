@@ -24,6 +24,7 @@ define([], function() {
     Constant.REGISTER = Constant.BASE_SERVER + 'register';
     Constant.GETINFOR = Constant.BASE_SERVER + 'getInfor';
     Constant.SETINFOR = Constant.BASE_SERVER + 'setInfor';
+    Constant.QUERYALL = Constant.BASE_SERVER + 'queryAll';
     
     return Constant;
 });

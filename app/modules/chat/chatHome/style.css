@@ -278,3 +278,15 @@
 .changeBg{
     background: #b7b5b5 !important;
 }
+
+.searchContainer{
+    border: 1px solid #353030;
+    width: 98%;
+    height: 290px;
+    position: absolute;
+    z-index: 10020;
+    left: 3px;
+    border-radius: 3px;
+    background: #fff;
+    top: 28px;
+}
