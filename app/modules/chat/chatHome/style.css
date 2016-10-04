@@ -220,15 +220,15 @@
 }
 
 .groups .group{
-    border: 1px solid #eaeaea;
+    border: 1px solid #928f8f;
     border-radius: 3px;
     padding-left: 19px;
-    height: 25px;
+    height: 35px;
     margin-top: 1px;
     position: relative;
     font-size: 0.8em;
-    line-height: 25px;
-    background: #eaeaea;
+    line-height: 35px;
+    background: #928f8f;
 }
 
 .group .groupFoot{
@@ -239,17 +239,17 @@
     border-left: 7px solid #353030;
     border-top: 7px solid transparent;
     border-bottom: 7px solid transparent;
-    top: 4px;
+    top: 9px;
     left: 5px;
 }
 
 .groups .user{
-    height: 30px;
+    height: 50px;
     margin-top: 1px;
     border-radius: 3px;
     padding-left: 20px;
-    line-height: 30px;
-    font-size: 1em;
+    position: relative;
+    background: #eaeaea;
 }
 
 .groups .user:hover{
@@ -257,18 +257,42 @@
     color: #fff;
 }
 
-.user img{
-    border-radius: 10px;
-    width: 20px;
-    height: 20px;
+.user .userFace{
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    margin-top: 5px;
+    margin-right: 20px;
+}
+
+.user .userStatus{
+    border-radius: 20px;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 31px;
+    left: 48px;
 }
 
 .user i{
     display: inline-block;
-    float: right;
-    margin-right: 20px;
-    margin-top: 6px;
-    position: relative;
+    position: absolute;
+    top: 17px;
+    right: 40px;
+}
+
+.user .userName{
+    display: inline-block;
+    position: absolute;
+    font-weight: bold;
+    top: 2px;
+}
+
+.user .userIntro{
+    display: inline-block;
+    position: absolute;
+    bottom: 4px;
+    font-size: 0.5em;
 }
 
 .rotateFoot{
@@ -276,7 +300,7 @@
 }
 
 .changeBg{
-    background: #b7b5b5 !important;
+    background: #928f8f !important;
 }
 
 .searchContainer{
@@ -289,4 +313,50 @@
     border-radius: 3px;
     background: #fff;
     top: 28px;
+}
+
+.oneUser{
+    height: 50px;
+    width: 98%;
+    margin: 1px auto;
+    border-radius: 3px;
+    position: relative;
+    background: #eaeaea;
+}
+
+.oneUser:hover{
+    background: #353030;
+    color: #fff;
+}
+
+.oneUser .oneUserFace{
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    margin: 4px;
+    margin-right: 11px;
+}
+
+.oneUser .oneUserStatus{
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 10px;
+    top: 30px;
+    left: 30px;
+}
+
+.oneUser .oneUserName{
+    display: inline-block;
+    position: absolute;
+    font-weight: bold;
+    top: 2px;
+}
+
+.oneUser .oneUserIntro{
+    display: inline-block;
+    position: absolute;
+    bottom: 1px;
+    font-size: 0.5em;
+    bottom: 2px;
 }

@@ -18,6 +18,7 @@ define(['Controller'], function(Controller) {
                     face: '',
                     groups: [],
                     allUsers: [],
+                    filterName: '',
                 },
                 methods:{
                     setIntro: that._setIntro.bind(that),

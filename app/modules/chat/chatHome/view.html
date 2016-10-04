@@ -29,11 +29,11 @@
         <i class="fa fa-search" aria-hidden="true"></i>
         <div style="display:none" class="searchContainer">
             <template v-for="user in allUsers | filterBy filterName in 'name'">
-                <div>
-                    <img v-bind:src="user.face" width="20" height="20">
-                    <img v-bind:src="user.status" width="20" height="20">
-                    <span>{{ user.name }}</span>
-                    <span>{{ user.intro }}</span>
+                <div class="oneUser">
+                    <img v-bind:src="user.face" width="20" height="20" class="oneUserFace">
+                    <img v-bind:src="user.status" width="20" height="20" class="oneUserStatus">
+                    <span class="oneUserName">{{ user.name }}</span>
+                    <span class="oneUserIntro">{{ user.intro }}</span>
                 </div>
             </template>
         </div>
@@ -43,8 +43,10 @@
             <div class="group button"><span class="groupFoot"></span>{{ group.name }}</div>
             <template v-for="user in group.users" track-by="$index">
                 <div style="display:none;" v-bind:class="group.name" class="user">
-                    <img v-bind:src="user.face"/>
-                    {{ user.name }}
+                    <img v-bind:src="user.face" class="userFace"/>
+                    <img src="/images/online.png" class="userStatus">
+                    <span class="userName">{{ user.name }}</span>
+                    <span class="userIntro">状态</span>
                     <i class="fa fa-comments button" aria-hidden="true" tipy="发送消息"></i>
                     </div>
             </template>
