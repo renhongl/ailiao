@@ -21,18 +21,23 @@
         </div>
     </div>
     <div class="items">
-        <i class="fa fa-user contact" aria-hidden="true"></i>
-        <i class="fa fa-commenting" aria-hidden="true"></i>
+        <i class="fa fa-user contact selected button" aria-hidden="true"></i>
+        <i class="fa fa-commenting button" aria-hidden="true"></i>
     </div>
     <div class="searchDiv">
         <input type="text" class="search button" placeholder="查找联系人">
         <i class="fa fa-search" aria-hidden="true"></i>
     </div>
-    <div class="group">
-        <ul>
-            <li v-for="group in groups">
-                {{ group }}
-            </li>
-        </ul>
+    <div class="groups">
+        <template v-for="group in groups">
+            <div class="group button"><span class="groupFoot"></span>{{ group.name }}</div>
+            <template v-for="user in group.users" track-by="$index">
+                <div style="display:none;" v-bind:class="group.name" class="user">
+                    <img v-bind:src="user.face"/>
+                    {{ user.name }}
+                    <i class="fa fa-comments button" aria-hidden="true" tipy="发送消息"></i>
+                    </div>
+            </template>
+        </template>
     </div>
 </div>

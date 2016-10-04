@@ -27,7 +27,7 @@
 }
 
 .login .name{
-    cursor: default;
+    cursor: url(/images/m1.cur),default !important;
     font-size: 27px;
     font-weight: bold;
     margin-bottom: 5px;
@@ -36,7 +36,7 @@
 }
 
 .login .name div{
-    cursor: default;
+    cursor: url(/images/m1.cur),default !important;
     text-align: left;
     font-size: 20px;
     margin-top: 29px;

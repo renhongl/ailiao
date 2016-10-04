@@ -13,7 +13,6 @@
 }
 
 .register .name{
-    cursor: default;
     font-size: 27px;
     font-weight: bold;
     margin-bottom: 5px;
@@ -22,7 +21,6 @@
 }
 
 .register .name div{
-    cursor: default;
     text-align: left;
     font-size: 20px;
     margin-top: 29px;

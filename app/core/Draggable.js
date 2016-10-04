@@ -46,7 +46,7 @@ define([], function() {
         }
 
         _handleMousemove(e) {
-            $(e.target).css('cursor', 'default');
+            $(e.target).css('cursor', 'url(/images/m1.cur),default !important');
             if (this.mouseDown) {
                 let x = e.clientX;
                 let y = e.clientY;
@@ -60,7 +60,7 @@ define([], function() {
         }
 
         _handleMouseup(e) {
-            $(e.target).css('cursor', 'default');
+            $(e.target).css('cursor', 'url(/images/m1.cur),default !important');
             this.mouseDown = false;
         }
 

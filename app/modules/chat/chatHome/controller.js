@@ -16,7 +16,7 @@ define(['Controller'], function(Controller) {
                     email: '',
                     intro: '',
                     face: '',
-                    groups: ['G1', 'G2', 'G3'],
+                    groups: [],
                 },
                 methods:{
                     setIntro: that._setIntro.bind(that),
@@ -33,11 +33,12 @@ define(['Controller'], function(Controller) {
         _handleEvents() {
             $.subscribe('userInfo-loaded', (o, args) => {
                 this.vue.name = args.infor.name;
-                this.vue.status = '/images/online.png';
-                this.vue.email = args.infor.email || '';
-                this.vue.intro = args.infor.intro || '说点什么？';
-                this.vue.face = args.infor.face || AP.Constant.FACEURL;
-                this._setStatus();
+                this.vue.status = AP.Constant.DEFAULT_STATUS;
+                this.vue.email = args.infor.email || AP.Constant.DEFAULT_EMAIL;
+                this.vue.intro = args.infor.intro || AP.Constant.DEFAULT_INTRO;
+                this.vue.face = args.infor.face || AP.Constant.DEFAULT_FACE;
+                this.vue.groups = args.infor.groups || AP.Constant.DEFAULT_GROUPS;
+                this._initUser();
             });
 
             $('.chatHome .intro').on('focus', function(){
@@ -51,9 +52,9 @@ define(['Controller'], function(Controller) {
 
             $('.chatHome .intro').on('blur', function(){
                 $('.chatHome .introFoot').css({
-                    background: '#b7b5b5',
-                    borderRight: '1px solid #b7b5b5',
-                    borderBottom: '1px solid #b7b5b5',
+                    background: '#eaeaea',
+                    borderRight: '1px solid #eaeaea',
+                    borderBottom: '1px solid #eaeaea',
                     boxShadow: 'none',
                 });
             });
@@ -67,6 +68,41 @@ define(['Controller'], function(Controller) {
                 this.vue.status = $(e.target).find('img').attr('src') || $(e.target).parent().find('img').attr('src');
                 this._setStatus();
             });
+
+            setTimeout(function(){
+                $('.groups .group').on('click', function(){
+                    $("." + $(this).text()).toggle();
+                    $(this).toggleClass('changeBg');
+                    $(this).find('.groupFoot').toggleClass('rotateFoot');
+                });
+            }, 2000);
+
+            $('.items i').on('click', function(){
+                $('.items i').removeClass('selected');
+                $(this).addClass('selected');
+            });
+
+        }
+
+        _initUser(){
+            let url = AP.Constant.SETINFOR;
+            let postData = {
+                name: this.vue.name,
+                status: this.vue.status,
+                email: this.vue.email,
+                intro: this.vue.intro,
+                face: this.vue.face,
+                groups: this.vue.groups,
+               
+            };
+            let callback = function(result){
+                if(result.status === 'error'){
+                    new AP.Message('error', result.text);
+                }else{
+                    new AP.Message('infor', '账号初始化成功。');
+                }
+            };
+            AP.Ajax.post(url, postData, callback);
         }
 
         _setEmail(){
