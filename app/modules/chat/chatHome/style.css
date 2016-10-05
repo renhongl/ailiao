@@ -29,8 +29,8 @@
 
 .chatHome .face{
     display: block;
-    width: 20%;
-    height: 100%;
+    width: 70px;
+    height: 70px;
     float: left;
     border-radius: 50%;
 }
@@ -66,6 +66,7 @@
     width: 98%;
     margin: 1px auto;
     border-radius: 3px;
+    background: #eaeaea;
 }
 
 .status li:hover{
@@ -226,9 +227,10 @@
     height: 35px;
     margin-top: 1px;
     position: relative;
-    font-size: 0.8em;
+    font-size: 1em;
     line-height: 35px;
     background: #928f8f;
+    font-weight: bold;
 }
 
 .group .groupFoot{

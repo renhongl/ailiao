@@ -21,11 +21,10 @@ define([], function() {
                 width: 300,
                 display: 'none',
                 zIndex: 110,
-                margin: 2,
+                margin: '2px 5px',
                 clear: 'both',
-                position: 'absolute',
-                right: 2,
-                top: 4,
+                float: 'right',
+                position: 'relative',
                 boxShadow: '0px 0px 10px rgba(255, 255, 255, 1)',
                 opacity: 0.9,
             }).addClass('message');
@@ -93,11 +92,11 @@ define([], function() {
         }
 
         _getInstance({ color, icon, content }){
-            let allHeight = this._getHeight();
+            //let allHeight = this._getHeight();
             this.$Message.appendTo($('body'));
             this.$Message.css({
                 background: color,
-                top: allHeight,
+                //top: allHeight,
             });
             
             this.$content.text(content);

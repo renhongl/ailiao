@@ -23,7 +23,7 @@ class User {
             };
             let callback = (db) => {
                 let collection = db.collection(this.userCollection);
-                collection.find(queryData, {name: 1, status: 1, face: 1, intro: 1}).toArray(function(err, result){
+                collection.find(queryData, {_id: 0, name: 1, status: 1, face: 1, intro: 1}).toArray(function(err, result){
                     assert.equal(null, err);
                     db.close();
                     res.send({status: 'success', result: result[0]});

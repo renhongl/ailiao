@@ -39,14 +39,14 @@
         </div>
     </div>
     <div class="groups">
-        <template v-for="group in groups">
+        <template v-for="(index, group) in groups">
             <div class="group button"><span class="groupFoot"></span>{{ group.name }}</div>
-            <template v-for="user in group.users" track-by="$index">
+            <template v-for="user in userInfor[{{index}}]" >
                 <div style="display:none;" v-bind:class="group.name" class="user">
                     <img v-bind:src="user.face" class="userFace"/>
-                    <img src="/images/online.png" class="userStatus">
+                    <img v-bind:src="user.status" class="userStatus">
                     <span class="userName">{{ user.name }}</span>
-                    <span class="userIntro">状态</span>
+                    <span class="userIntro">{{ user.intro }}</span>
                     <i class="fa fa-comments button" aria-hidden="true" tipy="发送消息"></i>
                     </div>
             </template>

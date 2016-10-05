@@ -1,4 +1,3 @@
-
 define(['Controller'], function(Controller) {
     'use strict';
     class controller extends Controller {
@@ -6,7 +5,7 @@ define(['Controller'], function(Controller) {
             super(obj, $container, config);
         }
 
-        _runVue(){
+        _runVue() {
             var that = this;
             let config = {
                 el: '.chatHome',
@@ -17,10 +16,11 @@ define(['Controller'], function(Controller) {
                     intro: '',
                     face: '',
                     groups: [],
+                    userInfor: [],
                     allUsers: [],
                     filterName: '',
                 },
-                methods:{
+                methods: {
                     setIntro: that._setIntro.bind(that),
                     setEmail: that._setEmail.bind(that),
                 }
@@ -29,7 +29,7 @@ define(['Controller'], function(Controller) {
         }
 
         _renderTree() {
-            
+
         }
 
         _handleEvents() {
@@ -39,20 +39,16 @@ define(['Controller'], function(Controller) {
                 this.vue.email = args.infor.email || AP.Constant.DEFAULT_EMAIL;
                 this.vue.intro = args.infor.intro || AP.Constant.DEFAULT_INTRO;
                 this.vue.face = args.infor.face || AP.Constant.DEFAULT_FACE;
-                if(args.infor.groups.length !== 0){
-                    for(let group of args.infor.groups){
-                        this.vue.groups.push(group);
-                    }
-                }else{
-                    for(let group of AP.Constant.DEFAULT_GROUPS){
-                        this.vue.groups.push(group);
-                    }
-                }
+                this.vue.groups = args.infor.groups || AP.Constant.DEFAULT_GROUPS;
+
                 this._initUser();
-                this._updateGroup();
+                this._initGroup();
+                // setInterval(() => {
+                //     this._refreshInfor();
+                // }, 10000);
             });
 
-            $('.chatHome .intro').on('focus', function(){
+            $('.chatHome .intro').on('focus', function() {
                 $('.chatHome .introFoot').css({
                     background: '#fff',
                     borderRight: '1px solid #353030',
@@ -61,7 +57,7 @@ define(['Controller'], function(Controller) {
                 });
             });
 
-            $('.chatHome .intro').on('blur', function(){
+            $('.chatHome .intro').on('blur', function() {
                 $('.chatHome .introFoot').css({
                     background: '#eaeaea',
                     borderRight: '1px solid #eaeaea',
@@ -70,7 +66,7 @@ define(['Controller'], function(Controller) {
                 });
             });
 
-            $('.statusValue').on('click', function(){
+            $('.statusValue').on('click', function() {
                 $('.statusSelect').toggle();
             });
 
@@ -80,15 +76,15 @@ define(['Controller'], function(Controller) {
                 this._setStatus();
             });
 
-            setTimeout(function(){
-                $('.groups .group').on('click', function(){
+            setTimeout(function() {
+                $('.groups .group').on('click', function() {
                     $("." + $(this).text()).toggle();
                     $(this).toggleClass('changeBg');
                     $(this).find('.groupFoot').toggleClass('rotateFoot');
                 });
             }, 2000);
 
-            $('.items i').on('click', function(){
+            $('.items i').on('click', function() {
                 $('.items i').removeClass('selected');
                 $(this).addClass('selected');
             });
@@ -108,21 +104,41 @@ define(['Controller'], function(Controller) {
 
         }
 
-        _updateGroup(){
-            for(let group of this.vue.groups){
-                for(let user of group.users){
+        _refreshInfor() {
+            for (let key of Object.keys(this.vue.userInfor)) {
+                for (let user of this.vue.userInfor[key]) {
                     let url = AP.Constant.QUERYBYNAME + '?name=' + user.name;
                     let callback = (result) => {
-                        for(let key of Object.keys(result.result)){
-                            user[key] = result.result[key];
-                        }
+                        user.status = result.result.status;
+                        user.intro = result.result.intro;
+                        user.face = result.result.face;
+                        user.name = result.result.name;
                     };
                     AP.Ajax.get(url, callback);
                 }
             }
         }
 
-        _initUser(){
+        _initGroup() {
+            for (let [index, group] of this.vue.groups.entries()) {
+                for (let user of group.users) {
+                    let url = AP.Constant.QUERYBYNAME + '?name=' + user;
+                    let callback = (result) => {
+                        let userInfor = {};
+                        for (let key of Object.keys(result.result)) {
+                            userInfor[key] = result.result[key];
+                        }
+                        if(this.vue.userInfor[index] === undefined){
+                            this.vue.userInfor[index] = [];
+                        }
+                        this.vue.userInfor[index].push(userInfor);
+                    };
+                    AP.Ajax.get(url, callback);
+                }
+            }
+        }
+
+        _initUser() {
             let url = AP.Constant.SETINFOR;
             let postData = {
                 name: this.vue.name,
@@ -131,60 +147,60 @@ define(['Controller'], function(Controller) {
                 intro: this.vue.intro,
                 face: this.vue.face,
                 groups: this.vue.groups,
-               
+
             };
-            let callback = function(result){
-                if(result.status === 'error'){
+            let callback = function(result) {
+                if (result.status === 'error') {
                     new AP.Message('error', result.text);
-                }else{
+                } else {
                     new AP.Message('infor', '账号初始化成功。');
                 }
             };
             AP.Ajax.post(url, postData, callback);
         }
 
-        _setEmail(){
+        _setEmail() {
             let url = AP.Constant.SETINFOR;
             let postData = {
                 name: this.vue.name,
                 email: this.vue.email,
             };
-            let callback = function(result){
-                if(result.status === 'error'){
+            let callback = function(result) {
+                if (result.status === 'error') {
                     new AP.Message('error', result.text);
-                }else{
+                } else {
                     new AP.Message('infor', '修改email地址成功。');
                 }
             };
             AP.Ajax.post(url, postData, callback);
         }
 
-        _setStatus(){
+        _setStatus() {
             let url = AP.Constant.SETINFOR;
             let postData = {
                 name: this.vue.name,
                 status: this.vue.status,
             };
-            let callback = function(result){
-                if(result.status === 'error'){
+            let callback = function(result) {
+                if (result.status === 'error') {
                     new AP.Message('error', result.text);
-                }else{
+                } else {
                     new AP.Message('infor', '修改状态成功。');
                 }
             };
             AP.Ajax.post(url, postData, callback);
         }
 
-        _setIntro(){
+        _setIntro() {
             let url = AP.Constant.SETINFOR;
             let postData = {
                 name: this.vue.name,
                 intro: this.vue.intro,
             };
-            let callback = function(result){
-                if(result.status === 'error'){
+            let callback = function(result) {
+                if (result.status === 'error') {
                     new AP.Message('error', result.text);
-                }else{
+                } else {
                     new AP.Message('infor', '修改签名成功。');
                 }
             };

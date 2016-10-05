@@ -23,6 +23,14 @@ define(['Controller'], function (Controller) {
             this.vue = new AP.Vue(config);
         }
 
+        _handleEvents(){
+            $(document).on('keyup', (e) => {
+                if(e.keyCode === 13){
+                    this._login();
+                }
+            });
+        }
+
         _regiser(){
             $.publish('register-show');
         }
