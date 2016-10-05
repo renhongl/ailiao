@@ -14,56 +14,94 @@ class User {
         this._setInfor();
         this._queryAll();
         this._queryByName();
+        this._addToGroup();
     }
 
-    _queryByName(){
-        this.app.get('/queryByName', (req, res) => {
+    _addToGroup() {
+        this.app.post('/addToGroup', (req, res) => {
+            let addUser = req.body.addUser;
+            let addGroup = req.body.addGroup;
             let queryData = {
-                name : req.query.name,
+                name: req.body.name,
             };
             let callback = (db) => {
                 let collection = db.collection(this.userCollection);
-                collection.find(queryData, {_id: 0, name: 1, status: 1, face: 1, intro: 1}).toArray(function(err, result){
+
+                collection.find({ name: addUser }, { name: 1, status: 1, face: 1, intro: 1 }).toArray(function (err, result) {
                     assert.equal(null, err);
-                    db.close();
-                    res.send({status: 'success', result: result[0]});
+                    let addUser = result[0];
+
+                    collection.find(queryData).toArray(function (err, result) {
+                        assert.equal(null, err);
+                        let tempGroups = [];
+                        for (let group of result[0].groups) {
+                            if (group.name === addGroup) {
+                                group.users.push(addUser);
+                                tempGroups.push(group);
+                            } else {
+                                tempGroups.push(group);
+                            }
+                        }
+                        collection.updateOne(queryData, { $set: { groups: tempGroups } }, function (err, result) {
+                            assert.equal(null, err);
+                            db.close();
+                            res.send({ status: 'success' });
+                        });
+                    });
                 });
             };
             new MongoDB(this.currentDB, callback);
         });
     }
 
-    _queryAll(){
+    _queryByName() {
+        this.app.get('/queryByName', (req, res) => {
+            let queryData = {
+                name: req.query.name,
+            };
+            let callback = (db) => {
+                let collection = db.collection(this.userCollection);
+                collection.find(queryData, { _id: 0, name: 1, status: 1, face: 1, intro: 1 }).toArray(function (err, result) {
+                    assert.equal(null, err);
+                    db.close();
+                    res.send({ status: 'success', result: result[0] });
+                });
+            };
+            new MongoDB(this.currentDB, callback);
+        });
+    }
+
+    _queryAll() {
         this.app.get('/queryAll', (req, res) => {
             let callback = (db) => {
                 let collection = db.collection(this.userCollection);
-                collection.find({}, {name: 1, face: 1, status: 1, intro: 1}).toArray(function(err, result){
+                collection.find({}, { name: 1, face: 1, status: 1, intro: 1 }).toArray(function (err, result) {
                     assert.equal(null, err);
                     db.close();
-                    res.send({status: 'success', result: result});
+                    res.send({ status: 'success', result: result });
                 });
             };
             new MongoDB(this.currentDB, callback);
         });
     }
 
-    _setInfor(){
+    _setInfor() {
         this.app.post('/setInfor', (req, res) => {
             let setData = {};
             let name = req.body.name;
-            for(let key of Object.keys(req.body)){
+            for (let key of Object.keys(req.body)) {
                 setData[key] = req.body[key];
             }
             delete setData.name;
             let callback = (db) => {
                 let collection = db.collection(this.userCollection);
-                collection.updateOne({name: name}, {$set: setData}, function(err, result){
+                collection.updateOne({ name: name }, { $set: setData }, function (err, result) {
                     assert.equal(null, err);
                     db.close();
-                    if(result.result.ok === 1){
-                        res.send({status: 'success', result: 'success'});
-                    }else{
-                        res.send({status: 'error', text: '服务器端出错。'});
+                    if (result.result.ok === 1) {
+                        res.send({ status: 'success', result: 'success' });
+                    } else {
+                        res.send({ status: 'error', text: '服务器端出错。' });
                     }
                 });
             };
@@ -71,20 +109,20 @@ class User {
         });
     }
 
-    _getInfor(){
+    _getInfor() {
         this.app.get('/getInfor', (req, res) => {
             let queryData = {
                 name: req.query.name,
             };
             let callback = (db) => {
                 let collection = db.collection(this.userCollection);
-                collection.find(queryData).toArray(function(err, result){
+                collection.find(queryData).toArray(function (err, result) {
                     assert.equal(null, err);
                     db.close();
-                    if(result.length !== 0){
-                        res.send({status:'success', result: {infor: result[0]}});
-                    }else{
-                        res.send({status:'error', text: '没有此账号'});
+                    if (result.length !== 0) {
+                        res.send({ status: 'success', result: { infor: result[0] } });
+                    } else {
+                        res.send({ status: 'error', text: '没有此账号' });
                     }
                 });
             };
@@ -92,7 +130,7 @@ class User {
         });
     }
 
-    _login(){
+    _login() {
         this.app.post('/login', (req, res) => {
             let queryByName = {
                 name: req.body.userName,
@@ -104,13 +142,13 @@ class User {
             };
             let callback = (db) => {
                 let collection = db.collection(this.userCollection);
-                collection.find({$or: [queryByName, queryByEmail]}).toArray(function(err, result){
+                collection.find({ $or: [queryByName, queryByEmail] }).toArray(function (err, result) {
                     assert.equal(null, err);
                     db.close();
-                    if(result.length !== 0){
-                        res.send({status:'success', result: result[0]});
-                    }else{
-                        res.send({status:'error', text: '账号或密码错误。'});
+                    if (result.length !== 0) {
+                        res.send({ status: 'success', result: result[0] });
+                    } else {
+                        res.send({ status: 'error', text: '账号或密码错误。' });
                     }
                 });
             };
@@ -118,7 +156,7 @@ class User {
         });
     }
 
-    _regiser(){
+    _regiser() {
         this.app.post('/register', (req, res) => {
             let queryData = {
                 name: req.body.userName,

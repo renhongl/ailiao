@@ -15,7 +15,7 @@ define([], function() {
     Constant.DEFAULT_EMAIL = '邮箱地址';
     Constant.DEFAULT_INTRO = '说点什么？';
     Constant.DEFAULT_STATUS = '/images/online.png',
-    Constant.DEFAULT_GROUPS = [{name: '默认分组', users: ['lrh456', 'lrh']},{name: '默认分组2', users: ['lrh123', 'lrh000']}],
+    Constant.DEFAULT_GROUPS = [{name: '管理员', users: []},{name: '默认分组', users: []}],
 
     //URL
     Constant.BASE_SERVER = 'http://127.0.0.1:8080/'; //lrh.ngrok.cc
@@ -26,6 +26,7 @@ define([], function() {
     Constant.SETINFOR = Constant.BASE_SERVER + 'setInfor';
     Constant.QUERYALL = Constant.BASE_SERVER + 'queryAll';
     Constant.QUERYBYNAME = Constant.BASE_SERVER + 'queryByName';
+    Constant.ADDTOGROUP = Constant.BASE_SERVER + 'addToGroup';
     
     return Constant;
 });

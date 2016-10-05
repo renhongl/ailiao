@@ -42,7 +42,7 @@ define([], function() {
                 url: url,
                 headers: {},
                 method: 'GET',
-                //contentType: 'APPLICATION/JSON',
+                contentType: 'APPLICATION/JSON',
                 dataType: 'JSON',
                 crossDomain: true,
                 beforeSend(){
@@ -71,7 +71,7 @@ define([], function() {
                 url: url,
                 headers: {},
                 method: 'POST',
-                //contentType: 'APPLICATION/JSON',
+                contentType: 'APPLICATION/JSON',
                 data: postData,
                 dataType: 'JSON',
                 crossDomain: true,

@@ -1,4 +1,4 @@
-define(['Controller'], function(Controller) {
+define(['Controller'], function (Controller) {
     'use strict';
     class controller extends Controller {
         constructor(obj, $container, config) {
@@ -16,7 +16,6 @@ define(['Controller'], function(Controller) {
                     intro: '',
                     face: '',
                     groups: [],
-                    userInfor: [],
                     allUsers: [],
                     filterName: '',
                 },
@@ -43,12 +42,12 @@ define(['Controller'], function(Controller) {
 
                 this._initUser();
                 this._initGroup();
-                // setInterval(() => {
-                //     this._refreshInfor();
-                // }, 10000);
+                setInterval(() => {
+                    this._initGroup();
+                }, 10000);
             });
 
-            $('.chatHome .intro').on('focus', function() {
+            $('.chatHome .intro').on('focus', function () {
                 $('.chatHome .introFoot').css({
                     background: '#fff',
                     borderRight: '1px solid #353030',
@@ -57,7 +56,7 @@ define(['Controller'], function(Controller) {
                 });
             });
 
-            $('.chatHome .intro').on('blur', function() {
+            $('.chatHome .intro').on('blur', function () {
                 $('.chatHome .introFoot').css({
                     background: '#eaeaea',
                     borderRight: '1px solid #eaeaea',
@@ -66,7 +65,7 @@ define(['Controller'], function(Controller) {
                 });
             });
 
-            $('.statusValue').on('click', function() {
+            $('.statusValue').on('click', function () {
                 $('.statusSelect').toggle();
             });
 
@@ -76,31 +75,61 @@ define(['Controller'], function(Controller) {
                 this._setStatus();
             });
 
-            setTimeout(function() {
-                $('.groups .group').on('click', function() {
+            setTimeout(function () {
+                $('.groups .group').on('click', function () {
                     $("." + $(this).text()).toggle();
                     $(this).toggleClass('changeBg');
                     $(this).find('.groupFoot').toggleClass('rotateFoot');
                 });
             }, 2000);
 
-            $('.items i').on('click', function() {
+            $('.items i').on('click', function () {
                 $('.items i').removeClass('selected');
                 $(this).addClass('selected');
             });
 
             $('.search').on('focus', () => {
                 $('.searchContainer').show();
+                $('.fa-search').addClass('fa-times').removeClass('fa-search');
+                $('.fa-times').on('click', function () {
+                    $('.searchContainer').hide();
+                    $('.fa-times').addClass('fa-search').removeClass('fa-times');
+                });
                 let url = AP.Constant.QUERYALL;
                 let callback = (result) => {
                     this.vue.allUsers = result.result;
+                    setTimeout( () => {
+                        $('.oneUser .fa-plus').on('click', function () {
+                            $(this).parent().find('.addToGroup').show();
+                        });
+
+                        $('.addToGroup span').on('click', () =>{
+                            let $parent = $(this).parent();
+                            let addUser = $(this).parent().parent().find('.oneUserName').text();
+                            let addGroup = $(this).text();
+                            let name = localStorage.name;
+                            let url = AP.Constant.ADDTOGROUP;
+                            let postData = {
+                                name: name,
+                                addUser: addUser,
+                                addGroup: addGroup,
+                            }
+                            let callback = (result) => {
+                                $parent.hide();
+                                $('.searchContainer').hide();
+                            };
+                            AP.Ajax.post(url, JSON.stringify(postData), callback);
+                        });
+                    }, 2000)
                 };
                 AP.Ajax.get(url, callback);
             });
 
             $('.search').on('blur', () => {
-                $('.searchContainer').hide();
+                //$('.searchContainer').hide();
             });
+
+
 
         }
 
@@ -120,18 +149,13 @@ define(['Controller'], function(Controller) {
         }
 
         _initGroup() {
-            for (let [index, group] of this.vue.groups.entries()) {
+            for (let group of this.vue.groups) {
                 for (let user of group.users) {
-                    let url = AP.Constant.QUERYBYNAME + '?name=' + user;
+                    let url = AP.Constant.QUERYBYNAME + '?name=' + user.name;
                     let callback = (result) => {
-                        let userInfor = {};
                         for (let key of Object.keys(result.result)) {
-                            userInfor[key] = result.result[key];
+                            user[key] = result.result[key];
                         }
-                        if(this.vue.userInfor[index] === undefined){
-                            this.vue.userInfor[index] = [];
-                        }
-                        this.vue.userInfor[index].push(userInfor);
                     };
                     AP.Ajax.get(url, callback);
                 }
@@ -149,14 +173,14 @@ define(['Controller'], function(Controller) {
                 groups: this.vue.groups,
 
             };
-            let callback = function(result) {
+            let callback = function (result) {
                 if (result.status === 'error') {
                     new AP.Message('error', result.text);
                 } else {
                     new AP.Message('infor', '账号初始化成功。');
                 }
             };
-            AP.Ajax.post(url, postData, callback);
+            AP.Ajax.post(url, JSON.stringify(postData), callback);
         }
 
         _setEmail() {
@@ -165,14 +189,14 @@ define(['Controller'], function(Controller) {
                 name: this.vue.name,
                 email: this.vue.email,
             };
-            let callback = function(result) {
+            let callback = function (result) {
                 if (result.status === 'error') {
                     new AP.Message('error', result.text);
                 } else {
                     new AP.Message('infor', '修改email地址成功。');
                 }
             };
-            AP.Ajax.post(url, postData, callback);
+            AP.Ajax.post(url, JSON.stringify(postData), callback);
         }
 
         _setStatus() {
@@ -181,14 +205,14 @@ define(['Controller'], function(Controller) {
                 name: this.vue.name,
                 status: this.vue.status,
             };
-            let callback = function(result) {
+            let callback = function (result) {
                 if (result.status === 'error') {
                     new AP.Message('error', result.text);
                 } else {
                     new AP.Message('infor', '修改状态成功。');
                 }
             };
-            AP.Ajax.post(url, postData, callback);
+            AP.Ajax.post(url, JSON.stringify(postData), callback);
         }
 
         _setIntro() {
@@ -197,14 +221,14 @@ define(['Controller'], function(Controller) {
                 name: this.vue.name,
                 intro: this.vue.intro,
             };
-            let callback = function(result) {
+            let callback = function (result) {
                 if (result.status === 'error') {
                     new AP.Message('error', result.text);
                 } else {
                     new AP.Message('infor', '修改签名成功。');
                 }
             };
-            AP.Ajax.post(url, postData, callback);
+            AP.Ajax.post(url, JSON.stringify(postData), callback);
         }
     }
 
