@@ -38,8 +38,17 @@ define(['Controller'], function(Controller) {
                 this.vue.email = args.infor.email || AP.Constant.DEFAULT_EMAIL;
                 this.vue.intro = args.infor.intro || AP.Constant.DEFAULT_INTRO;
                 this.vue.face = args.infor.face || AP.Constant.DEFAULT_FACE;
-                this.vue.groups = args.infor.groups || AP.Constant.DEFAULT_GROUPS;
+                if(args.infor.groups.length !== 0){
+                    for(let group of args.infor.groups){
+                        this.vue.groups.push(group);
+                    }
+                }else{
+                    for(let group of AP.Constant.DEFAULT_GROUPS){
+                        this.vue.groups.push(group);
+                    }
+                }
                 this._initUser();
+                this._updateGroup();
             });
 
             $('.chatHome .intro').on('focus', function(){
@@ -96,6 +105,20 @@ define(['Controller'], function(Controller) {
                 $('.searchContainer').hide();
             });
 
+        }
+
+        _updateGroup(){
+            for(let group of this.vue.groups){
+                for(let user of group.users){
+                    let url = AP.Constant.QUERYBYNAME + '?name=' + user.name;
+                    let callback = (result) => {
+                        for(let key of Object.keys(result.result)){
+                            user[key] = result.result[key];
+                        }
+                    };
+                    AP.Ajax.get(url, callback);
+                }
+            }
         }
 
         _initUser(){

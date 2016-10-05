@@ -13,6 +13,24 @@ class User {
         this._getInfor();
         this._setInfor();
         this._queryAll();
+        this._queryByName();
+    }
+
+    _queryByName(){
+        this.app.get('/queryByName', (req, res) => {
+            let queryData = {
+                name : req.query.name,
+            };
+            let callback = (db) => {
+                let collection = db.collection(this.userCollection);
+                collection.find(queryData, {name: 1, status: 1, face: 1, intro: 1}).toArray(function(err, result){
+                    assert.equal(null, err);
+                    db.close();
+                    res.send({status: 'success', result: result[0]});
+                });
+            };
+            new MongoDB(this.currentDB, callback);
+        });
     }
 
     _queryAll(){
