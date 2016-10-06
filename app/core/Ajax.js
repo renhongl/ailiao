@@ -72,7 +72,7 @@ define([], function() {
                 headers: {},
                 method: 'POST',
                 contentType: 'APPLICATION/JSON',
-                data: postData,
+                data: JSON.stringify(postData),
                 dataType: 'JSON',
                 crossDomain: true,
                 beforeSend(){
@@ -101,8 +101,8 @@ define([], function() {
                 url: url,
                 headers: {},
                 method: 'PUT',
-                //contentType: 'APPLICATION/JSON',
-                data: postData,
+                contentType: 'APPLICATION/JSON',
+                data: JSON.stringify(postData),
                 dataType: 'JSON',
                 crossDomain: true,
                 beforeSend(){
@@ -131,8 +131,8 @@ define([], function() {
                 url: url,
                 headers: {},
                 method: 'DELETE',
-                //contentType: 'APPLICATION/JSON',
-                data: postData,
+                contentType: 'APPLICATION/JSON',
+                data: JSON.stringify(postData),
                 dataType: 'JSON',
                 crossDomain: true,
                 beforeSend(){

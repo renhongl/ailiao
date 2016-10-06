@@ -118,7 +118,7 @@ define(['Controller'], function (Controller) {
                                 $parent.hide();
                                 $('.searchContainer').hide();
                             };
-                            AP.Ajax.post(url, JSON.stringify(postData), callback);
+                            AP.Ajax.post(url, postData, callback);
                         });
                     }, 2000)
                 };
@@ -180,7 +180,7 @@ define(['Controller'], function (Controller) {
                     new AP.Message('infor', '账号初始化成功。');
                 }
             };
-            AP.Ajax.post(url, JSON.stringify(postData), callback);
+            AP.Ajax.post(url, postData, callback);
         }
 
         _setEmail() {
@@ -196,7 +196,7 @@ define(['Controller'], function (Controller) {
                     new AP.Message('infor', '修改email地址成功。');
                 }
             };
-            AP.Ajax.post(url, JSON.stringify(postData), callback);
+            AP.Ajax.post(url, postData, callback);
         }
 
         _setStatus() {
@@ -212,7 +212,7 @@ define(['Controller'], function (Controller) {
                     new AP.Message('infor', '修改状态成功。');
                 }
             };
-            AP.Ajax.post(url, JSON.stringify(postData), callback);
+            AP.Ajax.post(url, postData, callback);
         }
 
         _setIntro() {
@@ -228,7 +228,7 @@ define(['Controller'], function (Controller) {
                     new AP.Message('infor', '修改签名成功。');
                 }
             };
-            AP.Ajax.post(url, JSON.stringify(postData), callback);
+            AP.Ajax.post(url, postData, callback);
         }
     }
 

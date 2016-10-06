@@ -46,7 +46,7 @@ define(['Controller'], function (Controller) {
                     localStorage.name = result.result.name;
                     location = '/?page=dashboard';
                 };
-                AP.Ajax.post(url, JSON.stringify(postData), callback);
+                AP.Ajax.post(url, postData, callback);
             }
         }
 

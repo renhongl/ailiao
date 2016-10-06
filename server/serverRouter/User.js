@@ -26,11 +26,9 @@ class User {
             };
             let callback = (db) => {
                 let collection = db.collection(this.userCollection);
-
-                collection.find({ name: addUser }, { name: 1, status: 1, face: 1, intro: 1 }).toArray(function (err, result) {
+                collection.find({ name: addUser }, {_id: 0,name: 1, status: 1, face: 1, intro: 1 }).toArray(function (err, result) {
                     assert.equal(null, err);
                     let addUser = result[0];
-
                     collection.find(queryData).toArray(function (err, result) {
                         assert.equal(null, err);
                         let tempGroups = [];
@@ -45,7 +43,12 @@ class User {
                         collection.updateOne(queryData, { $set: { groups: tempGroups } }, function (err, result) {
                             assert.equal(null, err);
                             db.close();
-                            res.send({ status: 'success' });
+                            console.log(result);
+                            if(result.result.ok === 1){
+                                res.send({ status: 'success' });
+                            }else{
+                                res.send({ status: 'error', text: '服务器未知错误' });
+                            }
                         });
                     });
                 });

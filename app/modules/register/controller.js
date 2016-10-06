@@ -29,7 +29,7 @@ define(['Controller'], function (Controller) {
                     userName: this.vue.userName,
                     password: this.vue.password,
                 };
-                AP.Ajax.post(url, JSON.stringify(postData), function (result) {
+                AP.Ajax.post(url, postData, function (result) {
                     new AP.Message('success', '账号注册成功！');
                     setTimeout(function(){
                         $('#register').fadeOut();
