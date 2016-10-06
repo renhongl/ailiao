@@ -12,10 +12,13 @@ define(['Model'], function(Model) {
                 $.publish('userInfo-loaded', result.result);
             };
             AP.Ajax.get(url, callback);
+            
         }
 
         _refresh() {
-
+            $.subscribe('needRefresh', () => {
+                this._loadData();
+            });
         }
     }
 

@@ -9,8 +9,8 @@ define([], function () {
                 type: 'dialog',
                 showTitle: true,
                 settings: {
-                    width: AP.width * 0.25,
-                    height: AP.height * 0.8,
+                    width: 450,
+                    height: 700,
                     x: AP.width * 0 + 20,
                     y: AP.height * 0 + 20,
                 },

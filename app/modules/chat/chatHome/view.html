@@ -28,15 +28,15 @@
         <input type="text" class="search button" placeholder="查找联系人" v-model="filterName">
         <i class="fa fa-search searchButton" aria-hidden="true"></i>
         <div style="display:none" class="searchContainer">
-            <template v-for="user in allUsers | filterBy filterName in 'name'">
+            <template v-for="user in allUsers | filterBy filterName in 'name' | orderBy 'name'">
                 <div class="oneUser">
                     <img v-bind:src="user.face" width="20" height="20" class="oneUserFace">
                     <img v-bind:src="user.status" width="20" height="20" class="oneUserStatus">
                     <span class="oneUserName">{{ user.name }}</span>
                     <span class="oneUserIntro">{{ user.intro }}</span>
-                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    <i class="fa fa-plus" aria-hidden="true" v-on:click="showGroups"></i>
                     <div class="addToGroup">
-                        <span v-for="group in groups">{{ group.name }}</span>
+                        <span v-for="group in groups" v-on:click="addToGroup">{{ group.name }}</span>
                     </div>
                 </div>
             </template>
@@ -44,8 +44,8 @@
     </div>
     <div class="groups">
         <template v-for="(index, group) in groups">
-            <div class="group button"><span class="groupFoot"></span>{{ group.name }}</div>
-            <template v-for="user in group.users" >
+            <div class="group button" v-on:click="extendGroup"><span class="groupFoot"></span>{{ group.name }}</div>
+            <template v-for="user in group.users | orderBy 'name'" >
                 <div style="display:none;" v-bind:class="group.name" class="user">
                     <img v-bind:src="user.face" class="userFace"/>
                     <img v-bind:src="user.status" class="userStatus">

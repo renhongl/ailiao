@@ -6,7 +6,7 @@
     display: block;
     width: 98%;
     margin: 0 auto;
-    height: 4%;
+    height: 30px;
 }
 
 .chatHome .search{
@@ -21,7 +21,7 @@
 }
 
 .chatHome .head{
-    height: 13%;
+    height: 89px;
     margin-top: 5px;
     width: 98%;
     margin: 5px auto;
@@ -29,8 +29,8 @@
 
 .chatHome .face{
     display: block;
-    width: 20%;
-    height: 100%;
+    width: 90px;
+    height: 90px;
     float: left;
     border-radius: 50%;
 }
@@ -46,7 +46,7 @@
 }
 
 .chatHome .status{
-    width: 16%;
+    width: 70%;
     float: left;
     margin-left: 10px;
     font-size: 0.8em;
@@ -66,7 +66,7 @@
     width: 100%;
     margin: 1px auto;
     border-radius: 3px;
-    background: #eaeaea;
+    /* background: #eaeaea; */
 }
 
 .status li:hover{
@@ -75,13 +75,14 @@
 }
 
 .status ul{
-        position: absolute;
-    background: #fff;
-    height: 63px;
+    padding: 5px;
+    position: absolute;
+    background: #219ec5;
+    /* height: 63px; */
     z-index: 10;
     /* border: 1px solid #353030; */
     width: 150px;
-    padding: 0;
+    padding: 5px;
     display: none;
     top: 25px;
     left: 0px;
@@ -123,7 +124,7 @@
 
 .statusSelect span{
     display: inline-block;
-    margin-left: 5px;
+    margin-left: 30px;
     vertical-align: middle;
 }
 
@@ -146,15 +147,22 @@
     border-radius: 3px;
 }
 
+.items{
+        width: 100%;
+    /* border: 1px solid; */
+    height: 37px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .items i{
     display: block;
-    width: 10%;
+    width: 55px;
+    height: 37px;
     font-size: 2em;
     text-align: center;
     margin-left: 5px;
     float: left;
-    margin-bottom: 10px;
-    margin-top: 10px;
 }
 
 .items i:hover{
@@ -168,7 +176,7 @@
 .chatHome .searchButton{
     position: absolute;
     top: 4px;
-    right: 14px;
+    right: 20px;
 }
 
 .chatHome .searchDiv{
@@ -179,7 +187,7 @@
 
 .chatHome .introFoot{
     position: absolute;
-    top: 18px;
+    top: 23px;
     left: 17%;
     width: 15px;
     height: 15px;
@@ -213,7 +221,7 @@
 }
 
 .groups{
-    height: 56%;
+    height: 430px;
     border-radius: 3px;
     width: 98%;
     margin: 0 auto;
@@ -309,13 +317,13 @@
 .searchContainer{
     border: 0px solid #353030; 
     width: 100%;
-    height: 307px;
+    height: 430px;
     position: absolute;
     z-index: 10020;
     /* left: 3px; */
     border-radius: 3px;
     background: #fff;
-    top: 36px;
+    top: 35px;
     overflow-y: auto;
 }
 
@@ -367,39 +375,45 @@
 
 .oneUser .fa-plus{
     position: absolute;
-    top: 16px;
+    top: 14px;
     right: 21px;
     display: inline-block;
-    /* border: 1px solid; */
-    width: 20px;
-    height: 21px;
-    padding: 2px;
+    width: 25px;
+    height: 25px;
+    /* padding: 2px; */
+    text-align: center;
+    line-height: 25px;
 }
 
 .addToGroup{
-    width: 134px;
-    height: 50px;
+    width: 134px; 
+    height: auto;
     /* border: 1px solid red; */
     position: absolute;
     z-index: 50;
-    right: 49px;
-    top: 0px;
+    right: 1px;
+    top: 38px;
     display: none;
     background: #219ec5;
     color: #fff;
     border-radius: 3px;
     box-shadow: 4px 4px 4px rgba(0,0,0,0.5);
+    padding: 5px 10px;
+    text-align: left;
 }
 
 .addToGroup span{
     display: block;
     border: 1px solid #219ec5;
-    padding-left: 5px;
+    padding: 2px 5px;
     border-radius: 3px;
     margin-top: 1px;
     margin-bottom: 1px;
+    color: #353030;
+    font-size: 0.8em;
 }
 
 .addToGroup span:hover{
-    border: 1px solid #fff;
+    background: #353030;
+    color: #fff;
 }

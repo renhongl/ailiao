@@ -43,7 +43,6 @@ class User {
                         collection.updateOne(queryData, { $set: { groups: tempGroups } }, function (err, result) {
                             assert.equal(null, err);
                             db.close();
-                            console.log(result);
                             if(result.result.ok === 1){
                                 res.send({ status: 'success' });
                             }else{

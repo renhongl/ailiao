@@ -22,6 +22,9 @@ define(['Controller'], function (Controller) {
                 methods: {
                     setIntro: that._setIntro.bind(that),
                     setEmail: that._setEmail.bind(that),
+                    addToGroup: that._addToGroup.bind(that),
+                    extendGroup: that._extendGroup.bind(that),
+                    showGroups: that._showGroups.bind(that),
                 }
             };
             this.vue = new AP.Vue(config);
@@ -75,14 +78,6 @@ define(['Controller'], function (Controller) {
                 this._setStatus();
             });
 
-            setTimeout(function () {
-                $('.groups .group').on('click', function () {
-                    $("." + $(this).text()).toggle();
-                    $(this).toggleClass('changeBg');
-                    $(this).find('.groupFoot').toggleClass('rotateFoot');
-                });
-            }, 2000);
-
             $('.items i').on('click', function () {
                 $('.items i').removeClass('selected');
                 $(this).addClass('selected');
@@ -98,29 +93,6 @@ define(['Controller'], function (Controller) {
                 let url = AP.Constant.QUERYALL;
                 let callback = (result) => {
                     this.vue.allUsers = result.result;
-                    setTimeout( () => {
-                        $('.oneUser .fa-plus').on('click', function () {
-                            $(this).parent().find('.addToGroup').show();
-                        });
-
-                        $('.addToGroup span').on('click', () =>{
-                            let $parent = $(this).parent();
-                            let addUser = $(this).parent().parent().find('.oneUserName').text();
-                            let addGroup = $(this).text();
-                            let name = localStorage.name;
-                            let url = AP.Constant.ADDTOGROUP;
-                            let postData = {
-                                name: name,
-                                addUser: addUser,
-                                addGroup: addGroup,
-                            }
-                            let callback = (result) => {
-                                $parent.hide();
-                                $('.searchContainer').hide();
-                            };
-                            AP.Ajax.post(url, postData, callback);
-                        });
-                    }, 2000)
                 };
                 AP.Ajax.get(url, callback);
             });
@@ -128,9 +100,39 @@ define(['Controller'], function (Controller) {
             $('.search').on('blur', () => {
                 //$('.searchContainer').hide();
             });
+        }
 
+        _showGroups(e) {
+            $(e.target).parent().find('.addToGroup').toggle();
+        }
 
+        _extendGroup(e) {
+            $("." + $(e.target).text()).toggle();
+            $(e.target).toggleClass('changeBg');
+            $(e.target).find('.groupFoot').toggleClass('rotateFoot');
+        }
 
+        _addToGroup(e) {
+            $('.fa-times').addClass('fa-search').removeClass('fa-times');
+            let $parent = $(e.target).parent();
+            let addUser = $(e.target).parent().parent().find('.oneUserName').text();
+            let addGroup = $(e.target).text();
+            let name = localStorage.name;
+            let url = AP.Constant.ADDTOGROUP;
+            let postData = {
+                name: name,
+                addUser: addUser,
+                addGroup: addGroup,
+            };
+            let callback = (result) => {
+                if(result.status === 'success'){
+                    $parent.hide();
+                    $('.searchContainer').hide();
+                    $.publish('needRefresh');
+                    new AP.Message('success', '添加成功。');
+                }   
+            };
+            AP.Ajax.post(url, postData, callback);
         }
 
         _refreshInfor() {
