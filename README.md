@@ -1,6 +1,9 @@
 
-### [AP_WEB设计思路](https://github.com/renhongl/AP_WEB)
+### [AP_WEB](https://github.com/renhongl/AP_WEB)
 ***
+
+* **介绍：**
+	AP_WEB是想把电脑应用AP用网页的形式展示出来。
 
 * **前端：**
     * 封装基本功能：
@@ -28,7 +31,7 @@
     * mongodb做数据库。
     * express做api。
     * 支持websocket。
-    * 网站地址：lrh.apweb.ngrok.cc。
+    * 网站地址：lrh.ngrok.cc。
     * http端口：8080。
     * websocket端口： 9090。
 
