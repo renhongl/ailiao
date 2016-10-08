@@ -28,6 +28,8 @@ define(['Controller'], function (Controller) {
                     extendGroup: that._extendGroup.bind(that),
                     showGroups: that._showGroups.bind(that),
                     removeUser: that._removeUser.bind(that),
+                    toggleFaceStore: that._toggleFaceStore.bind(that),
+                    addChatting: that._addChatting.bind(that),
                 }
             };
             this.vue = new AP.Vue(config);
@@ -69,7 +71,7 @@ define(['Controller'], function (Controller) {
                 }
             });
 
-            window.onunload = () => {
+            window.onbeforeunload = () => {
                 this.vue.status = '/images/offline.jpg';
                 this._setStatus();
             }
@@ -121,9 +123,20 @@ define(['Controller'], function (Controller) {
                 AP.Ajax.get(url, callback);
             });
 
-            $('.search').on('blur', () => {
-                //$('.searchContainer').hide();
+            $('.faceStore img').on('click', (e) => {
+                this.vue.face = $(e.target).attr('src');
+                this._setFace();
+                $('.faceStore').hide();
             });
+        }
+
+        _addChatting(e){
+            let name = $(e.target).parent().find('.userName').text();
+            $.publish('addChatting', {name: name});
+        }
+
+        _toggleFaceStore(){
+            $('.faceStore').toggle();
         }
 
         _removeUser(e){
@@ -223,6 +236,22 @@ define(['Controller'], function (Controller) {
                     new AP.Message('error', result.text);
                 } else {
                     //new AP.Message('infor', '账号初始化成功。');
+                }
+            };
+            AP.Ajax.post(url, postData, callback);
+        }
+
+        _setFace() {
+            let url = AP.Constant.SETINFOR;
+            let postData = {
+                name: this.vue.name,
+                face: this.vue.face,
+            };
+            let callback = function (result) {
+                if (result.status === 'error') {
+                    new AP.Message('error', result.text);
+                } else {
+                    new AP.Message('infor', '修改头像成功。');
                 }
             };
             AP.Ajax.post(url, postData, callback);

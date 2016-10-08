@@ -4,7 +4,20 @@
         <div class="introFoot"></div>
     </div>
     <div class="head">
-        <img class="face" v-bind:src="face" />
+        <img class="face" v-bind:src="face" v-on:click="toggleFaceStore" class="button"/>
+	    <div class="faceStore button">
+            <img src="/images/f1.jpg">
+            <img src="/images/f2.jpg">
+            <img src="/images/f3.jpg">
+            <img src="/images/f4.jpeg">
+            <img src="/images/f5.png">
+            <img src="/images/f6.jpg">
+            <img src="/images/f7.jpg">
+            <img src="/images/f8.jpg">
+            <img src="/images/f9.jpg">
+            <img src="/images/f10.jpg">
+            <img src="/images/f11.jpg">
+        </div>
         <span class="name">{{ name }}</span>
         <div class="status">
             <div class="statusValue button">
@@ -46,13 +59,13 @@
         <template v-for="(index, group) in groups">
             <div class="group button" v-on:click="extendGroup"><span class="groupFoot" v-bind:class="{'rotateFoot': extend[group.name]}"></span>{{ group.name }}</div>
             <template v-for="user in group.users | orderBy 'name'">
-                <div v-bind:class="group.name" class="user" v-show="extend[group.name]">
+                <div v-bind:class="group.name" class="user button" v-show="extend[group.name]">
                     <img v-bind:src="user.face" class="userFace"/>
                     <img v-bind:src="user.status" class="userStatus">
                     <span class="userName">{{ user.name }}</span>
                     <span class="userIntro">{{ user.intro }}</span>
                     <i class="fa fa-trash" aria-hidden="true" v-on:click="removeUser"></i>
-                    <i class="fa fa-comments button" aria-hidden="true"></i>
+                    <i class="fa fa-comments button" aria-hidden="true" v-on:click="addChatting"></i>
                     </div>
             </template>
         </template>

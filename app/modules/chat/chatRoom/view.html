@@ -1,0 +1,24 @@
+<div class="chatRoom">
+    <div class="chatNavbar">
+        <template v-for="chatting in chattings">
+            <div class="chatting button" v-bind:class="{'current': chatting.current}" v-on:click="selectChatting">
+                <span class="chattingName">{{ chatting.name }}</span>
+                <img v-bind:src="chatting.face" class="chattingFace">
+                <img v-bind:src="chatting.status" class="chattingStatus">
+                <i class="fa fa-times-circle button removeChatting" aria-hidden="true" v-on:click="removeChatting"></i>
+            </div>
+        </template>
+    </div>
+    <div class="chatRecord">
+        <div class="chatHeader">
+            <span class="currentName">{{ current.name }}</span>
+            <span class="currentIntro">{{ current.intro }}</span>
+        </div>
+        <div class="chatContent">
+            
+        </div>
+        <div class="chatFoot">
+            
+        </div>
+    </div>
+</div>

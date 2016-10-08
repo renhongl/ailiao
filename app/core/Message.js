@@ -12,7 +12,7 @@ define([], function() {
             this.title = '';
             this.content = content;
             this.showTime = 5000;
-            this.clearTime = 0;
+            this.clearTime = 1000;
             this.clearThread = null;
             this.timeThread = null;
             this.$Message = $('<div>').css({

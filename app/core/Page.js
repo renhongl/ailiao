@@ -42,11 +42,11 @@ define([], function() {
         }
 
         _loadModule(module, $container) {
-            let config = `modules/${ module.id }/config.json`;
+            let config = `modules/${ module.name }/config.json`;
             let callback = function(config){
-                let modulePath = `modules/${ module.id }/`;
+                let modulePath = `modules/${ module.name }/`;
                 let moduleController = modulePath + 'controller';
-                let moduleStyle = `modules/${ module.id }/style.css`;
+                let moduleStyle = `modules/${ module.name }/style.css`;
                 $('head').append(`<link rel='stylesheet' href=${ moduleStyle } />`);
                 require([moduleController + '.js'], (controller) => {
                     new controller(module, $container, config);

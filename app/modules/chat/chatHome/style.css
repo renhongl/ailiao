@@ -34,6 +34,11 @@
     height: 90px;
     float: left;
     border-radius: 50%;
+    margin-left: 3px;
+}
+
+.chatHome .face:hover{
+    box-shadow: 0px 0px 15px #219ec5;
 }
 
 .chatHome .name{
@@ -239,7 +244,7 @@
 }
 
 .groups .group{
-    border: 1px solid #928f8f;
+    border: 1px solid #219ec5;
     border-radius: 3px;
     padding-left: 19px;
     height: 35px;
@@ -247,7 +252,7 @@
     position: relative;
     font-size: 1em;
     line-height: 35px;
-    background: #928f8f;
+    background: #219ec5;
     font-weight: bold;
 }
 
@@ -273,7 +278,7 @@
 }
 
 .groups .user:hover{
-    background: #353030;
+    background: #85cee4;
     color: #fff;
 }
 
@@ -333,7 +338,7 @@
 }
 
 .changeBg{
-    background: #928f8f !important;
+    background: #219ec5 !important;
 }
 
 .searchContainer{
@@ -359,7 +364,7 @@
 }
 
 .oneUser:hover{
-    background: #353030;
+    background: #85cee4;
     color: #fff;
 }
 
@@ -448,3 +453,31 @@
 .hideUser{
     display: none;
 }
+
+.faceStore{
+    display: none;
+    position: absolute;
+    width: 342px;
+    height: 172px;
+    display: none;
+    z-index: 73;
+    left: 102px;
+    background: #219ec5;
+    border-radius: 3px;
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.5);
+}
+
+.faceStore img{
+    width: 40px;
+    height: 40px;
+    border-radius: 3px;
+    margin-left: 11px;
+    margin-top: 10px;
+}
+
+.faceStore img:hover{
+    border: 2px solid #353030;
+}
+
+
+

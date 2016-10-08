@@ -66,17 +66,17 @@ define([], function() {
             let $container = this.$container;
             let $dialog = this.$dialog;
             let url = 'modules/dialog/view.html';
-            let modelPath = `modules/${obj.id}/model.js`;
+            let modelPath = `modules/${obj.name}/model.js`;
 
             if (obj.type !== 'dialog') {
-                url = `modules/${obj.id}/view.html`
+                url = `modules/${obj.name}/view.html`
             }
 
             let callback = () => {
                 $container.append($dialog);
+                this._runVue();
                 this._renderTree();
                 this._handleEvents();
-                this._runVue();
                 if (obj.type === 'dialog') {
                     if (!this.obj.showTitle) {
                         $dialog.find('.title').css({

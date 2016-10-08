@@ -4,18 +4,38 @@ define([], function () {
     const config = {
         title: '主页',
         dialogs: [
-            {
-                id: 'APChat',
+            {   
+                name: 'ChatHome',
+                id: 'ChatHome',
                 type: 'dialog',
                 showTitle: true,
                 settings: {
                     width: 450,
                     height: 700,
-                    x: AP.width * 0 + 20,
-                    y: AP.height * 0 + 20,
+                    x: 100,
+                    y: 20,
                 },
                 content: {
-                    id: 'chat/chatHome',
+                    name: 'chat/chatHome',
+                    id: 'chatHome',
+                    type: 'module',
+                    showTitle: true,
+                }
+            },
+            {   
+                name: 'ChatRoom',
+                id: 'ChatRoom',
+                type: 'dialog',
+                showTitle: true,
+                settings: {
+                    width: 650,
+                    height: 600,
+                    x: 600,
+                    y: 20,
+                },
+                content: {
+                    name: 'chat/chatRoom',
+                    id: 'chatRoom',
                     type: 'module',
                     showTitle: true,
                 }
