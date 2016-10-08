@@ -29,14 +29,14 @@
         <i class="fa fa-search searchButton" aria-hidden="true"></i>
         <div style="display:none" class="searchContainer">
             <template v-for="user in allUsers | filterBy filterName in 'name' | orderBy 'name'">
-                <div class="oneUser">
+                <div class="oneUser button">
                     <img v-bind:src="user.face" width="20" height="20" class="oneUserFace">
                     <img v-bind:src="user.status" width="20" height="20" class="oneUserStatus">
                     <span class="oneUserName">{{ user.name }}</span>
                     <span class="oneUserIntro">{{ user.intro }}</span>
-                    <i class="fa fa-plus" aria-hidden="true" v-on:click="showGroups"></i>
+                    <i class="fa fa-plus button" aria-hidden="true" v-on:click="showGroups"></i>
                     <div class="addToGroup">
-                        <span v-for="group in groups" v-on:click="addToGroup">{{ group.name }}</span>
+                        <span v-for="group in groups" v-on:click="addToGroup" class="button">{{ group.name }}</span>
                     </div>
                 </div>
             </template>
@@ -44,14 +44,15 @@
     </div>
     <div class="groups">
         <template v-for="(index, group) in groups">
-            <div class="group button" v-on:click="extendGroup"><span class="groupFoot"></span>{{ group.name }}</div>
-            <template v-for="user in group.users | orderBy 'name'" >
-                <div style="display:none;" v-bind:class="group.name" class="user">
+            <div class="group button" v-on:click="extendGroup"><span class="groupFoot" v-bind:class="{'rotateFoot': extend[group.name]}"></span>{{ group.name }}</div>
+            <template v-for="user in group.users | orderBy 'name'">
+                <div v-bind:class="group.name" class="user" v-show="extend[group.name]">
                     <img v-bind:src="user.face" class="userFace"/>
                     <img v-bind:src="user.status" class="userStatus">
                     <span class="userName">{{ user.name }}</span>
                     <span class="userIntro">{{ user.intro }}</span>
-                    <i class="fa fa-comments button" aria-hidden="true" tipy="发送消息"></i>
+                    <i class="fa fa-trash" aria-hidden="true" v-on:click="removeUser"></i>
+                    <i class="fa fa-comments button" aria-hidden="true"></i>
                     </div>
             </template>
         </template>

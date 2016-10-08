@@ -15,6 +15,40 @@ class User {
         this._queryAll();
         this._queryByName();
         this._addToGroup();
+        this._removeUser();
+    }
+
+    _removeUser() {
+        this.app.delete('/removeUser', (req, res) => {
+            let removeUser = req.body.removeUser;
+            let queryData = {
+                name: req.body.user,
+            };
+            let callback = (db) => {
+                let collection = db.collection(this.userCollection);
+                collection.find(queryData, { _id: 0, groups: 1 }).toArray((err, result) => {
+                    assert.equal(null, err);
+                    let tempGroups = result[0].groups;
+                    for (let group of tempGroups) {
+                        for (let user of group.users.entries()) {
+                            if (user[1].name === removeUser) {
+                                group.users.splice(user[0], 1);
+                            }
+                        }
+                    }
+                    collection.updateOne(queryData, { $set: { groups: tempGroups } }, function (err, result) {
+                        assert.equal(null, err);
+                        db.close();
+                        if (result.result.ok === 1) {
+                            res.send({ status: 'success' });
+                        } else {
+                            res.send({ status: 'error', text: '服务器未知错误' });
+                        }
+                    });
+                });
+            };
+            new MongoDB(this.currentDB, callback);
+        });
     }
 
     _addToGroup() {
@@ -26,7 +60,7 @@ class User {
             };
             let callback = (db) => {
                 let collection = db.collection(this.userCollection);
-                collection.find({ name: addUser }, {_id: 0,name: 1, status: 1, face: 1, intro: 1 }).toArray(function (err, result) {
+                collection.find({ name: addUser }, { _id: 0, name: 1, status: 1, face: 1, intro: 1 }).toArray(function (err, result) {
                     assert.equal(null, err);
                     let addUser = result[0];
                     collection.find(queryData).toArray(function (err, result) {
@@ -43,9 +77,9 @@ class User {
                         collection.updateOne(queryData, { $set: { groups: tempGroups } }, function (err, result) {
                             assert.equal(null, err);
                             db.close();
-                            if(result.result.ok === 1){
+                            if (result.result.ok === 1) {
                                 res.send({ status: 'success' });
-                            }else{
+                            } else {
                                 res.send({ status: 'error', text: '服务器未知错误' });
                             }
                         });
@@ -97,15 +131,33 @@ class User {
             delete setData.name;
             let callback = (db) => {
                 let collection = db.collection(this.userCollection);
-                collection.updateOne({ name: name }, { $set: setData }, function (err, result) {
-                    assert.equal(null, err);
-                    db.close();
-                    if (result.result.ok === 1) {
-                        res.send({ status: 'success', result: 'success' });
-                    } else {
-                        res.send({ status: 'error', text: '服务器端出错。' });
-                    }
-                });
+                if (setData.email) {
+                    collection.find({ name: { $ne: name }, email: setData.email }).toArray(function (err, result) {
+                        if (result.length !== 0) {
+                            res.send({ status: 'error', text: '此邮箱已存在，请换一个邮箱，否则将影响邮箱登录以及密码找回功能。如果你是第一次登录，请修改自己的邮箱地址。' });
+                        } else {
+                            collection.updateOne({ name: name }, { $set: setData }, function (err, result) {
+                                assert.equal(null, err);
+                                db.close();
+                                if (result.result.ok === 1) {
+                                    res.send({ status: 'success', result: 'success' });
+                                } else {
+                                    res.send({ status: 'error', text: '服务器端出错。' });
+                                }
+                            });
+                        }
+                    });
+                } else {
+                    collection.updateOne({ name: name }, { $set: setData }, function (err, result) {
+                        assert.equal(null, err);
+                        db.close();
+                        if (result.result.ok === 1) {
+                            res.send({ status: 'success', result: 'success' });
+                        } else {
+                            res.send({ status: 'error', text: '服务器端出错。' });
+                        }
+                    });
+                }
             };
             new MongoDB(this.currentDB, callback);
         });

@@ -3,6 +3,7 @@ define(['Controller'], function (Controller) {
     class controller extends Controller {
         constructor(obj, $container, config) {
             super(obj, $container, config);
+            this.firstLoad = true;
         }
 
         _runVue() {
@@ -18,6 +19,7 @@ define(['Controller'], function (Controller) {
                     groups: [],
                     allUsers: [],
                     filterName: '',
+                    extend: {},
                 },
                 methods: {
                     setIntro: that._setIntro.bind(that),
@@ -25,6 +27,7 @@ define(['Controller'], function (Controller) {
                     addToGroup: that._addToGroup.bind(that),
                     extendGroup: that._extendGroup.bind(that),
                     showGroups: that._showGroups.bind(that),
+                    removeUser: that._removeUser.bind(that),
                 }
             };
             this.vue = new AP.Vue(config);
@@ -35,20 +38,41 @@ define(['Controller'], function (Controller) {
         }
 
         _handleEvents() {
+
             $.subscribe('userInfo-loaded', (o, args) => {
                 this.vue.name = args.infor.name;
-                this.vue.status = AP.Constant.DEFAULT_STATUS;
+                if(this.firstLoad){
+                    this.vue.status = AP.Constant.DEFAULT_STATUS;
+                }else{
+                    this.vue.status = args.infor.status || AP.Constant.DEFAULT_STATUS;
+                }
+                
                 this.vue.email = args.infor.email || AP.Constant.DEFAULT_EMAIL;
                 this.vue.intro = args.infor.intro || AP.Constant.DEFAULT_INTRO;
                 this.vue.face = args.infor.face || AP.Constant.DEFAULT_FACE;
                 this.vue.groups = args.infor.groups || AP.Constant.DEFAULT_GROUPS;
+                for(let group of this.vue.groups){
+                    let groupName = group.name;
+                    if(this.vue.extend[groupName] === undefined){
+                        this.vue.extend[groupName] = false;
+                    }
+                }
 
                 this._initUser();
                 this._initGroup();
-                setInterval(() => {
-                    this._initGroup();
-                }, 10000);
+
+                if(this.firstLoad){
+                    this.firstLoad = false;
+                    setInterval(() => {
+                        this._initGroup();
+                    }, 10000);
+                }
             });
+
+            window.onunload = () => {
+                this.vue.status = '/images/offline.jpg';
+                this._setStatus();
+            }
 
             $('.chatHome .intro').on('focus', function () {
                 $('.chatHome .introFoot').css({
@@ -86,9 +110,9 @@ define(['Controller'], function (Controller) {
             $('.search').on('focus', () => {
                 $('.searchContainer').show();
                 $('.fa-search').addClass('fa-times').removeClass('fa-search');
-                $('.fa-times').on('click', function () {
+                $('.searchDiv .fa-times').on('click', function () {
                     $('.searchContainer').hide();
-                    $('.fa-times').addClass('fa-search').removeClass('fa-times');
+                    $('.searchDiv .fa-times').addClass('fa-search').removeClass('fa-times');
                 });
                 let url = AP.Constant.QUERYALL;
                 let callback = (result) => {
@@ -102,20 +126,43 @@ define(['Controller'], function (Controller) {
             });
         }
 
+        _removeUser(e){
+            let removeUser = $(e.target).parent().find('.userName').text();
+            let user = localStorage.name;
+            let postData = {
+                user: user,
+                removeUser: removeUser,
+            };
+            let url = AP.Constant.REMOVEUSER;
+            let callback = (result) => {
+                if(result.status === 'success'){
+                    $.publish('needRefresh');
+                    new AP.Message('success', '删除成功。');
+                }
+            };
+            AP.Ajax.delete(url, postData, callback);
+        }
+
         _showGroups(e) {
             $(e.target).parent().find('.addToGroup').toggle();
         }
 
         _extendGroup(e) {
+            if(this.vue.extend[$(e.target).text()]){
+                this.vue.extend[$(e.target).text()] = false;
+            }else{
+                this.vue.extend[$(e.target).text()] = true;
+            }
             $("." + $(e.target).text()).toggle();
             $(e.target).toggleClass('changeBg');
             $(e.target).find('.groupFoot').toggleClass('rotateFoot');
         }
 
         _addToGroup(e) {
-            $('.fa-times').addClass('fa-search').removeClass('fa-times');
-            let $parent = $(e.target).parent();
             let addUser = $(e.target).parent().parent().find('.oneUserName').text();
+            let allUsers = [];
+            let $parent = $(e.target).parent();
+            $parent.hide();
             let addGroup = $(e.target).text();
             let name = localStorage.name;
             let url = AP.Constant.ADDTOGROUP;
@@ -126,28 +173,24 @@ define(['Controller'], function (Controller) {
             };
             let callback = (result) => {
                 if(result.status === 'success'){
-                    $parent.hide();
                     $('.searchContainer').hide();
                     $.publish('needRefresh');
                     new AP.Message('success', '添加成功。');
                 }   
             };
-            AP.Ajax.post(url, postData, callback);
-        }
 
-        _refreshInfor() {
-            for (let key of Object.keys(this.vue.userInfor)) {
-                for (let user of this.vue.userInfor[key]) {
-                    let url = AP.Constant.QUERYBYNAME + '?name=' + user.name;
-                    let callback = (result) => {
-                        user.status = result.result.status;
-                        user.intro = result.result.intro;
-                        user.face = result.result.face;
-                        user.name = result.result.name;
-                    };
-                    AP.Ajax.get(url, callback);
+            for(let group of this.vue.groups){
+                for(let user of group.users){
+                    allUsers.push(user.name);
                 }
             }
+            if(allUsers.indexOf(addUser) !== -1){
+                new AP.Message('error', '同一个用户不能多次添加。');
+                return;
+            }
+
+            $('.searchDiv .fa-times').addClass('fa-search').removeClass('fa-times');
+            AP.Ajax.post(url, postData, callback);
         }
 
         _initGroup() {
@@ -179,7 +222,7 @@ define(['Controller'], function (Controller) {
                 if (result.status === 'error') {
                     new AP.Message('error', result.text);
                 } else {
-                    new AP.Message('infor', '账号初始化成功。');
+                    //new AP.Message('infor', '账号初始化成功。');
                 }
             };
             AP.Ajax.post(url, postData, callback);

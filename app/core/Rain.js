@@ -30,6 +30,9 @@ define([], function() {
         _handleEvents() {
             let settings = this.settings;
             $(document).on('click', (e) => {
+                if($(e.target).hasClass('button')){
+                    return;
+                }
                 let $rain = $('<div>').attr('class', settings.class).css({
                     position: settings.position,
                     zIndex: settings.zIndex,

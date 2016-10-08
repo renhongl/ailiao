@@ -18,6 +18,7 @@
     border: 1px solid #353030;
     padding-left: 10px;
     height: 25px;
+    font-size: 0.8em;
 }
 
 .chatHome .head{
@@ -56,7 +57,7 @@
 }
 
 .chatHome .statusValue:hover{
-    border: 1px solid #353030;
+    background: #219ec5;
 }
 
 .status li{
@@ -84,7 +85,7 @@
     width: 150px;
     padding: 5px;
     display: none;
-    top: 25px;
+    top: 28px;
     left: 0px;
     border-radius: 3px;
     box-shadow: 4px 4px 4px rgba(0,0,0,0.5);
@@ -110,10 +111,10 @@
 }
 
 .statusValue{
-    width: 25px;
+    width: 27px;
     border-radius: 3px;
     border: 1px solid #fff;
-    height: 25px;
+    height: 27px;
 }
 
 .statusSelect img{
@@ -144,6 +145,14 @@
 
 .email input:focus{
     border: 1px solid #353030;
+    border-radius: 3px;
+    background: #fff !important;
+    color: #353030 !important;
+}
+
+.email input:hover{
+    background: #2d92d6;
+    color: #fff;
     border-radius: 3px;
 }
 
@@ -287,9 +296,22 @@
 
 .user i{
     display: inline-block;
-    position: absolute;
-    top: 17px;
-    right: 40px;
+    position: relative;
+    /* top: 17px; */
+    /* right: 40px; */
+    float: right;
+    margin-right: 15px;
+    margin-top: 14px;
+    /* border: 1px solid red; */
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+}
+
+.user i:hover{
+    background: #219ec5;
+    border-radius: 3px;
 }
 
 .user .userName{
@@ -385,6 +407,11 @@
     line-height: 25px;
 }
 
+.oneUser .fa-plus:hover{
+    background: #219ec5;
+    border-radius: 3px;
+}
+
 .addToGroup{
     width: 134px; 
     height: auto;
@@ -392,7 +419,7 @@
     position: absolute;
     z-index: 50;
     right: 1px;
-    top: 38px;
+    top: 41px;
     display: none;
     background: #219ec5;
     color: #fff;
@@ -416,4 +443,8 @@
 .addToGroup span:hover{
     background: #353030;
     color: #fff;
+}
+
+.hideUser{
+    display: none;
 }

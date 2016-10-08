@@ -27,6 +27,7 @@ define([], function() {
     Constant.QUERYALL = Constant.BASE_SERVER + 'queryAll';
     Constant.QUERYBYNAME = Constant.BASE_SERVER + 'queryByName';
     Constant.ADDTOGROUP = Constant.BASE_SERVER + 'addToGroup';
+    Constant.REMOVEUSER = Constant.BASE_SERVER + 'removeUser';
     
     return Constant;
 });
