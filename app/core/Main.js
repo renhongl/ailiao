@@ -20,8 +20,9 @@ define([
     'Message',
     'Vue',
     'Auth',
+    'WebSocket',
     'bootstrap'
-], function(Constant, Test, QueryString, Ajax, Page, Tipy, Draggable, Rain, Observer, Message, Vue, Auth) {
+], function(Constant, Test, QueryString, Ajax, Page, Tipy, Draggable, Rain, Observer, Message, Vue, Auth, WebSocket) {
     'use strict';
     class Main {
         constructor() {
@@ -45,6 +46,7 @@ define([
                 width: $(window).width(),//当前浏览器宽度
                 height: $(window).height(),//当前浏览器高度
                 Vue,
+                socket: new WebSocket(Constant.WS_SERVER).getSocket(),
             };
 
             //运行一次就能在全局出现效果

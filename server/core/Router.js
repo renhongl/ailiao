@@ -7,6 +7,7 @@
 'use strict';
 
 const User = require('../serverRouter/User');
+const Chatting = require('../serverRouter/Chatting');
 
 class Router{
     constructor(app){
@@ -23,6 +24,7 @@ class Router{
 
     _addRouter(){
         new User(this.app);
+        new Chatting(this.app);
     }
 
 }

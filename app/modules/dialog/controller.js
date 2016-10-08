@@ -71,7 +71,7 @@ define(['Controller'], function(Controller) {
         }
 
         _closeDialog(){
-            $(`#${ this.obj.id }`).remove();
+            $(`#${ this.obj.id }`).hide();
         }
 
         _addFocusStyle(e) {

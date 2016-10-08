@@ -9,7 +9,7 @@ define(['io'], function(io) {
             this.socket = io.connect(url);
         }
 
-        run() {
+        getSocket() {
             let socket = this.socket;
             socket.on('connect', function() {
                 console.log("WS connected");
@@ -17,6 +17,7 @@ define(['io'], function(io) {
             socket.on('message', function(o) {
                 console.log(o);
             });
+            return socket;
         }
     }
 

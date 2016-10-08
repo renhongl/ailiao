@@ -36,7 +36,7 @@ define(['Controller'], function (Controller) {
         }
 
         _renderTree() {
-
+            
         }
 
         _handleEvents() {
@@ -211,7 +211,7 @@ define(['Controller'], function (Controller) {
                 for (let user of group.users) {
                     let url = AP.Constant.QUERYBYNAME + '?name=' + user.name;
                     let callback = (result) => {
-                        for (let key of Object.keys(result.result)) {
+                        for (let key of Object.keys(result.result || {})) {
                             user[key] = result.result[key];
                         }
                     };

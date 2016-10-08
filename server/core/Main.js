@@ -20,6 +20,7 @@ class Main{
 
     _runSystem(){
         new Server(Config.SERVER_PORT);
+        new WebSocket(Config.WS_PORT);
     }
 }
 

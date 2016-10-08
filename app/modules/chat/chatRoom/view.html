@@ -15,10 +15,23 @@
             <span class="currentIntro">{{ current.intro }}</span>
         </div>
         <div class="chatContent">
-            
+            <template v-for="record in records.records">
+                <div v-bind:class="{'you': record.name === records.you, 'notYou': record.name === records.notYou}">
+                    <img v-bind:src="record.face">
+                    <p>{{ record.content }}</p>
+                    <span></span>
+                </div>
+            </template>
         </div>
         <div class="chatFoot">
-            
+            <div class="tools">
+                
+            </div>
+            <textarea class="button" v-model="sendContent"></textarea>
+            <div class="oprate">
+                <button type="button" class="btn btn-default button" v-on:click="sendTo">发送</button>
+                <button type="button" class="btn btn-default button">关闭</button>
+            </div>
         </div>
     </div>
 </div>

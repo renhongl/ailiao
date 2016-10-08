@@ -156,7 +156,7 @@
 }
 
 .email input:hover{
-    background: #2d92d6;
+    background: #219ec5;
     color: #fff;
     border-radius: 3px;
 }
@@ -180,11 +180,11 @@
 }
 
 .items i:hover{
-    color: #2d92d6;
+    color: #219ec5;
 }
 
 .items .selected{
-    color: #2d92d6;
+    color: #219ec5;
 }
 
 .chatHome .searchButton{
@@ -254,6 +254,7 @@
     line-height: 35px;
     background: #219ec5;
     font-weight: bold;
+    color: #fff;
 }
 
 .group .groupFoot{
@@ -261,7 +262,7 @@
     position: absolute;
     width: 0;
     height: 0;
-    border-left: 7px solid #353030;
+    border-left: 7px solid #fff;
     border-top: 7px solid transparent;
     border-bottom: 7px solid transparent;
     top: 9px;

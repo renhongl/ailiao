@@ -21,7 +21,7 @@
 }
 
 .chatHeader{
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid #dad4d4;
     height: 10%;
     width: 100%;
 }
@@ -29,10 +29,11 @@
 .chatContent{
     height: 60%;
     width: 100%;
+    overflow-y: auto;
 }
 
 .chatFoot{
-    border-top: 1px solid gray;
+    border-top: 1px solid #dad4d4;
     height: 30%;
     width: 100%;
 }
@@ -97,8 +98,114 @@
 .removeChatting{
     position: absolute;
     top: 0px;
-    right: 1px;
+    left: 1px;
     font-size: 1em;
     display: inline;
     z-index: 60;
+}
+
+.you{
+    width: 80%;
+    float: right;
+    position: relative;
+}
+
+.you img{
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    float: right;
+    margin-right: 10px;
+}
+
+.you p{
+    border: 1px solid #05d0ac;
+    float: right;
+    margin-right: 13px;
+    padding: 5px 10px;
+    margin-top: 4px;
+    border-radius: 5px;
+    background: #05d0ac;
+    color: #fff;
+    max-width: 80%;
+}
+
+.you span{
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-left: 13px solid #05d0ac;
+    border-top: 3px solid transparent;
+    border-bottom: 9px solid transparent;
+    top: 8px;
+    right: 60px;
+}
+
+.notYou{
+    width: 80%;
+    float: left;
+    position: relative;
+}
+
+.notYou img{
+    height: 100%;
+    width: 50px;
+    border-radius: 25px;
+    float: left;
+    margin-left: 10px;
+}
+
+.notYou p{
+    border: 1px solid #06aee2;
+    float: left;
+    margin-left: 13px;
+    padding: 5px 10px;
+    margin-top: 4px;
+    border-radius: 5px;
+    background: #06aee2;
+    color: #fff;
+    max-width: 80%;
+}
+
+.notYou span{
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-right: 13px solid #06aee2;
+    border-top: 3px solid transparent;
+    border-bottom: 9px solid transparent;
+    top: 8px;
+    left: 60px;
+}
+
+.chatFoot .tools{
+    width: 100%;
+    height: 20%;
+}
+
+.chatFoot textarea{
+    width: 100%;
+    padding-left: 5px;
+    outline: none;
+    height: 57%;
+    border: none;
+}
+
+.oprate{
+    height: 18%;
+    padding: 0;
+    margin: 0;
+}
+
+.oprate button{
+    float: right;
+    margin-right: 4px;
+    height: 29px;
+    width: 67px;
+    line-height: 16px;
+    background: #219ec5;
+    color: #fff;
+    outline: none;
 }

@@ -10,6 +10,8 @@ class Test{
     }
 
     _sendTest(){
-        socket.emit('test', 'WS Test');
+        this.socket.emit('test', 'WS Test');
     }
 }
+
+module.exports = Test;

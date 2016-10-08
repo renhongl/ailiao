@@ -30,6 +30,8 @@ define([], function() {
     Constant.QUERYBYNAME = Constant.BASE_SERVER + 'queryByName';
     Constant.ADDTOGROUP = Constant.BASE_SERVER + 'addToGroup';
     Constant.REMOVEUSER = Constant.BASE_SERVER + 'removeUser';
+
+    Constant.GETRECORD = Constant.BASE_SERVER + 'getRecord';
     
     return Constant;
 });
