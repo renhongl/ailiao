@@ -60,6 +60,11 @@ define(['Controller'], function (Controller) {
                     }
                 }
 
+                this._setIntro();
+                this._setEmail();
+                this._setFace();
+                this._setStatus();
+                this._setGroup();
                 this._initUser();
                 this._initGroup();
 
@@ -79,17 +84,17 @@ define(['Controller'], function (Controller) {
             $('.chatHome .intro').on('focus', function () {
                 $('.chatHome .introFoot').css({
                     background: '#fff',
-                    borderRight: '1px solid #353030',
-                    borderBottom: '1px solid #353030',
-                    boxShadow: '2px 2px 2px #b7b5b5',
+                    borderRight: '1px solid #85cee4',
+                    borderBottom: '1px solid #85cee4',
+                    boxShadow: '2px 2px 2px rgba(0,0,0,0.5)',
                 });
             });
 
             $('.chatHome .intro').on('blur', function () {
                 $('.chatHome .introFoot').css({
-                    background: '#eaeaea',
-                    borderRight: '1px solid #eaeaea',
-                    borderBottom: '1px solid #eaeaea',
+                    background: '#85cee4',
+                    borderRight: '1px solid #85cee4',
+                    borderBottom: '1px solid #85cee4',
                     boxShadow: 'none',
                 });
             });
@@ -236,6 +241,22 @@ define(['Controller'], function (Controller) {
                     new AP.Message('error', result.text);
                 } else {
                     //new AP.Message('infor', '账号初始化成功。');
+                }
+            };
+            AP.Ajax.post(url, postData, callback);
+        }
+
+        _setGroup(){
+            let url = AP.Constant.SETINFOR;
+            let postData = {
+                name: this.vue.name,
+                groups: this.vue.groups,
+            };
+            let callback = function (result) {
+                if (result.status === 'error') {
+                    new AP.Message('error', result.text);
+                } else {
+                    //new AP.Message('infor', '初始化分组成功。');
                 }
             };
             AP.Ajax.post(url, postData, callback);

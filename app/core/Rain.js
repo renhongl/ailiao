@@ -49,8 +49,7 @@ define([], function() {
         _updateRain($rain, x, y) {
             let settings = this.settings;
             let rainThread = setInterval( () => {
-                let {width, height,top, left, opacity, borderWidth, borderRadius} = 
-                    $rain.css(['width', 'height','top', 'left', 'opacity', 'borderWidth', 'borderRadius']);
+                let {width, height,top, left, opacity, borderWidth, borderRadius} = $rain.css(['width', 'height','top', 'left', 'opacity', 'borderWidth', 'borderRadius']);
                 $rain.css({
                     width: this._parseStr(width) + settings.widthOffset,
                     height: this._parseStr(height) + settings.widthOffset,

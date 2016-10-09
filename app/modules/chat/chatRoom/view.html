@@ -29,7 +29,7 @@
             </div>
             <textarea class="button" v-model="sendContent"></textarea>
             <div class="oprate">
-                <button type="button" class="btn btn-default button" v-on:click="sendTo">发送</button>
+                <button type="button" class="btn btn-default button" v-on:click="sendTo" v-on:keyup.enter="sendTo">发送</button>
                 <button type="button" class="btn btn-default button">关闭</button>
             </div>
         </div>

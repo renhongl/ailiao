@@ -44,13 +44,23 @@ define(['Controller'], function (Controller) {
             });
 
             let name = localStorage.name;
+            AP.socket.emit('message', name + '连接了');
             AP.socket.on(name, (content) => {
-                debugger;
+                console.log(content);
             });
+
+            AP.socket.on('error', function(e){
+                console.log(e);
+            });
+
+            AP.socket.on('message',function(content){
+                console.log(content);
+            });
+            
         }
 
         _sendTo(){
-            AP.socket.emit('forward',localStorage.name, 'testName', this.vue.sendContent);
+            AP.socket.emit('forward',localStorage.name, this.vue.current.name, this.vue.sendContent);
         }
 
         _getRecords() {

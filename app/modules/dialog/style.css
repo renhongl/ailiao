@@ -4,6 +4,7 @@ body .dialog{
     z-index: 1;
     border-radius: 4px;
     color: #fff;
+    box-shadow: 0px 0px 5px rgba(0,0,0,1);
 }
 
 .dialog.current{
@@ -16,7 +17,7 @@ body .dialog{
     height:30px;
     width: 100%;
     border: 0px solid #000;
-    background: #353030;
+    background: #219ec5;
     border-radius: 4px 4px 0px 0px;
     float:left;
 }
@@ -26,7 +27,7 @@ body .dialog{
     width:100%;
     background: #fff;
     border-radius: 4px 4px 4px 4px;
-    border: 2px solid #353030;
+    /*border: 2px solid #219ec5;*/
     color:#353030;
 }
 

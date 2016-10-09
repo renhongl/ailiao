@@ -10,7 +10,7 @@
 }
 
 #chatRoom{
-    padding-top: 28px !important;
+    /*padding-top: 28px !important;*/
 }
 
 .chatRecord{
@@ -102,6 +102,7 @@
     font-size: 1em;
     display: inline;
     z-index: 60;
+    opacity: 0.3;
 }
 
 .you{

@@ -7,9 +7,10 @@
 }
 
 .login #loginButton{
-    width: 100%;
-    background: #353030;
+        width: 100%;
+    background: #219ec5;
     color: white;
+    border: none;
 }
 
 .login #registerButton{

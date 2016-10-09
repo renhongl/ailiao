@@ -2,6 +2,18 @@
     height: 100%;
 }
 
+#chatHome{
+    background: #219ec5;
+}
+
+.title span:hover {
+    background: #85cee4;
+}
+
+.title .glyphicon-remove:hover{
+    background: #de2a2a;
+}
+
 .chatHome .intro{
     display: block;
     width: 98%;
@@ -11,13 +23,13 @@
 
 .chatHome .search{
     display: block;
-    width: 98%;
+    width: 100%;
     margin: 0 auto;
     height: 4%;
-    border-radius: 3px;
-    border: 1px solid #353030;
+    /* border-radius: 3px; */
+    border: 1px solid #219ec5;
     padding-left: 10px;
-    height: 25px;
+    height: 30px;
     font-size: 0.8em;
 }
 
@@ -38,7 +50,7 @@
 }
 
 .chatHome .face:hover{
-    box-shadow: 0px 0px 15px #219ec5;
+    box-shadow: 0px 0px 15px #fff;
 }
 
 .chatHome .name{
@@ -58,7 +70,7 @@
     font-size: 0.8em;
     height: 33%;
     position: relative;
-    border: 1px solid #fff;
+    border: 1px solid #219ec5;
 }
 
 .chatHome .statusValue:hover{
@@ -76,14 +88,14 @@
 }
 
 .status li:hover{
-    background: #353030;
-    color: white;
+    background: #219ec5;
+    /*color: white;*/
 }
 
 .status ul{
-    padding: 5px;
+        padding: 5px;
     position: absolute;
-    background: #219ec5;
+    background: #fff;
     /* height: 63px; */
     z-index: 10;
     /* border: 1px solid #353030; */
@@ -93,7 +105,7 @@
     top: 28px;
     left: 0px;
     border-radius: 3px;
-    box-shadow: 4px 4px 4px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 10px #000;
 }
 
 .statusValue div{
@@ -115,10 +127,14 @@
     border-radius: 10px;
 }
 
+.statusValue img:hover{
+    box-shadow: 0px 0px 10px #fff;
+}
+
 .statusValue{
     width: 27px;
     border-radius: 3px;
-    border: 1px solid #fff;
+    border: 1px solid #219ec5;
     height: 27px;
 }
 
@@ -144,12 +160,14 @@
 }
 
 .email input{
-    border: 1px solid #fff;
+    border: 1px solid #219ec5;
     padding-left: 2px;
+    border-radius: 3px;
+    background: #219ec5;
 }
 
 .email input:focus{
-    border: 1px solid #353030;
+    border: 1px solid #219ec5;
     border-radius: 3px;
     background: #fff !important;
     color: #353030 !important;
@@ -159,6 +177,7 @@
     background: #219ec5;
     color: #fff;
     border-radius: 3px;
+    cursor: pointer;
 }
 
 .items{
@@ -177,20 +196,21 @@
     text-align: center;
     margin-left: 5px;
     float: left;
+    color: #fff;
 }
 
 .items i:hover{
-    color: #219ec5;
+    color: #1cb6e6;
 }
 
 .items .selected{
-    color: #219ec5;
+    color: #1cb6e6;
 }
 
 .chatHome .searchButton{
     position: absolute;
-    top: 4px;
-    right: 20px;
+    top: 6px;
+    right: 10px;
 }
 
 .chatHome .searchDiv{
@@ -205,19 +225,19 @@
     left: 17%;
     width: 15px;
     height: 15px;
-    border-right: 1px solid #eaeaea;
-    border-bottom: 1px solid #eaeaea;
+    border-right: 1px solid #85cee4;
+    border-bottom: 1px solid #85cee4;
     transform: rotate(45deg);
-    background: #eaeaea;
+    background: #85cee4;
     border-radius: 10px 0px 0px 0px;
 }
 
 .chatHome .intro{
-    background: #eaeaea;
+    background: #85cee4;
     color: #353030;
     font-size: 0.8em;
     padding: 5px 10px 5px 10px;
-    border: 1px solid #eaeaea;
+    border: 1px solid #85cee4;
     box-shadow: none;
     border-radius: 3px;
 }
@@ -225,7 +245,7 @@
 .chatHome .intro:focus{
     background: #fff;
     color: #353030;
-    border: 1px solid #353030;
+    border: 1px solid #219ec5;
     box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
 }
 
@@ -246,7 +266,7 @@
 .groups .group{
     border: 1px solid #219ec5;
     border-radius: 3px;
-    padding-left: 19px;
+    padding-left: 25px;
     height: 35px;
     margin-top: 1px;
     position: relative;
@@ -254,7 +274,11 @@
     line-height: 35px;
     background: #219ec5;
     font-weight: bold;
-    color: #fff;
+    color: #353535;
+}
+
+.group:hover{
+    background: #85cee4;
 }
 
 .group .groupFoot{
@@ -262,7 +286,7 @@
     position: absolute;
     width: 0;
     height: 0;
-    border-left: 7px solid #fff;
+    border-left: 7px solid #353535;
     border-top: 7px solid transparent;
     border-bottom: 7px solid transparent;
     top: 9px;
@@ -275,12 +299,13 @@
     border-radius: 3px;
     padding-left: 20px;
     position: relative;
-    background: #eaeaea;
+    background: #219ec5;
+    color: #353535;
 }
 
 .groups .user:hover{
     background: #85cee4;
-    color: #fff;
+    color: #353535;
 }
 
 .user .userFace{
@@ -350,7 +375,7 @@
     z-index: 10020;
     /* left: 3px; */
     border-radius: 3px;
-    background: #fff;
+    background: #219ec5;
     top: 35px;
     overflow-y: auto;
 }
@@ -361,12 +386,12 @@
      margin: 1px auto; 
      border-radius: 3px; 
     position: relative;
-    background: #eaeaea;
+    background: #219ec5;
 }
 
 .oneUser:hover{
     background: #85cee4;
-    color: #fff;
+    /*color: #fff;*/
 }
 
 .oneUser .oneUserFace{
@@ -427,7 +452,7 @@
     right: 1px;
     top: 41px;
     display: none;
-    background: #219ec5;
+    background: #fff;
     color: #fff;
     border-radius: 3px;
     box-shadow: 4px 4px 4px rgba(0,0,0,0.5);
@@ -437,7 +462,7 @@
 
 .addToGroup span{
     display: block;
-    border: 1px solid #219ec5;
+    border: 1px solid #fff;
     padding: 2px 5px;
     border-radius: 3px;
     margin-top: 1px;
@@ -447,8 +472,8 @@
 }
 
 .addToGroup span:hover{
-    background: #353030;
-    color: #fff;
+    background: #219ec5;
+    /*color: #fff;*/
 }
 
 .hideUser{
@@ -458,14 +483,14 @@
 .faceStore{
     display: none;
     position: absolute;
-    width: 342px;
+    width: 286px;
     height: 172px;
     display: none;
     z-index: 73;
     left: 102px;
-    background: #219ec5;
+    background: #fff;
     border-radius: 3px;
-    box-shadow: 4px 4px 4px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 10px #000;
 }
 
 .faceStore img{
@@ -477,7 +502,7 @@
 }
 
 .faceStore img:hover{
-    border: 2px solid #353030;
+    border: 2px solid #219ec5;
 }
 
 

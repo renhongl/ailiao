@@ -36,10 +36,7 @@ define([], function() {
         }
 
         _handleMousedown(e) {
-            let {
-                left,
-                top
-            } = this.$container.css(['left', 'top']);
+            let {left, top} = this.$container.css(['left', 'top']);
             this.offsetX = this._parseStr(left) - e.clientX;
             this.offsetY = this._parseStr(top) - e.clientY;
             this.mouseDown = true;

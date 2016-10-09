@@ -8,8 +8,9 @@
 
 .register .registerBt{
     width: 100%;
-    background: #353030;
-    color: white;
+    background: #219ec5;
+    color: #ffffff;
+    border: none;
 }
 
 .register .name{
