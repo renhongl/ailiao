@@ -4,7 +4,8 @@
 'use strict';
 
 class Forward{
-    constructor(socket){
+    constructor(io, socket){
+        this.io = io;
         this.socket = socket;
         this._forward();
     }
@@ -15,7 +16,7 @@ class Forward{
         });
 
         this.socket.on('error', function(e){
-            console.log('error');
+            console.log(e);
         });
 
         this.socket.on('disconnect', function(e){
@@ -23,8 +24,8 @@ class Forward{
         });
 
         this.socket.on('forward', (fromUser, toUser, content) => {
-            this.socket.emit('lrh', '你好大漠如风');
-            this.socket.emit('lrh000', '你好，新人。');
+            this.io.sockets.emit(fromUser, {from: fromUser, to: toUser, content: content});
+            this.io.sockets.emit(toUser, {from: fromUser, to: toUser, content: content});
         });
     }
 }

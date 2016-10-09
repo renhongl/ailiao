@@ -178,6 +178,10 @@ define(['Controller'], function (Controller) {
 
         _addToGroup(e) {
             let addUser = $(e.target).parent().parent().find('.oneUserName').text();
+            if(addUser === localStorage.name){
+                new AP.Message('error', '自己不能加自己。');
+                return;
+            }
             let allUsers = [];
             let $parent = $(e.target).parent();
             $parent.hide();
@@ -272,7 +276,7 @@ define(['Controller'], function (Controller) {
                 if (result.status === 'error') {
                     new AP.Message('error', result.text);
                 } else {
-                    new AP.Message('infor', '修改头像成功。');
+                    //new AP.Message('infor', '修改头像成功。');
                 }
             };
             AP.Ajax.post(url, postData, callback);
@@ -288,7 +292,7 @@ define(['Controller'], function (Controller) {
                 if (result.status === 'error') {
                     new AP.Message('error', result.text);
                 } else {
-                    new AP.Message('infor', '修改email地址成功。');
+                    //new AP.Message('infor', '修改email地址成功。');
                 }
             };
             AP.Ajax.post(url, postData, callback);
@@ -304,7 +308,7 @@ define(['Controller'], function (Controller) {
                 if (result.status === 'error') {
                     new AP.Message('error', result.text);
                 } else {
-                    new AP.Message('infor', '修改状态成功。');
+                   // new AP.Message('infor', '修改状态成功。');
                 }
             };
             AP.Ajax.post(url, postData, callback);
@@ -320,7 +324,7 @@ define(['Controller'], function (Controller) {
                 if (result.status === 'error') {
                     new AP.Message('error', result.text);
                 } else {
-                    new AP.Message('infor', '修改签名成功。');
+                    //new AP.Message('infor', '修改签名成功。');
                 }
             };
             AP.Ajax.post(url, postData, callback);

@@ -7,7 +7,6 @@
 'use strict';
 
 const Server = require('./Server');
-const Test = require('../wsRouter/Test');
 const Forward = require('../wsRouter/Forward');
 
 class WebSocket extends Server{
@@ -22,15 +21,15 @@ class WebSocket extends Server{
     }
 
     _connect(){
-        this.io.on('connection', (socket) => {
+        let io = this.io;
+        io.on('connection', (socket) => {
             socket.emit('message', 'WebSocket working successfully!');
-            this._addRouter(socket);
+            this._addRouter(io, socket);
         });
     }
 
-    _addRouter(socket){
-        new Test(socket);
-        new Forward(socket);
+    _addRouter(io, socket){
+        new Forward(io, socket);
     }
 }
 

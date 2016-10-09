@@ -78,6 +78,9 @@ define([], function() {
                     this.title = '警告';
                     this._warning();
                     break;
+                case 'message': 
+                    this._message();
+                    break;
                 default: 
                     break;
             }
@@ -188,6 +191,17 @@ define([], function() {
                 icon: 'fa fa-bell',
                 title: this.title,
                 content: this.content,
+            };
+            this._getInstance(options);
+        }
+
+        _message(){
+            this.title = this.content.fromUser;
+            let options = {
+                color: '#00af4f',
+                icon: 'fa fa-commenting',
+                title: this.title,
+                content: this.content.content,
             };
             this._getInstance(options);
         }

@@ -9,8 +9,9 @@
     float: left;
 }
 
-#chatRoom{
-    /*padding-top: 28px !important;*/
+#chatRoom ::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #ffffff;
 }
 
 .chatRecord{
@@ -30,6 +31,10 @@
     height: 60%;
     width: 100%;
     overflow-y: auto;
+}
+
+.chatContent div{
+    display: none;
 }
 
 .chatFoot{
@@ -109,6 +114,8 @@
     width: 80%;
     float: right;
     position: relative;
+    margin-top: 20px;
+    display: block !important;
 }
 
 .you img{
@@ -127,8 +134,9 @@
     margin-top: 4px;
     border-radius: 5px;
     background: #05d0ac;
-    color: #fff;
+    color: #000;
     max-width: 80%;
+    font-size: 0.9em;
 }
 
 .you span{
@@ -147,6 +155,8 @@
     width: 80%;
     float: left;
     position: relative;
+    margin-top: 20px;
+    display: block !important;
 }
 
 .notYou img{
@@ -165,8 +175,9 @@
     margin-top: 4px;
     border-radius: 5px;
     background: #06aee2;
-    color: #fff;
+    color: #000;
     max-width: 80%;
+    font-size: 0.9em;
 }
 
 .notYou span{
@@ -207,6 +218,25 @@
     width: 67px;
     line-height: 16px;
     background: #219ec5;
-    color: #fff;
+    color: #000;
     outline: none;
+    border: none;
+}
+
+.oprate button:hover{
+    background: #85cee4;
+}
+
+.notYou .time{
+    position: absolute;
+    top: -14px;
+    left: 78px;
+    font-size: 0.5em;
+}
+
+.you .time{
+    position: absolute;
+    top: -14px;
+    right: 78px;
+    font-size: 0.5em;
 }

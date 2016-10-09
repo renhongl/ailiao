@@ -16,8 +16,8 @@ define([], function() {
     Constant.DEFAULT_INTRO = '说点什么？';
     Constant.DEFAULT_STATUS = '/images/online.png',
     Constant.DEFAULT_GROUPS = [{name: '管理员', users: []},{name: '默认分组', users: []}],
-    Constant.DEFAULT_CHATTINGS = [{name: '大风', face:'/images/f1.jpg', status:'/images/online.png', current: true}, {name: '风', face:'/images/f1.jpg', status:'/images/online.png'}, {name: '大漠', face:'/images/f1.jpg', status:'/images/online.png'}];
-    Constant.DEFAULT_CURRENT = {name: '风如大漠', intro: '我是风如大漠。你们好。'};
+    Constant.DEFAULT_CHATTINGS = [];
+    Constant.DEFAULT_CURRENT = {};
 
     //URL
     Constant.BASE_SERVER = 'http://127.0.0.1:8080/'; //http://renhongl.hk1.ngrok.cc/
@@ -31,7 +31,8 @@ define([], function() {
     Constant.ADDTOGROUP = Constant.BASE_SERVER + 'addToGroup';
     Constant.REMOVEUSER = Constant.BASE_SERVER + 'removeUser';
 
-    Constant.GETRECORD = Constant.BASE_SERVER + 'getRecord';
+    Constant.GETRECORDS = Constant.BASE_SERVER + 'getRecords';
+    Constant.SAVERECORDS = Constant.BASE_SERVER + 'saveRecords';
     
     return Constant;
 });

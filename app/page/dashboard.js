@@ -27,7 +27,7 @@ define([], function () {
                 id: 'ChatRoom',
                 type: 'dialog',
                 show: false,
-                showTitle: false,
+                showTitle: true,
                 settings: {
                     width: 650,
                     height: 600,
@@ -38,7 +38,7 @@ define([], function () {
                     name: 'chat/chatRoom',
                     id: 'chatRoom',
                     type: 'module',
-                    showTitle: false,
+                    showTitle: true,
                 }
             },
         ]
