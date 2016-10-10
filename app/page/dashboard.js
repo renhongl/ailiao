@@ -10,8 +10,8 @@ define([], function () {
                 type: 'dialog',
                 showTitle: true,
                 settings: {
-                    width: 400,
-                    height: 700,
+                    width: 350,
+                    height: 600,
                     x: 100,
                     y: 20,
                 },
@@ -29,8 +29,8 @@ define([], function () {
                 show: false,
                 showTitle: true,
                 settings: {
-                    width: 650,
-                    height: 600,
+                    width: 550,
+                    height: 550,
                     x: 600,
                     y: 20,
                 },
