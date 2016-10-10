@@ -1,4 +1,5 @@
 <div class="chatRoom">
+    <audio class="msgVoice"></audio>
     <div class="chatNavbar">
         <template v-for="chatting in chattings">
             <div class="chatting button" v-bind:class="{'current': chatting.current}" v-on:click="selectChatting">

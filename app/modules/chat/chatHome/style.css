@@ -81,7 +81,7 @@
     list-style-type: none;
     height: 20px;
     padding-left: 5px;
-    width: 100%;
+    width: 98%;
     margin: 1px auto;
     border-radius: 3px;
     /* background: #eaeaea; */
@@ -93,14 +93,14 @@
 }
 
 .status ul{
-        padding: 5px;
+    /*padding: 5px;*/
     position: absolute;
     background: #fff;
     /* height: 63px; */
     z-index: 10;
     /* border: 1px solid #353030; */
     width: 150px;
-    padding: 5px;
+    /*padding: 5px;*/
     display: none;
     top: 28px;
     left: 0px;
@@ -131,6 +131,14 @@
     box-shadow: 0px 0px 10px #fff;
 }
 
+.statusSelect .fa-check{
+    color: transparent;
+}
+
+.statusSelect .checked{
+    color: #000 !important;
+}
+
 .statusValue{
     width: 27px;
     border-radius: 3px;
@@ -146,7 +154,7 @@
 
 .statusSelect span{
     display: inline-block;
-    margin-left: 30px;
+    margin-left: 15px;
     vertical-align: middle;
 }
 
@@ -222,7 +230,7 @@
 .chatHome .introFoot{
     position: absolute;
     top: 23px;
-    left: 17%;
+    left: 21%;
     width: 15px;
     height: 15px;
     border-right: 1px solid #85cee4;
@@ -255,7 +263,7 @@
 }
 
 .groups{
-    height: 430px;
+    height: 416px;
     border-radius: 3px;
     width: 98%;
     margin: 0 auto;
@@ -370,7 +378,7 @@
 .searchContainer{
     border: 0px solid #353030; 
     width: 100%;
-    height: 430px;
+    height: 443px;
     position: absolute;
     z-index: 10020;
     /* left: 3px; */
@@ -444,7 +452,7 @@
 }
 
 .addToGroup{
-    width: 134px; 
+    width: 130px;
     height: auto;
     /* border: 1px solid red; */
     position: absolute;
@@ -456,7 +464,7 @@
     color: #fff;
     border-radius: 3px;
     box-shadow: 4px 4px 4px rgba(0,0,0,0.5);
-    padding: 5px 10px;
+    /* padding: 5px 10px; */
     text-align: left;
 }
 
@@ -465,10 +473,11 @@
     border: 1px solid #fff;
     padding: 2px 5px;
     border-radius: 3px;
-    margin-top: 1px;
+    margin: 1px auto;
     margin-bottom: 1px;
     color: #353030;
     font-size: 0.8em;
+    width: 98%;
 }
 
 .addToGroup span:hover{
@@ -483,7 +492,7 @@
 .faceStore{
     display: none;
     position: absolute;
-    width: 286px;
+    width: 219px;
     height: 172px;
     display: none;
     z-index: 73;
@@ -497,7 +506,7 @@
     width: 40px;
     height: 40px;
     border-radius: 3px;
-    margin-left: 11px;
+    margin-left: 9px;
     margin-top: 10px;
 }
 
@@ -505,5 +514,57 @@
     border: 2px solid #219ec5;
 }
 
+.tools{
+    width: 100%;
+    height: 27px;
+    margin: 0 auto;
+    border-radius: 3px;
+}
 
+.tools i{
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    margin-top: 0px;
+    margin-left: 5px;
+    line-height: 25px;
+    text-align: center;
+    border-radius: 3px;
+}
 
+.tools i:hover{
+    background: #85cee4;
+}
+
+.tools ul{
+    position: absolute;
+    display: none;
+    width: 224px;
+    height: 300px;
+    bottom: 35px;
+    left: 8px;
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0px 0px 10px #000;
+}
+
+.toolsUL li{
+    margin: 1px auto;
+    width: 98%;
+    border-radius: 3px;
+    height: 30px;
+    padding-left: 11px;
+    line-height: 30px;
+}
+
+.toolsUL li:hover{
+    background: #219ec5;
+}
+
+.toolsUL hr{
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid #e2d3d3;
+    width: 88%;
+    margin: 0 auto;
+}

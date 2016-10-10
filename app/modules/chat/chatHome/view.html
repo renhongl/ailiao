@@ -27,6 +27,8 @@
                 <li><img src="/images/online.png"><span>在线</span></li>
                 <li><img src="/images/offline.jpg"><span>离线</span></li>
                 <li><img src="/images/busy.jpg"><span>忙碌</span></li>
+                <li v-on:click="switchVoice" class="button"><i class="fa fa-check button" aria-hidden="true" v-bind:class="{'checked': !openVoice}"></i><span class="button">关闭声音</span></li>
+                <li v-on:click="switchMsgView" class="button"><i class="fa fa-check button" aria-hidden="true" v-bind:class="{'checked': !msgView}"></i><span class="button">关闭消息预览</span></li>
             </ul>
         </div>
         <div class="email">
@@ -64,10 +66,22 @@
                     <img v-bind:src="user.status" class="userStatus">
                     <span class="userName">{{ user.name }}</span>
                     <span class="userIntro">{{ user.intro }}</span>
-                    <i class="fa fa-trash" aria-hidden="true" v-on:click="removeUser"></i>
+                    <i class="fa fa-trash button" aria-hidden="true" v-on:click="removeUser"></i>
                     <i class="fa fa-comments button" aria-hidden="true" v-on:click="addChatting"></i>
                     </div>
             </template>
         </template>
+    </div>
+    <div class="tools">
+        <i class="fa fa-bars button toggleTools" aria-hidden="true"></i>
+        <ul class="toolsUL">
+            <li>添加分组</li>
+            <li>修改组名称</li>
+            <li>删除分组</li>
+            <hr/>
+            <li>我的资料</li>
+            <li>修改密码</li>
+            <li>退出</li>
+        </ul>
     </div>
 </div>

@@ -26,6 +26,7 @@ require.config({
         jquery: 'libs/jquery',
         io: 'libs//socket.io',
         bootstrap: 'libs/bootstrap/js/bootstrap.min',
+        bootstrapSwitch: 'libs/bootstrap/js/bootstrap-switch.min',
         Vue: 'libs/vue',
 
     }

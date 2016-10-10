@@ -5,6 +5,7 @@ const assert = require('assert');
 
 class Records {
     constructor(app) {
+        this.recordsLength = 100;
         this.app = app;
         this.currentDB = 'ap';
         this.userCollection = 'records';
@@ -14,6 +15,7 @@ class Records {
 
     _saveRecords() {
         this.app.post('/saveRecords', (req, res) => {
+            let recordsLength = this.recordsLength;
             let insertData = req.body.records;
             let queryData = {
                 you: req.body.records.you,
@@ -30,6 +32,9 @@ class Records {
                         });
                     } else {
                         let tempRecords = insertData.records;
+                        if(tempRecords.length > recordsLength){
+                            tempRecords = tempRecords.splice(tempRecords.length - recordsLength, tempRecords.length -1);
+                        }
                         collection.updateOne(queryData, {$set: {records: tempRecords}}, function(err, result){
                             assert.equal(null, err);
                             db.close();

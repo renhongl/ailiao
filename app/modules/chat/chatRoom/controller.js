@@ -22,25 +22,44 @@ define(['Controller'], function (Controller) {
                     you: {
 
                     },
+                    openVioce: true,
                     msgView: true,
+                    msgVoiceSource: '/musics/msg.wav',
                 },
                 methods: {
                     selectChatting: that._selectChatting.bind(that),
                     removeChatting: that._removeChatting.bind(that),
                     sendTo: that._sendTo.bind(that),
+                    
                 },
             };
             this.vue = new AP.Vue(config);
         }
 
         _renderTree() {
-        
-	}
+
+        }
 
         _handleEvents() {
             setInterval(() => {
-                 this._saveRecords();
+                this._saveRecords();
             }, 30000)
+
+            $.subscribe('switchVoice', () => {
+                if(this.vue.openVioce){
+                    this.vue.openVioce = false;
+                }else{
+                    this.vue.openVioce = true;
+                }
+            });
+
+            $.subscribe('switchMsgView', () => {
+                if(this.vue.msgView){
+                    this.vue.msgView = false;
+                }else{
+                    this.vue.msgView = true;
+                }
+            });
 
             $.subscribe('addChatting', (o, args) => {
                 $('#ChatRoom').show();
@@ -63,53 +82,64 @@ define(['Controller'], function (Controller) {
 
             let name = localStorage.name;
             AP.socket.on(name, (msg) => {
-	        this._getMsg(name, msg);
+                this._getMsg(name, msg);
             });
         }
 
-	_getMsg(name, msg){
-                if(this.vue.you.name === msg.from){
-                    this.vue.current.name = msg.to;
-                }else{
-                    this.vue.current.name = msg.from;
-                    if(this.vue.msgView){
-                        new AP.Message('message', {fromUser: msg.from, content: msg.content});
-                    }
-                }
+        _playVoice() {
+            if(this.vue.openVioce){
+                let audio = document.querySelector('.msgVoice');
+                audio.setAttribute("src", this.vue.msgVoiceSource);
+                audio.play();
+            }
+        }
 
-                if($('#ChatRoom').css('display') !== 'block'){
-                    this._addChatting({name: this.vue.current.name});
+        _getMsg(name, msg) {
+            if (this.vue.you.name === msg.from) {
+                this.vue.current.name = msg.to;
+            } else {
+                this.vue.current.name = msg.from;
+                if (this.vue.msgView) {
+                    new AP.Message('message', { fromUser: msg.from, content: msg.content });
                 }
-                
-                this._getYourInfor();
-                this._getCurrentInfor();
+            }
 
+            if ($('#ChatRoom').css('display') !== 'block') {
+                this._addChatting({ name: this.vue.current.name });
+            }
+
+            this._getYourInfor();
+            this._getCurrentInfor();
+
+            setTimeout(() => {
+                let record = {
+                    time: new Date().toISOString().split('.')[0].replace(/T/g, ' '),
+                    name: msg.from,
+                    face: msg.from === this.vue.you.name ? this.vue.you.face : this.vue.current.face,
+                    content: msg.content,
+                };
+                this.vue.records.you = this.vue.you.name;
+                this.vue.records.notYou = this.vue.current.name;
+                this.vue.records.records.push(record);
                 setTimeout(() => {
-                    let record = {
-                        time: new Date().toISOString().split('.')[0].replace(/T/g,' '),
-                        name: msg.from,
-                        face: msg.from === this.vue.you.name ? this.vue.you.face : this.vue.current.face,
-                        content: msg.content,
-                    };
-                    this.vue.records.you = this.vue.you.name;
-                    this.vue.records.notYou = this.vue.current.name;
-                    this.vue.records.records.push(record);
-                    setTimeout(function () {
-                        $('.chatContent').scrollTop($('.chatContent')[0].scrollHeight + 100);
-                    }, 100);
-                }, 500);
-	}
+                    if(localStorage.name !== msg.from){
+                        this._playVoice();
+                    }
+                    $('.chatContent').scrollTop($('.chatContent')[0].scrollHeight);
+                }, 100);
+            }, 500);
+        }
 
-        _saveRecords(){
-	    if(this.vue.records.you === '' || this.vue.records.notYou === ''){
-		return;
-	    }
+        _saveRecords() {
+            if (this.vue.records.you === '' || this.vue.records.notYou === '') {
+                return;
+            }
             let url = AP.Constant.SAVERECORDS;
             let postData = {
                 records: this.vue.records,
             };
             let callback = (result) => {
-                console.log(result);
+                //console.log(result);
             };
             AP.Ajax.post(url, postData, callback);
         }
@@ -158,26 +188,43 @@ define(['Controller'], function (Controller) {
 
         _removeChatting(e) {
             this._saveRecords();
-            let name = $(e.target).parent().find('.chattingName').text() || this.vue.current.name;
+
             let tempChattings = [];
+            let name = $(e.target).parent().find('.chattingName').text() || this.vue.current.name;
+
+            if(this.vue.chattings[0].name === name && name === this.vue.current.name && this.vue.chattings.length !== 1){
+                this._selectChatting('event', this.vue.chattings[1].name);
+            }
+            if(name === this.vue.current.name){
+                this._selectChatting('event', this.vue.chattings[0].name);
+            }
+            if ($(e.target).parent().find('.chattingName').text() === '') {
+                let current = this.vue.chattings[this.vue.chattings.length - 1].name;
+                this._selectChatting('event', current);
+            }
+
             for (let one of this.vue.chattings) {
                 if (one.name !== name) {
                     tempChattings.push(one);
                 }
             }
             this.vue.chattings = tempChattings;
+
             if (this.vue.chattings.length === 0) {
                 $('#ChatRoom').hide();
             }
-            if($(e.target).parent().find('.chattingName').text() === ''){
-                let current = this.vue.chattings[this.vue.chattings.length - 1].name;
-                this._addChatting({name: current});
-            }
+            
         }
 
-        _selectChatting(e) {
+        _selectChatting(e, current) {
             this._saveRecords();
-            let name = $(e.target).parent().find('.chattingName').text();
+            let name = '';
+            if(current !== undefined){
+                name = current;
+            }else{
+                name = $(e.target).parent().find('.chattingName').text();
+            }
+            
             for (let one of this.vue.chattings) {
                 if (one.name === name) {
                     one.current = true;
@@ -189,6 +236,9 @@ define(['Controller'], function (Controller) {
                 }
             }
 
+            setTimeout(() => {
+                $('.chatContent').scrollTop($('.chatContent')[0].scrollHeight);
+            }, 100);
             this._getRecords();
             this._getYourInfor();
             this._getCurrentInfor();
@@ -217,6 +267,9 @@ define(['Controller'], function (Controller) {
                     this.vue.chattings.push(chatting);
                 }
 
+                setTimeout(() => {
+                    $('.chatContent').scrollTop($('.chatContent')[0].scrollHeight);
+                }, 100);
                 this._getRecords();
                 this._getYourInfor();
                 this._getCurrentInfor();

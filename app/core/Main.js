@@ -21,7 +21,8 @@ define([
     'Vue',
     'Auth',
     'WebSocket',
-    'bootstrap'
+    'bootstrap',
+    'bootstrapSwitch'
 ], function(Constant, Test, QueryString, Ajax, Page, Tipy, Draggable, Rain, Observer, Message, Vue, Auth, WebSocket) {
     'use strict';
     class Main {

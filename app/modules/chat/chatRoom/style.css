@@ -131,10 +131,10 @@
     float: right;
     margin-right: 13px;
     padding: 5px 10px;
-    margin-top: 4px;
+    margin-top: 8px;
     border-radius: 5px;
     background: #05d0ac;
-    color: #000;
+    color: #fff;
     max-width: 80%;
     font-size: 0.9em;
 }
@@ -147,7 +147,7 @@
     border-left: 13px solid #05d0ac;
     border-top: 3px solid transparent;
     border-bottom: 9px solid transparent;
-    top: 8px;
+    top: 12px;
     right: 60px;
 }
 
@@ -172,15 +172,15 @@
     float: left;
     margin-left: 13px;
     padding: 5px 10px;
-    margin-top: 4px;
+    margin-top: 8px;
     border-radius: 5px;
     background: #06aee2;
-    color: #000;
+    color: #fff;
     max-width: 80%;
     font-size: 0.9em;
 }
 
-.notYou span{
+.notYou .recordFoot{
     display: block;
     width: 0;
     height: 0;
@@ -188,13 +188,13 @@
     border-right: 13px solid #06aee2;
     border-top: 3px solid transparent;
     border-bottom: 9px solid transparent;
-    top: 8px;
+    top: 12px;
     left: 60px;
 }
 
 .chatFoot .tools{
     width: 100%;
-    height: 20%;
+    height: 18%;
 }
 
 .chatFoot textarea{
@@ -230,14 +230,14 @@
 
 .notYou .time{
     position: absolute;
-    top: -14px;
+    top: -8px;
     left: 78px;
     font-size: 0.5em;
 }
 
 .you .time{
     position: absolute;
-    top: -14px;
-    right: 78px;
+    top: -8px;
+    right: 61px;
     font-size: 0.5em;
 }

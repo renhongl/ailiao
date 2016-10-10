@@ -20,6 +20,8 @@ define(['Controller'], function (Controller) {
                     allUsers: [],
                     filterName: '',
                     extend: {},
+                    openVoice: true,
+                    msgView: true,
                 },
                 methods: {
                     setIntro: that._setIntro.bind(that),
@@ -30,50 +32,21 @@ define(['Controller'], function (Controller) {
                     removeUser: that._removeUser.bind(that),
                     toggleFaceStore: that._toggleFaceStore.bind(that),
                     addChatting: that._addChatting.bind(that),
+                    switchVoice: that._switchVoice.bind(that),
+                    switchMsgView: that._switchMsgView.bind(that),
                 }
             };
             this.vue = new AP.Vue(config);
         }
 
         _renderTree() {
-            
+
         }
 
         _handleEvents() {
 
             $.subscribe('userInfo-loaded', (o, args) => {
-                this.vue.name = args.infor.name;
-                if(this.firstLoad){
-                    this.vue.status = AP.Constant.DEFAULT_STATUS;
-                }else{
-                    this.vue.status = args.infor.status || AP.Constant.DEFAULT_STATUS;
-                }
-                
-                this.vue.email = args.infor.email || AP.Constant.DEFAULT_EMAIL;
-                this.vue.intro = args.infor.intro || AP.Constant.DEFAULT_INTRO;
-                this.vue.face = args.infor.face || AP.Constant.DEFAULT_FACE;
-                this.vue.groups = args.infor.groups || AP.Constant.DEFAULT_GROUPS;
-                for(let group of this.vue.groups){
-                    let groupName = group.name;
-                    if(this.vue.extend[groupName] === undefined){
-                        this.vue.extend[groupName] = false;
-                    }
-                }
-
-                this._setIntro();
-                this._setEmail();
-                this._setFace();
-                this._setStatus();
-                this._setGroup();
-                this._initUser();
-                this._initGroup();
-
-                if(this.firstLoad){
-                    this.firstLoad = false;
-                    setInterval(() => {
-                        this._initGroup();
-                    }, 10000);
-                }
+                this._initAll(args);
             });
 
             window.onbeforeunload = () => {
@@ -105,6 +78,9 @@ define(['Controller'], function (Controller) {
 
             $('.statusSelect li').on('click', (e) => {
                 $('.statusSelect').toggle();
+                if ($(e.target).find('img').attr('src') === undefined && $(e.target).parent().find('img').attr('src') === undefined) {
+                    return;
+                }
                 this.vue.status = $(e.target).find('img').attr('src') || $(e.target).parent().find('img').attr('src');
                 this._setStatus();
             });
@@ -133,18 +109,75 @@ define(['Controller'], function (Controller) {
                 this._setFace();
                 $('.faceStore').hide();
             });
+
+            $('.toggleTools').on('click', function () {
+                $('.toolsUL').toggle();
+            });
         }
 
-        _addChatting(e){
+        _initAll(args) {
+            this.vue.name = args.infor.name;
+            if (this.firstLoad) {
+                this.vue.status = AP.Constant.DEFAULT_STATUS;
+            } else {
+                this.vue.status = args.infor.status || AP.Constant.DEFAULT_STATUS;
+            }
+
+            this.vue.email = args.infor.email || AP.Constant.DEFAULT_EMAIL;
+            this.vue.intro = args.infor.intro || AP.Constant.DEFAULT_INTRO;
+            this.vue.face = args.infor.face || AP.Constant.DEFAULT_FACE;
+            this.vue.groups = args.infor.groups || AP.Constant.DEFAULT_GROUPS;
+            for (let group of this.vue.groups) {
+                let groupName = group.name;
+                if (this.vue.extend[groupName] === undefined) {
+                    this.vue.extend[groupName] = false;
+                }
+            }
+
+            this._setIntro();
+            this._setEmail();
+            this._setFace();
+            this._setStatus();
+            this._setGroup();
+            this._initUser();
+            this._initGroup();
+
+            if (this.firstLoad) {
+                this.firstLoad = false;
+                setInterval(() => {
+                    this._initGroup();
+                }, 10000);
+            }
+        }
+
+        _switchMsgView() {
+            if (this.vue.msgView) {
+                this.vue.msgView = false;
+            } else {
+                this.vue.msgView = true;
+            }
+            $.publish('switchMsgView');
+        }
+
+        _switchVoice() {
+            if (this.vue.openVoice) {
+                this.vue.openVoice = false;
+            } else {
+                this.vue.openVoice = true;
+            }
+            $.publish('switchVoice');
+        }
+
+        _addChatting(e) {
             let name = $(e.target).parent().find('.userName').text();
-            $.publish('addChatting', {name: name});
+            $.publish('addChatting', { name: name });
         }
 
-        _toggleFaceStore(){
+        _toggleFaceStore() {
             $('.faceStore').toggle();
         }
 
-        _removeUser(e){
+        _removeUser(e) {
             let removeUser = $(e.target).parent().find('.userName').text();
             let user = localStorage.name;
             let postData = {
@@ -153,7 +186,7 @@ define(['Controller'], function (Controller) {
             };
             let url = AP.Constant.REMOVEUSER;
             let callback = (result) => {
-                if(result.status === 'success'){
+                if (result.status === 'success') {
                     $.publish('needRefresh');
                     new AP.Message('success', '删除成功。');
                 }
@@ -166,9 +199,9 @@ define(['Controller'], function (Controller) {
         }
 
         _extendGroup(e) {
-            if(this.vue.extend[$(e.target).text()]){
+            if (this.vue.extend[$(e.target).text()]) {
                 this.vue.extend[$(e.target).text()] = false;
-            }else{
+            } else {
                 this.vue.extend[$(e.target).text()] = true;
             }
             $("." + $(e.target).text()).toggle();
@@ -178,7 +211,7 @@ define(['Controller'], function (Controller) {
 
         _addToGroup(e) {
             let addUser = $(e.target).parent().parent().find('.oneUserName').text();
-            if(addUser === localStorage.name){
+            if (addUser === localStorage.name) {
                 new AP.Message('error', '自己不能加自己。');
                 return;
             }
@@ -194,19 +227,19 @@ define(['Controller'], function (Controller) {
                 addGroup: addGroup,
             };
             let callback = (result) => {
-                if(result.status === 'success'){
+                if (result.status === 'success') {
                     $('.searchContainer').hide();
                     $.publish('needRefresh');
                     new AP.Message('success', '添加成功。');
-                }   
+                }
             };
 
-            for(let group of this.vue.groups){
-                for(let user of group.users){
+            for (let group of this.vue.groups) {
+                for (let user of group.users) {
                     allUsers.push(user.name);
                 }
             }
-            if(allUsers.indexOf(addUser) !== -1){
+            if (allUsers.indexOf(addUser) !== -1) {
                 new AP.Message('error', '同一个用户不能多次添加。');
                 return;
             }
@@ -250,7 +283,7 @@ define(['Controller'], function (Controller) {
             AP.Ajax.post(url, postData, callback);
         }
 
-        _setGroup(){
+        _setGroup() {
             let url = AP.Constant.SETINFOR;
             let postData = {
                 name: this.vue.name,
@@ -308,7 +341,7 @@ define(['Controller'], function (Controller) {
                 if (result.status === 'error') {
                     new AP.Message('error', result.text);
                 } else {
-                   // new AP.Message('infor', '修改状态成功。');
+                    // new AP.Message('infor', '修改状态成功。');
                 }
             };
             AP.Ajax.post(url, postData, callback);
