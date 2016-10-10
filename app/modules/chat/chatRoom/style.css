@@ -92,7 +92,7 @@
 
 .currentIntro{
     display: block;
-    font-size: 0.3em;
+    font-size: 0.5em;
     padding-left: 10px;
 }
 
@@ -139,7 +139,7 @@
     font-size: 0.9em;
 }
 
-.you span{
+.you .recordFoot{
     display: block;
     width: 0;
     height: 0;

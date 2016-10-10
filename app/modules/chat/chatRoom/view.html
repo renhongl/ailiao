@@ -17,10 +17,10 @@
         <div class="chatContent">
             <template v-for="record in records.records">
                 <div v-bind:class="{'you': record.name === records.you, 'notYou': record.name === records.notYou}">
-                    <div class="time">{{ record.time }}</div>
+                    <span class="time">{{ record.time }}</span>
                     <img v-bind:src="record.face">
                     <p>{{ record.content }}</p>
-                    <span></span>
+                    <span class="recordFoot"></span>
                 </div>
             </template>
         </div>
