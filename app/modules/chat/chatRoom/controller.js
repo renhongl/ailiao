@@ -34,14 +34,13 @@ define(['Controller'], function (Controller) {
         }
 
         _renderTree() {
-            // this._getYourInfor();
-            // this._getCurrentInfor();
-        }
+        
+	}
 
         _handleEvents() {
-            // setInterval(() => {
-            //     this._saveRecords();
-            // }, 10000)
+            setInterval(() => {
+                 this._saveRecords();
+            }, 30000)
 
             $.subscribe('addChatting', (o, args) => {
                 $('#ChatRoom').show();
@@ -64,6 +63,11 @@ define(['Controller'], function (Controller) {
 
             let name = localStorage.name;
             AP.socket.on(name, (msg) => {
+	        this._getMsg(name, msg);
+            });
+        }
+
+	_getMsg(name, msg){
                 if(this.vue.you.name === msg.from){
                     this.vue.current.name = msg.to;
                 }else{
@@ -94,10 +98,12 @@ define(['Controller'], function (Controller) {
                         $('.chatContent').scrollTop($('.chatContent')[0].scrollHeight + 100);
                     }, 100);
                 }, 500);
-            });
-        }
+	}
 
         _saveRecords(){
+	    if(this.vue.records.you === '' || this.vue.records.notYou === ''){
+		return;
+	    }
             let url = AP.Constant.SAVERECORDS;
             let postData = {
                 records: this.vue.records,
@@ -151,6 +157,7 @@ define(['Controller'], function (Controller) {
         }
 
         _removeChatting(e) {
+            this._saveRecords();
             let name = $(e.target).parent().find('.chattingName').text() || this.vue.current.name;
             let tempChattings = [];
             for (let one of this.vue.chattings) {

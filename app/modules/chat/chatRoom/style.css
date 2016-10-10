@@ -203,6 +203,7 @@
     outline: none;
     height: 57%;
     border: none;
+    resize: none;
 }
 
 .oprate{
