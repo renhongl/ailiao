@@ -21,7 +21,10 @@ define(['jquery'], function($) {
                 zIndex: 10,
             });
 
-            let $loadingImg = $('<img/>').attr('id', 'loadingImg').css({
+            let $loadingImg = $('<img/>').attr({
+                id: 'loadingImg',
+                src: '/images/loading.gif',
+            }).css({
                 display: 'block',
                 margin: '0 auto',
                 paddingTop: '100px',
