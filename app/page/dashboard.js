@@ -11,7 +11,7 @@ define([], function () {
                 showTitle: true,
                 settings: {
                     width: 330,
-                    height: 700,
+                    height: 650,
                     x: 100,
                     y: 20,
                 },

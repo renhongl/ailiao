@@ -263,7 +263,7 @@
 }
 
 .groups{
-    height: 416px;
+    height: 366px;
     border-radius: 3px;
     width: 98%;
     margin: 0 auto;
@@ -358,6 +358,7 @@
     position: absolute;
     font-weight: bold;
     top: 7px;
+    font-size: 0.9em;
 }
 
 .user .userIntro{
@@ -378,7 +379,7 @@
 .searchContainer{
     border: 0px solid #353030; 
     width: 100%;
-    height: 443px;
+    height: 393px;
     position: absolute;
     z-index: 10020;
     /* left: 3px; */
@@ -424,6 +425,7 @@
     position: absolute;
     font-weight: bold;
     top: 7px;
+    font-size: 0.9em;
 }
 
 .oneUser .oneUserIntro{
@@ -566,5 +568,28 @@
     padding: 0;
     border-top: 1px solid #e2d3d3;
     width: 88%;
-    margin: 0 auto;
+    margin: 5px auto;
+}
+
+.addToGroup .addTitle{
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.addToGroup .addTitle:hover{
+    background: #fff;
+}
+
+.addToGroup hr{
+    padding: 0;
+    border-top: 1px solid #ded7d7;
+    width: 87%;
+    margin: 5px auto;
+}
+
+.statusSelect hr{
+    padding: 0;
+    border-top: 1px solid #ded7d7;
+    width: 91%;
+    margin: 5px auto;
 }
