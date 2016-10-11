@@ -213,7 +213,6 @@ define(['Controller'], function (Controller) {
             if (this.vue.chattings.length === 0) {
                 $('#ChatRoom').hide();
             }
-            
         }
 
         _selectChatting(e, current) {
@@ -222,7 +221,7 @@ define(['Controller'], function (Controller) {
             if(current !== undefined){
                 name = current;
             }else{
-                name = $(e.target).parent().find('.chattingName').text();
+                name = $(e.target).find('.chattingName').text() || $(e.target).parent().find('.chattingName').text();
             }
             
             for (let one of this.vue.chattings) {

@@ -4,6 +4,7 @@ define([], function() {
     const config = {
         title: 'Demo',
         dialogs: [{
+            name:'demo',
             id: 'Demo',
             type: 'dialog',
             showTitle: false,
@@ -14,11 +15,13 @@ define([], function() {
                 y: AP.height * 0 + 20,
             },
             content: {
+                name:'demo',
                 id: 'demo',
                 type: 'module',
             }
         }, 
-        {
+        {   
+            name:'demo',
             id: 'Demo2',
             type: 'dialog',
             showTitle: true,

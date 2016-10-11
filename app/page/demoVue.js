@@ -4,10 +4,11 @@ define([], function () {
     const config = {
         title: 'Vue Demo',
         dialogs: [
-            {
+            {   
+                name:'demoVue',
                 id: 'demoVue',
                 type: 'dialog',
-                showTitle: true,
+                showTitle: false,
                 settings: {
                     width: AP.width * 0.25,
                     height: AP.height * 0.45,
@@ -15,9 +16,10 @@ define([], function () {
                     y: AP.height * 0 + 20,
                 },
                 content: {
+                    name:'demoVue',
                     id: 'demoVue',
                     type: 'module',
-                    showTitle: true,
+                    showTitle: false,
                 }
             },
         ]

@@ -1,5 +1,7 @@
 <div class="demoVue">
-    <div id="test">
-        {{message}}
+    <div>
+        <ul>
+            <li v-for="i in items" transition="users" track-by="$index">{{ i }}</li>
+        </ul>
     </div>
 </div>

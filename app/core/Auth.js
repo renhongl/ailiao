@@ -6,7 +6,7 @@ define([], function() {
     class Auth {
         constructor() {
             this.checkValidThread = null;
-            this._valid();
+            //this._valid();
         }
 
         _valid(){

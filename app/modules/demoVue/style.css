@@ -1,3 +1,31 @@
 .module .demoVue{
     height: 100%;
 }
+
+/* 必需 */
+.users-transition {
+    transition: all 3s ease;
+    width: 50%;
+    margin:0 auto;
+    height: 30px;
+    font-size: 1em;
+    background: blue;
+    margin-top: 1px;
+    border-radius: 3px;
+}
+
+/* .expand-enter 定义进入的开始状态 */
+/* .expand-leave 定义离开的结束状态 */
+.users-enter{
+    width: 0;
+    height: 0px;
+    background: blue;
+    font-size: 0em;
+}
+
+.users-leave {
+    width: 0;
+    height: 0px;
+    background: blue;
+    font-size: 0em;
+}

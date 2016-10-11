@@ -8,15 +8,15 @@ define(['Controller'], function(Controller) {
 
         _runVue(){
             let config = {
-                el: '#test',
+                el: '.demoVue',
                 data: {
-                    message: 'Hello Vue.js'
+                    items: []
                 }
             };
             this.vue = new AP.Vue(config);
-            setTimeout( () => {
-                this.vue.message = 'Hello World';
-            }, 3000);
+            setInterval( () => {
+                this.vue.items.push(1);
+            }, 1000);
         }
 
         _renderTree() {
