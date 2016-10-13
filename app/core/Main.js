@@ -57,13 +57,10 @@ define([
         }
 
         _verifyLogin() {
-            const TEST = Constant.TEST;
-            if (Constant.SKIP_AUTH) {
-                if (TEST) {
-                    new Test();
-                } else {
-                    this._loadPage();
-                }
+            if (Constant.TEST) {
+                new Test();
+            } else {
+                this._loadPage();
             }
         }
 

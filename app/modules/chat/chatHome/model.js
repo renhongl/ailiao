@@ -7,7 +7,7 @@ define(['Model'], function(Model) {
 
         _loadData() {
             let name = localStorage.name;
-            let url = AP.Constant.GETINFOR + '?name=' + name;
+            let url = AP.Constant.GET_INFOR + '?name=' + name;
             let callback = function(result) {
                 $.publish('userInfo-loaded', result.result);
             };

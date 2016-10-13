@@ -97,7 +97,7 @@ define(['Controller'], function (Controller) {
                     $('.searchContainer').hide();
                     $('.searchDiv .fa-times').addClass('fa-search').removeClass('fa-times');
                 });
-                let url = AP.Constant.QUERYALL;
+                let url = AP.Constant.QUERY_ALL;
                 let callback = (result) => {
                     this.vue.allUsers = result.result;
                 };
@@ -184,7 +184,7 @@ define(['Controller'], function (Controller) {
                 user: user,
                 removeUser: removeUser,
             };
-            let url = AP.Constant.REMOVEUSER;
+            let url = AP.Constant.REMOVE_USER;
             let callback = (result) => {
                 if (result.status === 'success') {
                     $.publish('needRefresh');
@@ -220,7 +220,7 @@ define(['Controller'], function (Controller) {
             $parent.hide();
             let addGroup = $(e.target).text();
             let name = localStorage.name;
-            let url = AP.Constant.ADDTOGROUP;
+            let url = AP.Constant.ADD_TO_GROUP;
             let postData = {
                 name: name,
                 addUser: addUser,
@@ -251,7 +251,7 @@ define(['Controller'], function (Controller) {
         _initGroup() {
             for (let group of this.vue.groups) {
                 for (let user of group.users) {
-                    let url = AP.Constant.QUERYBYNAME + '?name=' + user.name;
+                    let url = AP.Constant.QUERY_BY_NAME + '?name=' + user.name;
                     let callback = (result) => {
                         for (let key of Object.keys(result.result || {})) {
                             user[key] = result.result[key];
@@ -263,7 +263,7 @@ define(['Controller'], function (Controller) {
         }
 
         _initUser() {
-            let url = AP.Constant.SETINFOR;
+            let url = AP.Constant.SET_INFOR;
             let postData = {
                 name: this.vue.name,
                 status: this.vue.status,
@@ -284,7 +284,7 @@ define(['Controller'], function (Controller) {
         }
 
         _setGroup() {
-            let url = AP.Constant.SETINFOR;
+            let url = AP.Constant.SET_INFOR;
             let postData = {
                 name: this.vue.name,
                 groups: this.vue.groups,
@@ -300,7 +300,7 @@ define(['Controller'], function (Controller) {
         }
 
         _setFace() {
-            let url = AP.Constant.SETINFOR;
+            let url = AP.Constant.SET_INFOR;
             let postData = {
                 name: this.vue.name,
                 face: this.vue.face,
@@ -316,7 +316,7 @@ define(['Controller'], function (Controller) {
         }
 
         _setEmail() {
-            let url = AP.Constant.SETINFOR;
+            let url = AP.Constant.SET_INFOR;
             let postData = {
                 name: this.vue.name,
                 email: this.vue.email,
@@ -332,7 +332,7 @@ define(['Controller'], function (Controller) {
         }
 
         _setStatus() {
-            let url = AP.Constant.SETINFOR;
+            let url = AP.Constant.SET_INFOR;
             let postData = {
                 name: this.vue.name,
                 status: this.vue.status,
@@ -348,7 +348,7 @@ define(['Controller'], function (Controller) {
         }
 
         _setIntro() {
-            let url = AP.Constant.SETINFOR;
+            let url = AP.Constant.SET_INFOR;
             let postData = {
                 name: this.vue.name,
                 intro: this.vue.intro,

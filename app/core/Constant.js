@@ -20,17 +20,19 @@ define([], function() {
     Constant.DEFAULT_CURRENT = {};
 
     //URL
-    Constant.BASE_SERVER = 'http://renhongl.hk1.ngrok.cc/'; //http://renhongl.hk1.ngrok.cc/
-    Constant.WS_SERVER = 'ws://lrh.test.ngrok.cc/'; //lrh.apws.ngrok.cc
+    //For User
+    Constant.BASE_SERVER = 'http://127.0,0.1:8080/'; //http://renhongl.hk1.ngrok.cc/
+    Constant.WS_SERVER = 'ws://127.0.0.1:9090/'; //lrh.apws.ngrok.cc
     Constant.LOGIN = Constant.BASE_SERVER + 'login';
     Constant.REGISTER = Constant.BASE_SERVER + 'register';
-    Constant.GETINFOR = Constant.BASE_SERVER + 'getInfor';
-    Constant.SETINFOR = Constant.BASE_SERVER + 'setInfor';
-    Constant.QUERYALL = Constant.BASE_SERVER + 'queryAll';
-    Constant.QUERYBYNAME = Constant.BASE_SERVER + 'queryByName';
-    Constant.ADDTOGROUP = Constant.BASE_SERVER + 'addToGroup';
-    Constant.REMOVEUSER = Constant.BASE_SERVER + 'removeUser';
-
+    Constant.GET_INFOR = Constant.BASE_SERVER + 'getInfor';
+    Constant.SET_INFOR = Constant.BASE_SERVER + 'setInfor';
+    Constant.QUERY_ALL = Constant.BASE_SERVER + 'queryAll';
+    Constant.QUERY_BY_NAME = Constant.BASE_SERVER + 'queryByName';
+    Constant.ADD_TO_GROUP = Constant.BASE_SERVER + 'addToGroup';
+    Constant.REMOVE_USER = Constant.BASE_SERVER + 'removeUser';
+    
+    //For Records
     Constant.GETRECORDS = Constant.BASE_SERVER + 'getRecords';
     Constant.SAVERECORDS = Constant.BASE_SERVER + 'saveRecords';
     
