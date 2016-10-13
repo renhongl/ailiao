@@ -1,4 +1,4 @@
-define(['Controller'], function(Controller) {
+define(['Controller'], function (Controller) {
     'use strict';
     class controller extends Controller {
         constructor(obj, $container, config) {
@@ -21,7 +21,6 @@ define(['Controller'], function(Controller) {
                     you: {
 
                     },
-                    showChatRoom: false,
                     openVioce: true,
                     msgView: true,
                     msgVoiceSource: '/musics/msg.wav',
@@ -40,6 +39,9 @@ define(['Controller'], function(Controller) {
         }
 
         _handleEvents() {
+            this._refreshYourInfor();
+            this._refreshCurrentInfor();
+
             setInterval(() => {
                 this._refreshYourInfor();
                 this._refreshCurrentInfor();
@@ -62,7 +64,6 @@ define(['Controller'], function(Controller) {
             });
 
             $.subscribe('addChatting', (o, args) => {
-                $('#ChatRoom').show();
                 this._addChatting(args);
             });
 
@@ -87,37 +88,75 @@ define(['Controller'], function(Controller) {
             audio.play();
         }
 
+
+        /**
+         * 1:如果是窗口没打开，说明没有一个正在聊天的。那么，显示窗口，并添加这个人，保存聊天记录，并且当前变成他。
+         * 2：如果窗口打开的，而正在聊天中，没这个人，并且这个人不是自己。那么，添加这个人。当前人不变。保存聊天记录。
+         * 3：如果窗口打开的，并且这个人在聊天中，那么只保存聊天记录。
+         * 4: 如果窗口打开的，这个人在聊天中，还是当前人，那么保存聊天记录。更新窗口信息。
+         */
         _receivedMsg(msg) {
-            this.vue.showChatRoom = true;
-            if (this.vue.msgView) {
-                new AP.Message('message', {
-                    fromUser: msg.from,
-                    content: msg.content
-                });
+            let windowShowing = $('#ChatRoom').css('display') === 'block';
+            let itsMe = msg.from === this.vue.you.name;
+            let chattingUsers = [];
+            for (let one of this.vue.chattings) {
+                chattingUsers.push(one.name);
             }
-            if(this.vue.openVioce){
-                this._playVoice();
-            }
-            
-            if(msg.from !== this.vue.current.name && msg.from !== this.vue.you.name){
-                let records = this._getRecordsFromDB(msg.from);
-                $.subscribe('other-infor-loaded', (o, args) => {
-                    let record = {
-                        name: msg.from,
-                        face: args.face,
-                        time: new Date(),
-                        content: msg.content,
+            let inChattings = chattingUsers.indexOf(msg.from) !== -1;
+            let isCurrent = msg.from === this.vue.current.name;
+
+            if (!itsMe) {
+                if (!windowShowing) {
+                    if (this.vue.msgView) {
+                        new AP.Message('message', { fromUser: msg.from, content: msg.content });
+                    }
+                    $('#ChatRoom').show();
+                    this._addChatting({ name: msg.from });
+                    this.vue.current.name === msg.from;
+                    this._refreshCurrentInfor();
+                    this._getRecordsFromDB(msg.from);
+                    this._queryOtherInfor(msg.from);
+
+
+                    let url = AP.Constant.QUERY_BY_NAME + '?name=' + name;
+                    let callback = (result) => {
+                        let record = {
+                            name: msg.from,
+                            face: result.face,
+                            time: new Date(),
+                            content: msg.content,
+                        };
+                        this.vue.records.records.push(record);
+                        this._saveRecords(this.vue.records);
                     };
-                    records.records.push(record);
-                    _saveRecords(records);
-                });
-            }else{
-                _refreshChatContent(msg);
-                _saveRecords(this.vue.records);
+                    AP.Ajax.get(url, callback);
+
+                } else if (windowShowing && !inChattings) {
+                    if (this.vue.msgView) {
+                        new AP.Message('message', { fromUser: msg.from, content: msg.content });
+                    }
+                    let name = msg.from;
+                    let url = AP.Constant.QUERY_BY_NAME + '?name=' + name;
+                    let callback = (result) => {
+                        let chatting = {
+                            name: result.name,
+                            face: result.face,
+                            status: result.status,
+                            current: false,
+                        };
+                        this.vue.chattings.push(chatting);
+                    };
+                    AP.Ajax.get(url, callback);
+                }else if(windowShowing && inChattings && !isCurrent){
+                    if (this.vue.msgView) {
+                        new AP.Message('message', { fromUser: msg.from, content: msg.content });
+                    }
+                }
             }
+
         }
 
-        _queryOtherInfor(name){
+        _queryOtherInfor(name) {
             let url = AP.Constant.QUERY_BY_NAME + '?name=' + name;
             let callback = (result) => {
                 $.publish('other-infor-loaded', result);
@@ -125,14 +164,14 @@ define(['Controller'], function(Controller) {
             AP.Ajax.get(url, callback);
         }
 
-        _refreshChatContent(msg){
+        _refreshChatContent(msg) {
             let record = {
                 name: msg.from,
-                time: newDate(),
+                time: new Date(),
                 face: msg.from === this.vue.you.name ? this.vue.you.face : this.vue.current.face,
                 content: msg.content,
             };
-            let newRecords = this.vue.records.push(record);
+            let newRecords = this.vue.records.records.push(record);
             this.vue.records = {
                 you: this.vue.you.name,
                 notYou: msg.from === this.vue.you.name ? msg.to : msg.from,
@@ -152,6 +191,9 @@ define(['Controller'], function(Controller) {
         }
 
         _refreshCurrentInfor() {
+            if (!this.vue.current.name) {
+                return;
+            }
             let name = this.vue.current.name;
             let url = AP.Constant.GET_INFOR + '?name=' + name;
             let callback = (result) => {
@@ -186,10 +228,8 @@ define(['Controller'], function(Controller) {
             let callback = (result) => {
                 if (result.result) {
                     this.vue.records.records = result.result.records;
-                    return result.result;
                 } else {
                     this.vue.records.records = [];
-                    return [];
                 }
             };
             AP.Ajax.post(url, postData, callback);

@@ -26,7 +26,7 @@ define([], function () {
                 name: 'ChatRoom',
                 id: 'ChatRoom',
                 type: 'dialog',
-                show: true,
+                show: false,
                 showTitle: false,
                 settings: {
                     width: 550,
