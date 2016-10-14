@@ -8,6 +8,18 @@
 	3.分组管理用一个选项，增删改查。
 	4.扣扣消息图片。图片上传发送。
 	5.头像上传。
+	6.做一个网站，保存自己的文档，用vue.js index.html页面的排版方式。
+
+* **数据库、数据结构设计：**
+	1:数据库名称:ap
+	2:user:{name: "user1", pwd: "123456", email: "123.@163.com", intro:"Hello World", face:"/images/f1.png", groups: [], status: "/images/online.png"}
+	3:user/groups/group: {name: "defaultGroup", users: []}
+	4:user/groups/group/users/: {name: "user1", face: "/images/f1.png", intro: "Hello World", status: "/images/online.png"}
+	5:chattings:[]
+	6:chattings/chatting: {name: "user1", face: "/images/f1.png", status: "/images/online.png", current: true}
+	7:records: {you: "user1", notYou: "user2", records: []}
+	8:one record: {name: "user1", time: "2016-11-12 12:00", content: 'Hello User2'}
+
 
 
 * **介绍：**
