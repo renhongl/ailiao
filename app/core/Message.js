@@ -102,7 +102,7 @@ define([], function() {
                 //top: allHeight,
             });
             
-            this.$content.text(content);
+            this.$content.html(content);
             this.$title.text(this.title + ':');
 
             this.$icon.attr({

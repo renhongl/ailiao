@@ -23,6 +23,17 @@ define(['Controller'], function (Controller) {
                     openVoice: true,
                     msgView: true,
                 },
+                computed: {
+                    addedUsers: function(){
+                        let users = [];
+                        for(let group of this.groups){
+                            for(let user of group.users){
+                                users.push(user.name);
+                            }
+                        }
+                        return users;
+                    }
+                },
                 methods: {
                     setIntro: that._setIntro.bind(that),
                     setEmail: that._setEmail.bind(that),
@@ -39,6 +50,7 @@ define(['Controller'], function (Controller) {
                     saveGroupChanges: that._saveGroupChanges.bind(that),
                     removeOneGroup: that._removeOneGroup.bind(that),
                     addOneGroup: that._addOneGroup.bind(that),
+                    logout: that._logout.bind(that),
                 }
             };
             this.vue = new AP.Vue(config);
@@ -155,6 +167,10 @@ define(['Controller'], function (Controller) {
             }
         }
 
+        _logout(){
+            location = AP.Constant.BASE_SERVER;
+        }
+
         _addOneGroup(){
             let group = {
                 name: '',
@@ -179,6 +195,7 @@ define(['Controller'], function (Controller) {
         _saveGroupChanges(){
             $('.groupManager').hide();
             this._setGroup();
+            $.publish('needRefresh');
         }
 
         _toggleGroupManager(){

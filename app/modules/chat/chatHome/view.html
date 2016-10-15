@@ -50,7 +50,7 @@
                     <img v-bind:src="user.status" width="20" height="20" class="oneUserStatus">
                     <span class="oneUserName">{{ user.name }}</span>
                     <span class="oneUserIntro">{{ user.intro }}</span>
-                    <i class="fa fa-plus button" aria-hidden="true" v-on:click="showGroups"></i>
+                    <i class="fa fa-plus button" aria-hidden="true" v-on:click="showGroups" tipy="添加" v-bind:class="{ 'hide': addedUsers.indexOf(user.name) !== -1 || user.name === name}"></i>
                     <div class="addToGroup">
                         <span class="addTitle">添加到：</span><hr/>
                         <span v-for="group in groups" v-on:click="addToGroup" class="button">{{ group.name }}</span>
@@ -81,7 +81,7 @@
             <li>我的资料</li>
             <li>修改密码</li>
             <hr/>
-            <li>退出</li>
+            <li class="button" v-on:click="logout">退出</li>
         </ul>
         <i class="fa fa-book button docsButton" aria-hidden="true" v-on:click="showDocs"></i>
     </div>

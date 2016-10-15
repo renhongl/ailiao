@@ -34,7 +34,7 @@
 }
 
 .chatContent div{
-    display: none;
+    /*display: none;*/
 }
 
 .chatFoot{
@@ -118,7 +118,7 @@
     display: block !important;
 }
 
-.you img{
+.you .img{
     height: 50px;
     width: 50px;
     border-radius: 25px;
@@ -126,7 +126,7 @@
     margin-right: 10px;
 }
 
-.you p{
+.you .recordP{
     border: 1px solid #05d0ac;
     float: right;
     margin-right: 13px;
@@ -159,7 +159,7 @@
     display: block !important;
 }
 
-.notYou img{
+.notYou .img{
     height: 100%;
     width: 50px;
     border-radius: 25px;
@@ -167,7 +167,7 @@
     margin-left: 10px;
 }
 
-.notYou p{
+.notYou .recordP{
     border: 1px solid #06aee2;
     float: left;
     margin-left: 13px;
@@ -195,15 +195,18 @@
 .chatFoot .tools{
     width: 100%;
     height: 18%;
+    padding-left: 5px;
 }
 
-.chatFoot textarea{
+.chatFoot .editContent{
     width: 100%;
     padding-left: 5px;
     outline: none;
-    height: 57%;
+    height: 61%;
     border: none;
     resize: none;
+    font-size: 0.9em;
+    overflow-y: auto;
 }
 
 .oprate{
@@ -242,3 +245,44 @@
     right: 78px;
     font-size: 0.5em;
 }
+
+.chatRoom .chatFoot i{
+    display: inline-block;
+    color: #000;
+    margin-top: 2px;
+    margin-left: 0;
+}
+
+.chatRoom .chatFoot i:hover{
+    background: #219ec5;
+    color: #fff;
+}
+
+.chatFoot .fontSettings{
+    display: none;
+}
+
+.chatFoot .faceChoose{
+    display: none;
+    position: absolute;
+    width: 95%;
+    height: 50%;
+    top: 22%;
+    border-radius: 3px;
+    background: #fff;
+    box-shadow: 0px 0px 10px #000;
+    left: 15px;
+}
+
+.faceChoose img{
+    border: 1px solid #fff;
+    width: 25px;
+    height: 25px;
+    margin: 2px;
+    border-radius: 3px;
+}
+
+.faceChoose img:hover{
+    border: 1px solid #219ec5;
+}
+

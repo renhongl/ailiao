@@ -17,25 +17,28 @@ define(['Controller'], function (Controller) {
                         notYou: "",
                         records: [],
                     },
-                    sendContent: '',
                     you: {
 
                     },
                     openVioce: true,
                     msgView: true,
-                    msgVoiceSource: '/musics/msg.wav',
+                    msgVoiceSource: ['/musics/msg.wav', '/musics/shake1.mp3'],
+                    faces: [],
                 },
                 methods: {
                     selectChatting: that._selectChatting.bind(that),
                     removeChatting: that._removeChatting.bind(that),
                     sendTo: that._sendTo.bind(that),
+                    toggleFaceChoose: that._toggleFaceChoose.bind(that),
+                    chooseOneFace: that._chooseOneFace.bind(that),
+                    shakeOnce: that._shakeOnce.bind(that),
                 },
             };
             this.vue = new AP.Vue(config);
         }
 
         _renderTree() {
-
+            this._initFaces();
         }
 
         _handleEvents() {
@@ -82,16 +85,64 @@ define(['Controller'], function (Controller) {
             });
         }
 
-        _playVoice() {
+        _shakeOnce(){
+            $('.editContent').html('抖了你一下');
+            this._sendTo();
+        }
+
+        _chooseOneFace(e){
+            let url = $(e.target).attr('src');
+            $('.editContent').html($('.editContent').html() + `<img src='${ url }'>`) ;
+            $('.faceChoose').hide();
+        }
+
+        _initFaces(){
+            let url = AP.Constant.BASE_SERVER;
+            for(let i = 1; i < 133; i++){
+                this.vue.faces.push(`${ url }/images/qqFace/${ i }.gif`);
+            }
+        }
+
+        _toggleFaceChoose(){
+            $('.faceChoose').toggle();
+        }
+
+        _playVoice(msg) {
             let audio = document.querySelector('.msgVoice');
-            audio.setAttribute("src", this.vue.msgVoiceSource);
+            if(msg.content === '抖了你一下'){
+                audio.setAttribute("src", this.vue.msgVoiceSource[1]);
+            }else{
+                audio.setAttribute("src", this.vue.msgVoiceSource[0]);
+            }
             audio.play();
+        }
+
+        _shake(){
+            let {top, left} = $('#ChatRoom').css(['top', 'left']);
+            let count = 0;
+            let shakeThread = setInterval(function(){
+                if(count % 2 === 0){
+                    $('#ChatRoom').css({
+                        top: parseInt(top.split('px')[0]) - 5,
+                        left: parseInt(left.split('px')[0]) - 5
+                    });
+                }else{
+                    $('#ChatRoom').css({
+                        top: top,
+                        left: left
+                    });
+                }
+                count++;
+                if(count >= 150){
+                    clearInterval(shakeThread);
+                }
+            }, 10);
         }
 
 
         /**
          * 1:如果是窗口没打开，说明没有一个正在聊天的。那么，显示窗口，并添加这个人，保存聊天记录，并且当前变成他。
-         * 2：如果窗口打开的，而正在聊天中，没这个人，并且这个人不是自己。那么，添加这个人。当前人不变。保存聊天记录。
+         * 2：如果窗口打开的，而正在聊天中，没这个人，并且这个人不是自己。那么，添加这个人。当前人变成他。保存聊天记录。
          * 3：如果窗口打开的，并且这个人在聊天中，那么只保存聊天记录。
          * 4: 如果窗口打开的，这个人在聊天中，还是当前人，那么保存聊天记录。更新窗口信息。
          */
@@ -107,53 +158,48 @@ define(['Controller'], function (Controller) {
 
             if (!itsMe) {
                 if (!windowShowing) {
-                    if (this.vue.msgView) {
-                        new AP.Message('message', { fromUser: msg.from, content: msg.content });
-                    }
                     $('#ChatRoom').show();
                     this._addChatting({ name: msg.from });
-                    this.vue.current.name === msg.from;
-                    this._refreshCurrentInfor();
-                    this._getRecordsFromDB(msg.from);
-                    this._queryOtherInfor(msg.from);
-
-
-                    let url = AP.Constant.QUERY_BY_NAME + '?name=' + name;
-                    let callback = (result) => {
-                        let record = {
-                            name: msg.from,
-                            face: result.face,
-                            time: new Date(),
-                            content: msg.content,
-                        };
-                        this.vue.records.records.push(record);
-                        this._saveRecords(this.vue.records);
-                    };
-                    AP.Ajax.get(url, callback);
+                    this._updateContent(msg);
 
                 } else if (windowShowing && !inChattings) {
-                    if (this.vue.msgView) {
-                        new AP.Message('message', { fromUser: msg.from, content: msg.content });
-                    }
-                    let name = msg.from;
-                    let url = AP.Constant.QUERY_BY_NAME + '?name=' + name;
-                    let callback = (result) => {
-                        let chatting = {
-                            name: result.name,
-                            face: result.face,
-                            status: result.status,
-                            current: false,
-                        };
-                        this.vue.chattings.push(chatting);
-                    };
-                    AP.Ajax.get(url, callback);
-                }else if(windowShowing && inChattings && !isCurrent){
-                    if (this.vue.msgView) {
-                        new AP.Message('message', { fromUser: msg.from, content: msg.content });
-                    }
-                }
-            }
+                    this._addChatting({ name: msg.from });
+                    this._updateContent(msg);
 
+                } else if (windowShowing && inChattings && !isCurrent) {
+                    this._selectChatting('event', msg.from);
+                    this._updateContent(msg);
+                }else if(windowShowing && inChattings && isCurrent){
+                    this._updateContent(msg);
+                }
+
+                if (this.vue.msgView) {
+                    new AP.Message('message', { fromUser: msg.from, content: msg.content });
+                }
+                if (this.vue.openVioce) {
+                    this._playVoice(msg);
+                }
+                if(msg.content === '抖了你一下'){
+                    this._shake();
+                }
+            }else{
+                this._updateContent(msg);
+            }
+        }
+
+        _updateContent(msg) {
+            setTimeout(() => {
+                let record = {
+                    name: msg.from,
+                    time: new Date().toISOString().split('.')[0].replace(/T/g,' '),
+                    content: msg.content,
+                };
+                this.vue.records.records.push(record);
+                this._saveRecords(this.vue.records);
+                setTimeout(function(){
+                    $('.chatContent').scrollTop($('.chatContent')[0].scrollHeight);
+                }, 100);
+            }, 500);
         }
 
         _queryOtherInfor(name) {
@@ -167,7 +213,7 @@ define(['Controller'], function (Controller) {
         _refreshChatContent(msg) {
             let record = {
                 name: msg.from,
-                time: new Date(),
+                time: new Date().toISOString().split('.')[0].replace(/T/g,' '),
                 face: msg.from === this.vue.you.name ? this.vue.you.face : this.vue.current.face,
                 content: msg.content,
             };
@@ -213,9 +259,10 @@ define(['Controller'], function (Controller) {
         }
 
         _sendTo() {
-            if (this.vue.sendContent.trim() !== '') {
-                AP.socket.emit('forward', this.vue.you.name, this.vue.current.name, this.vue.sendContent);
-                this.vue.sendContent = '';
+            let content = $('.editContent').html().replace(/<div><br><\/div>/g, '').replace(/<div>/g, '').replace(/<\/div>/g, '').replace(/&nbsp;/g, '').replace(/<br>/g, '').trim();
+            if (content !== '') {
+                AP.socket.emit('forward', this.vue.you.name, this.vue.current.name, content);
+                $('.editContent').html('');
             }
         }
 
@@ -241,11 +288,9 @@ define(['Controller'], function (Controller) {
 
             if (this.vue.chattings[0].name === name && name === this.vue.current.name && this.vue.chattings.length !== 1) {
                 this._selectChatting('event', this.vue.chattings[1].name);
-            }
-            if (name === this.vue.current.name) {
+            } else if (name === this.vue.current.name) {
                 this._selectChatting('event', this.vue.chattings[0].name);
-            }
-            if ($(e.target).parent().find('.chattingName').text() === '') {
+            } else if ($(e.target).parent().find('.chattingName').text() === '') {
                 let current = this.vue.chattings[this.vue.chattings.length - 1].name;
                 this._selectChatting('event', current);
             }
