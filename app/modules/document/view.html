@@ -1,0 +1,11 @@
+<div class="document">
+    <div class="docNavbar">
+        <h3 class="navbarTitle">文档</h3>
+        <ul>
+            <li v-for="doc in docs" v-bind:class="{'selected': doc.current}" v-on:click="changeDoc" class="button">{{ doc.name }}</li>
+        </ul>
+    </div>
+    <div class="docContent">
+        
+    </div>
+</div>

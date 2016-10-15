@@ -77,11 +77,23 @@
     <div class="tools">
         <i class="fa fa-bars button toggleTools" aria-hidden="true"></i>
         <ul class="toolsUL">
-            <li>分组管理</li>
+            <li v-on:click="toggleGroupManager" class="button">分组管理</li>
             <li>我的资料</li>
             <li>修改密码</li>
             <hr/>
             <li>退出</li>
         </ul>
+        <i class="fa fa-book button docsButton" aria-hidden="true" v-on:click="showDocs"></i>
+    </div>
+    <div class="groupManager">
+        <h4>分组管理：</h4>
+        <template v-for="group in groups">
+            <div>
+                <input v-model="group.name" class="button">
+                <i class="fa fa-trash button" aria-hidden="true" v-on:click="removeOneGroup"></i>
+            </div>
+        </template>
+        <i class="fa fa-plus-circle button addGroup" aria-hidden="true" v-on:click="addOneGroup"></i>
+        <button type="button" class="btn btn-default button" v-on:click="saveGroupChanges">保存</button>
     </div>
 </div>

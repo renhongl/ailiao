@@ -12,8 +12,8 @@ define([], function () {
                 settings: {
                     width: 330,
                     height: 650,
-                    x: 100,
-                    y: 20,
+                    x: 10,
+                    y: 10,
                 },
                 content: {
                     name: 'chat/chatHome',
@@ -27,7 +27,7 @@ define([], function () {
                 id: 'ChatRoom',
                 type: 'dialog',
                 show: false,
-                showTitle: false,
+                showTitle: true,
                 settings: {
                     width: 550,
                     height: 550,
@@ -38,7 +38,26 @@ define([], function () {
                     name: 'chat/chatRoom',
                     id: 'chatRoom',
                     type: 'module',
-                    showTitle: false,
+                    showTitle: true,
+                }
+            },
+            {   
+                name: 'Documents',
+                id: 'Documents',
+                type: 'dialog',
+                show: false,
+                showTitle: true,
+                settings: {
+                    width: AP.width * 0.5,
+                    height: AP.height,
+                    x: AP.width * 0.5 / 2,
+                    y: 0,
+                },
+                content: {
+                    name: 'document',
+                    id: 'document',
+                    type: 'module',
+                    showTitle: true,
                 }
             },
         ]

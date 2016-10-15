@@ -15,7 +15,7 @@ define([], function() {
     Constant.DEFAULT_EMAIL = '邮箱地址';
     Constant.DEFAULT_INTRO = '说点什么？';
     Constant.DEFAULT_STATUS = '/images/online.png',
-    Constant.DEFAULT_GROUPS = [{name: '管理员', users: []},{name: '默认分组', users: []}],
+    Constant.DEFAULT_GROUPS = [{name: '默认分组', users: []}],
     Constant.DEFAULT_CHATTINGS = [];
     Constant.DEFAULT_CURRENT = {};
 

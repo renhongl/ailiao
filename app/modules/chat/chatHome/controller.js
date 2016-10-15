@@ -34,6 +34,11 @@ define(['Controller'], function (Controller) {
                     addChatting: that._addChatting.bind(that),
                     switchVoice: that._switchVoice.bind(that),
                     switchMsgView: that._switchMsgView.bind(that),
+                    showDocs: that._showDocs.bind(that),
+                    toggleGroupManager: that._toggleGroupManager.bind(that),
+                    saveGroupChanges: that._saveGroupChanges.bind(that),
+                    removeOneGroup: that._removeOneGroup.bind(that),
+                    addOneGroup: that._addOneGroup.bind(that),
                 }
             };
             this.vue = new AP.Vue(config);
@@ -148,6 +153,40 @@ define(['Controller'], function (Controller) {
                     this._initGroup();
                 }, 10000);
             }
+        }
+
+        _addOneGroup(){
+            let group = {
+                name: '',
+                users: []
+            };
+            this.vue.groups.push(group);
+        }
+
+        _removeOneGroup(e){
+            let removeGroup = $(e.target).parent().find('input').val();
+            let count = 0;
+            for(let group of this.vue.groups){
+                if(group.name === removeGroup){
+                    this.vue.groups.splice(count, 1);
+                    return;
+                }else{
+                    count++;
+                }
+            }
+        }
+
+        _saveGroupChanges(){
+            $('.groupManager').hide();
+            this._setGroup();
+        }
+
+        _toggleGroupManager(){
+            $('.groupManager').toggle();
+        }
+
+        _showDocs(){
+            $('#Documents').toggle();
         }
 
         _switchMsgView() {

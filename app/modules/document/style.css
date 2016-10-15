@@ -1,0 +1,88 @@
+.module .document{
+    height: 100%;
+}
+
+.document ::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+.docNavbar{
+    height: 100%;
+    width: 200px;
+    float:left;
+    padding-top: 50px;
+}
+
+.docNavbar li{
+    height: 30px;
+    font-size: 1em;
+    width: 78%;
+    margin: 1px auto;
+    border-radius: 3px;
+    list-style-type: none;
+    padding-left: 10px;
+    line-height: 30px;
+}
+
+.docNavbar li:hover{
+    background: #219ec5;
+}
+
+.docNavbar .selected{
+    background: #219ec5;
+}
+
+.navbarTitle{
+    font-weight: bold;
+    padding-left: 22px;
+}
+
+.docContent{
+    height: 100%;
+    width: 70%;
+    float: right;
+    overflow-y: auto;
+}
+
+.docContent .oneTitle{
+    font-size: 1.4em;
+    margin-top: 40px;
+    font-weight: bold;
+}
+
+.docContent h4{
+    font-size: 15px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 80%;
+}
+
+.docContent .code{
+    padding: 20px;
+    background: #e6e2e2;
+    border-radius: 3px;
+    width: 80%;
+    height: 300px !important; 
+}
+
+.docContent textarea{
+    resize: none;
+}
+
+.docContent table{
+    width: 80%;
+}
+
+.docContent hr{
+    border-top: 1px solid #000;
+}
+
+.docContent img{
+    width: 80%;
+    margin-top: 10px;
+}
+
+.docContent p{
+    width: 80%;
+}

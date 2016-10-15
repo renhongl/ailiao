@@ -1,0 +1,26 @@
+<div>
+    <div class="oneTitle">
+        Git 常用命令
+    </div><hr>
+    <div class="oneContent">
+        <p><strong>介绍：</strong>可能只是自己一个人写项目，以下的几个命令就够我使用了。</p>
+
+        <p><strong>Git clone:</strong>目前Github不支持直接在本地新建全新的库然后push到Github上面，所以第一步
+是在Github上面建好自己的库。然后在本地使用git clone将远程库克隆到本地。</p>
+        
+        <p><strong>Git pull:</strong>如果自己同时在几个电脑上更新代码，那每次提交前需要先将Github上的最新代码
+拉下来。Git pull就是这个功能。如果是多人合作，需要提出pull请求，等建库人同意，才能一起提交
+代码。</p>
+
+        <p><strong>Git add -A:</strong>当自己写了代码后，使用此命令将需要的修改加入暂存区，而参数A是指将
+所有更改加入暂存区。如果本次修改代码很多，那么参数A是很必要的，很方便。</p>
+
+        <p><strong>Git commit -m </strong>加入暂存区后使用此命令将所有暂存区的代码提交
+到本地库中。参数m最好加上，因为不加上，也会进入vim去写更新的信息。</p>
+
+        <p><strong>Git push:</strong>commit命令只是提交代码到本地，并没有上传到github中，我们需要使用此
+命令将代码推送到远程库中。如果没有设置全局用户，每次提交时，需要输入自己的github
+账号及密码。</p>
+
+    </div>
+</div>

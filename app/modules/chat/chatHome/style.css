@@ -373,7 +373,7 @@
 }
 
 .changeBg{
-    background: #219ec5 !important;
+    /*background: #219ec5 !important;*/
 }
 
 .searchContainer{
@@ -532,6 +532,7 @@
     line-height: 25px;
     text-align: center;
     border-radius: 3px;
+    color: #fff;
 }
 
 .tools i:hover{
@@ -592,4 +593,60 @@
     border-top: 1px solid #ded7d7;
     width: 91%;
     margin: 5px auto;
+}
+
+.groupManager{
+    position: absolute;
+    width: 229px;
+    height: 226px;
+    z-index: 60;
+    top: 84px;
+    left: 26px;
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0px 0px 10px #000;
+    display: none;
+    overflow-y: auto;
+}
+
+.groupManager input{
+    display: inline-block;
+    width: 70%;
+    margin-top: 5px;
+    margin-left: 10px;
+    border-radius: 3px;
+    border: 1px solid #000;
+    padding-left: 10px;
+}
+
+.groupManager i{
+    margin-left: 16px;
+}
+
+.groupManager button{
+    height: 30px;
+    line-height: 19px;
+    outline: none;
+    border: none;
+    background: #219ec5;
+    color: #fff;
+    width: 91%;
+    margin: 8px;
+}
+
+.groupManager button:hover{
+    background: #85cee4;
+    color: #fff;
+}
+
+.groupManager .addGroup{
+    display: inline-block;
+    float: right;
+    margin-right: 25px;
+    margin-top: 10px;
+}
+
+.groupManager h4{
+    font-size: 15px;
+    margin-left: 10px;
 }

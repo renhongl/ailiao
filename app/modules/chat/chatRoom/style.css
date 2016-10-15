@@ -219,13 +219,14 @@
     width: 67px;
     line-height: 16px;
     background: #219ec5;
-    color: #000;
+    color: #fff;
     outline: none;
     border: none;
 }
 
 .oprate button:hover{
     background: #85cee4;
+    color: #fff;
 }
 
 .notYou .time{

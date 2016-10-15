@@ -1,0 +1,33 @@
+<div>
+    <div class="oneTitle">
+        Linux 知识
+    </div><hr>
+    <div class="oneContent">
+        <p><strong>介绍：</strong></p>
+
+        <p><strong>软件安装方法1：</strong>使用apt-get:
+apt-get install xxx 安装xxx  。如果带有参数，那么-d 表示仅下载 ，-f 表示强制安装
+apt-get remove xxx 卸载xxx
+apt-get update 更新软件信息数据库
+apt-get upgrade 进行系统升级
+apt-cache search 搜索软件包
+Tips：建议您经常使用“apt-get update”命令来更新您的软件信息数据库 </p>
+
+<p><strong>软件安装方法2：</strong>dpkg安装deb包
+Ubuntu软件包格式为deb，安装方法如下：
+    sudo  dpkg  -i  package.deb
+dpkg的详细使用方法，网上有很多，下面简单列了几个：
+dpkg -i package.deb	安装包
+dpkg -r package	删除包
+dpkg -P package	删除包（包括配置文件）
+dpkg -L package	列出与该包关联的文件
+dpkg -l package	显示该包的版本
+dpkg –unpack package.deb	解开 deb 包的内容
+dpkg -S keyword	搜索所属的包内容
+dpkg -l	列出当前已安装的包
+dpkg -c package.deb	列出 deb 包的内容
+dpkg –configure package	配置包</p>
+        
+        
+    </div>
+</div>

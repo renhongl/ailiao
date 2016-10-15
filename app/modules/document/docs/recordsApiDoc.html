@@ -1,0 +1,49 @@
+<div>
+    <div class="oneTitle">
+        Records API 设计
+    </div><hr>
+    <div class="oneContent">
+        <p><strong>API描述:</strong>保存聊天记录</p>
+        <p><strong>Method：</strong>POST</p>
+        <p><strong>URL: </strong>/saveRecords</p>
+        <p><strong>Parameters：</strong></p>
+        <table class="table table-condensed">
+            <tr><th>Key</th><th>Value</th><th>Required</th><th>Discribe</th></tr>
+            <tr><td>you</td><td>string</td><td>yes</td><td>当前使用者的用户名</td></tr>
+            <tr><td>notYou</td><td>string</td><td>yes<td>当前使用者的聊天对象</td></tr>
+            <tr><td>records</td><td>object</td><td>yes<td>一个对象，包含you, notYou, records属性</td></tr>
+        </table>
+        <p><strong>Response：</strong></p>
+        <textarea class="code button" disabled>
+{
+    "status": "success",
+}
+        </textarea><hr>
+
+
+        <p><strong>API描述:</strong>查询两个人的聊天记录</p>
+        <p><strong>Method：</strong>POST</p>
+        <p><strong>URL: </strong>/saveRecords</p>
+        <p><strong>Parameters：</strong></p>
+        <table class="table table-condensed">
+            <tr><th>Key</th><th>Value</th><th>Required</th><th>Discribe</th></tr>
+            <tr><td>you</td><td>string</td><td>yes</td><td>当前使用者的用户名</td></tr>
+            <tr><td>notYou</td><td>string</td><td>yes<td>当前使用者的聊天对象</td></tr>
+        </table>
+        <p><strong>Response：</strong></p>
+        <textarea class="code button" disabled>
+{
+    "status": "success",
+    "result": {
+        "you": "user1",
+        "notYou": "user2",
+        "records": [
+            "name": "user2",
+            "time": "2016-10-10 12:34:21",
+            "content": "今天下雨了。"
+        ]
+    }
+}
+        </textarea><hr>
+    </div>
+</div>
