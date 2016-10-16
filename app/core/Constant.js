@@ -19,10 +19,13 @@ define([], function() {
     Constant.DEFAULT_CHATTINGS = [];
     Constant.DEFAULT_CURRENT = {};
 
-    //URL
     //For User
-    Constant.BASE_SERVER = 'http://127.0.0.1:8080/'; //http://renhongl.hk1.ngrok.cc/
-    Constant.WS_SERVER = 'ws://127.0.0.1:9090/'; //lrh.apws.ngrok.cc
+    // Constant.BASE_SERVER = 'http://renhongl.hk1.ngrok.cc/';
+    // Constant.WS_SERVER = 'ws://lrh.apws.ngrok.cc/';
+
+    Constant.BASE_SERVER = 'http://127.0.0.1:8080/';
+    Constant.WS_SERVER = 'ws://127.0.0.1:9090/';
+
     Constant.LOGIN = Constant.BASE_SERVER + 'login';
     Constant.REGISTER = Constant.BASE_SERVER + 'register';
     Constant.GET_INFOR = Constant.BASE_SERVER + 'getInfor';

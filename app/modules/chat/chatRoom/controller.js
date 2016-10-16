@@ -22,7 +22,7 @@ define(['Controller'], function (Controller) {
                     },
                     openVioce: true,
                     msgView: true,
-                    msgVoiceSource: ['/musics/msg.wav', '/musics/shake1.mp3'],
+                    msgVoiceSource: ['/musics/msg.mp3', '/musics/shake.mp3'],
                     faces: [],
                 },
                 methods: {
@@ -75,7 +75,7 @@ define(['Controller'], function (Controller) {
             });
 
             $(document).on('keyup', (e) => {
-                if (e.keyCode === 13 && this.vue.current.status !== '/images/offline.jpg') {
+                if (e.keyCode === 13 && this.vue.current.status !== '/images/offline.jpg' && this.vue.current.status !== '') {
                     this._sendTo();
                 }
             });
@@ -86,6 +86,9 @@ define(['Controller'], function (Controller) {
         }
 
         _shakeOnce(){
+            if(this.vue.current.status === '/images/offline.jpg' || this.vue.current.status === ''){
+                return;
+            }
             $('.editContent').html('抖了你一下');
             this._sendTo();
         }
@@ -259,7 +262,7 @@ define(['Controller'], function (Controller) {
         }
 
         _sendTo() {
-            let content = $('.editContent').html().replace(/<div><br><\/div>/g, '').replace(/<div>/g, '').replace(/<\/div>/g, '').replace(/&nbsp;/g, '').replace(/<br>/g, '').trim();
+            let content = $('.editContent').html().replace(/<div><br><\/div>/g, '').replace(/<div>/g, '').replace(/<\/div>/g, '').replace(/&nbsp;/g, ' ').replace(/<br>/g, '').trim();
             if (content !== '') {
                 AP.socket.emit('forward', this.vue.you.name, this.vue.current.name, content);
                 $('.editContent').html('');
