@@ -137,7 +137,7 @@
     color: #fff;
     max-width: 80%;
     font-size: 0.9em;
-    box-shadow: -2px 2px 6px rgba(0,0,0,0.5);
+    /*box-shadow: -2px 2px 6px rgba(0,0,0,0.5);*/
     margin-bottom: 10px;
 }
 
@@ -170,17 +170,17 @@
 }
 
 .notYou .recordP{
-    border: 1px solid #06aee2;
+    border: 1px solid #fff;
     float: left;
     margin-left: 13px;
     padding: 5px 10px;
     margin-top: 8px;
     border-radius: 5px;
-    background: #06aee2;
-    color: #fff;
+    background: #fff;
+    color: #000;
     max-width: 80%;
     font-size: 0.9em;
-    box-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+    /*box-shadow: 2px 2px 6px rgba(0,0,0,0.5);*/
     margin-bottom: 10px;
 }
 
@@ -189,7 +189,7 @@
     width: 0;
     height: 0;
     position: absolute;
-    border-right: 13px solid #06aee2;
+    border-right: 13px solid #fff;
     border-top: 3px solid transparent;
     border-bottom: 9px solid transparent;
     top: 12px;
