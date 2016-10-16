@@ -21,7 +21,7 @@ define([], function() {
 
     //For User
     // Constant.BASE_SERVER = 'http://renhongl.hk1.ngrok.cc/';
-    // Constant.WS_SERVER = 'ws://lrh.apws.ngrok.cc/';
+    // Constant.WS_SERVER = 'ws://lrh.ws.hk1.ngrok.cc/';
 
     Constant.BASE_SERVER = 'http://127.0.0.1:8080/';
     Constant.WS_SERVER = 'ws://127.0.0.1:9090/';
