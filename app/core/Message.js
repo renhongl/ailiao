@@ -7,8 +7,8 @@
  */
 define([], function() {
     'use strict';
-    class Message{
-        constructor(type, content){
+    class Message {
+        constructor(type, content) {
             this.title = '';
             this.content = content;
             this.showTime = 5000;
@@ -39,10 +39,10 @@ define([], function() {
             }).addClass('msgIcon').appendTo(this.$Message);
 
             this.$title = $('<div>').css({
-                    height: '45%',
-                    width: 260,
-                    float: 'right',
-                    fontSize: '1.2em',
+                height: '45%',
+                width: 260,
+                float: 'right',
+                fontSize: '1.2em',
             }).addClass('msgTitle').appendTo(this.$Message);
 
             this.$time = $('<span>').css({
@@ -61,49 +61,53 @@ define([], function() {
                 fontSize: '0.8em',
             }).addClass('msgContent').appendTo(this.$Message);
 
-            switch(type){
-                case 'infor': 
+            switch (type) {
+                case 'infor':
                     this.title = '提示';
                     this._infor();
                     break;
-                case 'success': 
+                case 'success':
                     this.title = '成功';
                     this._success();
                     break;
-                case 'error': 
+                case 'error':
                     this.title = '错误';
                     this._error();
                     break;
-                case 'warning': 
+                case 'warning':
                     this.title = '警告';
                     this._warning();
                     break;
-                case 'message': 
+                case 'message':
                     this._message();
                     break;
-                default: 
+                default:
                     break;
             }
         }
 
-        _getHeight(){
+        _getHeight() {
             let allHeight = 4;
-            for(let one of $('body').find('.message')){
+            for (let one of $('body').find('.message')) {
                 allHeight = allHeight + $(one).height() + 6;
             }
             return allHeight;
         }
 
-        _getInstance({ color, icon, content }){
+        _getInstance({
+            color,
+            icon,
+            content
+        }) {
             //let allHeight = this._getHeight();
             this.$Message.appendTo($('body'));
             this.$Message.css({
                 background: color,
                 //top: allHeight,
             });
-            
+
             this.$content.html(content);
-            this.$title.text(this.title + ':');
+            this.$title.html(this.title + ':');
 
             this.$icon.attr({
                 class: icon,
@@ -118,12 +122,12 @@ define([], function() {
             this._handleEvents();
         }
 
-        _clearMsg(){
+        _clearMsg() {
             let count = parseInt(this.showTime / 1000);
             this.$time.text(count + '秒后关闭');
             this.timeThread = setInterval(() => {
                 count--;
-                if(count === 0){
+                if (count === 0) {
                     clearInterval(this.timeThread);
                 }
                 this.$time.text(count + '秒后关闭');
@@ -135,7 +139,7 @@ define([], function() {
             }, this.showTime);
         }
 
-        _handleEvents(){
+        _handleEvents() {
             this.$Message.on('mouseover', () => {
                 clearTimeout(this.clearThread);
                 clearInterval(this.timeThread);
@@ -155,7 +159,7 @@ define([], function() {
             });
         }
 
-        _infor(){
+        _infor() {
             let options = {
                 color: '#4a5ce4',
                 icon: 'fa fa-info-circle',
@@ -165,7 +169,7 @@ define([], function() {
             this._getInstance(options);
         }
 
-        _success(){
+        _success() {
             let options = {
                 color: '#00af4f',
                 icon: 'fa fa-check-circle',
@@ -175,7 +179,7 @@ define([], function() {
             this._getInstance(options);
         }
 
-        _error(){
+        _error() {
             let options = {
                 color: '#bf4141',
                 icon: 'fa fa-exclamation-circle',
@@ -185,7 +189,7 @@ define([], function() {
             this._getInstance(options);
         }
 
-        _warning(){
+        _warning() {
             let options = {
                 color: '#d6990b',
                 icon: 'fa fa-bell',
@@ -195,8 +199,10 @@ define([], function() {
             this._getInstance(options);
         }
 
-        _message(){
-            this.title = this.content.fromUser;
+        _message() {
+            let style = 'width:20px;height:20px;border-radius:10px;margin-bottom:3px;margin-right:5px;';
+            let imgStr = `<img style='${ style }' src='${ this.content.face }'/>`;
+            this.title = imgStr + this.content.fromUser;
             let options = {
                 color: '#00af4f',
                 icon: 'fa fa-commenting',

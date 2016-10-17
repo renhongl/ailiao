@@ -177,7 +177,11 @@ define(['Controller'], function (Controller) {
                 }
 
                 if (this.vue.msgView) {
-                    new AP.Message('message', { fromUser: msg.from, content: msg.content });
+            	    let url = AP.Constant.QUERY_BY_NAME + '?name=' + msg.from;
+            	    let callback = (result) => {
+                        new AP.Message('message', { fromUser: msg.from, content: msg.content, face: result.result.face });
+            	    };
+            	    AP.Ajax.get(url, callback)
                 }
                 if (this.vue.openVioce) {
                     this._playVoice(msg);
@@ -210,7 +214,7 @@ define(['Controller'], function (Controller) {
             let callback = (result) => {
                 $.publish('other-infor-loaded', result);
             };
-            AP.Ajax.get(url, callback);
+            AP.Ajax.get(url, callback)
         }
 
         _refreshChatContent(msg) {
