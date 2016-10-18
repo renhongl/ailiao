@@ -615,8 +615,25 @@
     margin-top: 5px;
     margin-left: 10px;
     border-radius: 3px;
-    border: 1px solid #000;
+    border: 1px solid #fff;
     padding-left: 10px;
+    height: 25px;
+    font-size: 0.8em;
+    color: #219ec5;
+}
+
+.groupManager hr{
+    margin: 0 auto;
+    width: 92%;
+}
+
+.groupManager input:hover{
+    cursor: pointer;
+    border: 1px solid #219ec5;
+}
+
+.groupManager input:focus{
+    border: 1px solid #219ec5;
 }
 
 .groupManager i{

@@ -57,7 +57,7 @@ define(['Controller'], function (Controller) {
         }
 
         _renderTree() {
-
+            
         }
 
         _handleEvents() {
@@ -173,7 +173,7 @@ define(['Controller'], function (Controller) {
 
         _addOneGroup(){
             let group = {
-                name: '',
+                name: '新组',
                 users: []
             };
             this.vue.groups.push(group);
