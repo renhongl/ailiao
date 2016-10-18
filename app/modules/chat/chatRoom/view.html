@@ -41,8 +41,8 @@
             </div>
             <div class="button editContent" contentEditable="true"></div>
             <div class="oprate">
-                <button type="button" class="btn btn-default button" v-on:click="sendTo" v-on:keyup.enter="sendTo" v-bind:class="{'disabled': current.status === '/images/offline.jpg'}">发送</button>
-                <button type="button" class="btn btn-default button" v-on:click="removeChatting">关闭</button>
+                <button type="button" class="button" v-on:click="sendTo" v-on:keyup.enter="sendTo" v-bind:class="{'disabled': current.status === '/images/offline.jpg'}">发送</button>
+                <button type="button" class="button" v-on:click="removeChatting">关闭</button>
             </div>
         </div>
     </div>

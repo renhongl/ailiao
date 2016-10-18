@@ -15,7 +15,7 @@
                 <span class="likeNumber button" v-on:click="addLike"><i class="fa fa-heart button" aria-hidden="true"></i>({{ currentDoc.like.length }})</span>
             </div>
             <textarea class="commentContent button"></textarea>
-            <button type="button" class="btn btn-default button" v-on:click="addComment">提交评论</button>
+            <button type="button" class="button" v-on:click="addComment">提交评论</button>
         </div>
         <div class="comments">
             <template v-for="comment in currentDoc.comments">

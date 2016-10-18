@@ -42,10 +42,17 @@ define(['Controller'], function(Controller) {
         }
 
         _handleEvents() {
-
+            setInterval( () => {
+                let index = this.vue.currentDoc.index;
+                this._getCommentByIndex(index, false);
+            }, 30000);
         }
 
         _addComment(){
+            if($('.commentContent').val().trim() === ''){
+                new AP.Message('infor', '请先填写评论。');
+                return;
+            }
             let url = AP.Constant.GET_INFOR + '?name=' + localStorage.name;
             let callback = (result) => {
                 let infor = result.result.infor;
@@ -109,14 +116,16 @@ define(['Controller'], function(Controller) {
             AP.Ajax.post(url, postData, callback);
         }
 
-        _getCommentByIndex(index) {
+        _getCommentByIndex(index, pageLoad) {
             let url = AP.Constant.GET_COMMENT + '?index=' + index;
             let callback = (result) => {
                 if (!result.result) {
                     this._initCommentToDB(index);
                 } else {
                     this.vue.currentDoc = result.result;
-                    this.vue.currentDoc.read += 1;
+                    if(pageLoad){
+                        this.vue.currentDoc.read += 1;
+                    }
                     this._updateCommentToDB();
                 }
             };
@@ -127,7 +136,7 @@ define(['Controller'], function(Controller) {
             let $container = $('.docContent');
             let url = AP.Constant.BASE_SERVER + `modules/document/docs/${ index }.html`;
             let callback = (result) => {
-                this._getCommentByIndex(index);
+                this._getCommentByIndex(index, true);
             };
             AP.Ajax.loadHTML($container, url, callback)
         }

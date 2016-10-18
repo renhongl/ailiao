@@ -206,7 +206,7 @@
     width: 100%;
     padding-left: 5px;
     outline: none;
-    height: 61%;
+    height: 64%;
     border: none;
     resize: none;
     font-size: 0.9em;
@@ -222,13 +222,15 @@
 .oprate button{
     float: right;
     margin-right: 4px;
-    height: 29px;
+    height: 25px;
     width: 67px;
     line-height: 16px;
     background: #219ec5;
     color: #fff;
     outline: none;
     border: none;
+    font-size: 0.8em;
+    border-radius: 3px;
 }
 
 .oprate button:hover{

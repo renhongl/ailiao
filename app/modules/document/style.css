@@ -6,12 +6,13 @@
 
 .document ::-webkit-scrollbar-track {
     border-radius: 10px;
-    background-color: #ffffff;
+    background-color: #ffffff !important;
 }
 
-.docContent ::-webkit-scrollbar-track {
-    border-radius: 10px;
-    background-color: #ffffff !important;
+.commentContent:focus{
+    border-color: #219ec5;
+    outline: 0;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(33, 158, 197);
 }
 
 .docNavbar{
@@ -130,6 +131,10 @@
     color: #fff;
     background-color: #219ec5;
     border: none;
+    outline: none;
+    border-radius: 3px;
+    font-size: 0.8em;
+    height: 30px;
 }
 
 .toComment button:hover{
@@ -140,6 +145,7 @@
 .oneComment{
     width: 80%;
     margin-bottom: 20px;
+    min-height: 50px;
 }
 
 .oneComment p{
