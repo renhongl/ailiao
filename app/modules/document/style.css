@@ -1,10 +1,17 @@
 .module .document{
     height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .document ::-webkit-scrollbar-track {
     border-radius: 10px;
     background-color: #ffffff;
+}
+
+.docContent ::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #ffffff !important;
 }
 
 .docNavbar{
@@ -27,10 +34,12 @@
 
 .docNavbar li:hover{
     background: #219ec5;
+    color: #fff;
 }
 
 .docNavbar .selected{
     background: #219ec5;
+    color: #fff;
 }
 
 .navbarTitle{
@@ -39,10 +48,8 @@
 }
 
 .docContent{
-    height: 100%;
     width: 70%;
     float: right;
-    overflow-y: auto;
 }
 
 .docContent .oneTitle{
@@ -85,4 +92,84 @@
 
 .docContent p{
     width: 80%;
+}
+
+.docFoot{
+    width: 70%;
+    float: right;
+}
+
+.docFoot .commentFace{
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    margin-right: 12px;
+    float: left;
+}
+
+.commentContent{
+    border: 1px solid #219ec5;
+    height: 100px;
+    width: 80%;
+    border-radius: 3px;
+    margin-top: 30px;
+    display: block;
+    padding-left: 10px;
+    overflow-y: auto;
+    resize: none;
+}
+
+.toComment{
+    padding-top: 10px;
+    margin-top: 40px;
+}
+
+.toComment button{
+    margin-top: 10px;
+    margin-bottom: 50px;
+    color: #fff;
+    background-color: #219ec5;
+    border: none;
+}
+
+.toComment button:hover{
+    background-color: #85cee4;
+    color: #fff;
+}
+
+.oneComment{
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+.oneComment p{
+    margin-left: 60px;
+    font-size: 0.8em;
+    margin-top: 6px;
+}
+
+.commentDate{
+    font-size: 0.6em;
+    display: inline-block;
+}
+
+.oneComment i{
+    color: #bdbaba;
+    font-size: 0.7em;
+}
+
+.commentName{
+    color: #219ec5;
+    display: inline-block;
+    margin-top: 3px;
+}
+
+.likeNumber{
+    display: inline-block;
+    margin-left: 10px;
+    color: #219ec5;
+}
+
+.likeNumber:hover{
+    color: red;
 }

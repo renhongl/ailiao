@@ -1,12 +1,13 @@
 <div>
-    <div class="oneTitle">
-        AP 数据库设计
-    </div><hr>
-    <div class="oneContent">
-        <p><strong>数据库名称：</strong>ap</p>
-        <p><strong>包含集合：</strong>user, records</p>
-        <p><strong>user:</strong></p>
-        <textarea class="code button" disabled>
+	<div class="oneTitle">
+		AP 数据库设计
+	</div>
+	<hr>
+	<div class="oneContent">
+		<p><strong>数据库名称：</strong>ap</p>
+		<p><strong>包含集合：</strong>user, record, comment</p>
+		<p><strong>user:</strong></p>
+		<textarea class="code button" disabled>
 {
     "name" : "大漠如风",
     "pwd": "123456",
@@ -29,8 +30,8 @@
     ]
 }
         </textarea>
-        <p><strong>records:</strong></p>
-        <textarea class="code button" disabled>
+		<p><strong>record:</strong></p>
+		<textarea class="code button" disabled>
 {
     "you": "大漠如风",
     "notYou": "斗鱼",
@@ -43,5 +44,43 @@
     ]
 }
         </textarea>
-    </div>
+
+
+
+		<p><strong>comment:</strong></p>
+		<textarea class="code button" disabled>
+{
+        name: '',
+        index: '',
+        read: 0,
+        like: 0,
+        comments: [
+        {
+            name: 'test1',
+            face: '/images/f1.jpg',
+            time: '2016-10-10 20:10:12',
+            comment: '一个评论'
+        },
+        {
+            name: 'test2',
+            face: '/images/f2.jpg',
+            time: '2016-10-10 20:10:12',
+            comment: '两个个评论'
+        }
+    ],
+    }
+}
+        </textarea>
+
+
+		<p><strong>Token生成方法:</strong></p>
+		<textarea class="code button" disabled>
+function guid() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+        return v.toString(16);
+    });
+}
+        </textarea>
+	</div>
 </div>

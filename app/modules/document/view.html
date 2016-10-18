@@ -8,4 +8,24 @@
     <div class="docContent">
         
     </div>
+    <div class="docFoot">
+        <div class="toComment">
+            <div>
+                <span>阅读({{ currentDoc.read }})</span>
+                <span class="likeNumber button" v-on:click="addLike"><i class="fa fa-heart button" aria-hidden="true"></i>({{ currentDoc.like.length }})</span>
+            </div>
+            <textarea class="commentContent button"></textarea>
+            <button type="button" class="btn btn-default button" v-on:click="addComment">提交评论</button>
+        </div>
+        <div class="comments">
+            <template v-for="comment in currentDoc.comments">
+                <div class="oneComment button">
+                    <img v-bind:src="comment.face" class="commentFace">
+                    <span class="commentName">{{ comment.name }}</span>
+                    <span class="commentDate">  {{ comment.time }}</span>
+                    <p>{{ comment.comment }}</p>
+                </div>
+            </template>
+        </div>
+    </div>
 </div>

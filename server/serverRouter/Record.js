@@ -3,18 +3,18 @@
 const MongoDB = require('../core/MongoDB');
 const assert = require('assert');
 
-class Records {
+class Record {
     constructor(app) {
         this.recordsLength = 100;
         this.app = app;
         this.currentDB = 'ap';
-        this.userCollection = 'records';
-        this._saveRecords();
-        this._getRecords();
+        this.userCollection = 'record';
+        this._saveRecord();
+        this._getRecord();
     }
 
-    _saveRecords() {
-        this.app.post('/saveRecords', (req, res) => {
+    _saveRecord() {
+        this.app.post('/saveRecord', (req, res) => {
             let recordsLength = this.recordsLength;
             let insertData = req.body.records;
             let queryData = {
@@ -47,8 +47,8 @@ class Records {
         });
     }
 
-    _getRecords() {
-        this.app.post('/getRecords', (req, res) => {
+    _getRecord() {
+        this.app.post('/getRecord', (req, res) => {
             let queryData = {
                 you: req.body.you,
                 notYou: req.body.notYou,
@@ -67,4 +67,4 @@ class Records {
 
 }
 
-module.exports = Records;
+module.exports = Record;

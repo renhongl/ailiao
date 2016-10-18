@@ -1,5 +1,72 @@
 {
     "name": "document",
     "description": "用于记录后台api，模块设计细节等。",
-    "author": "liangrenhong"
+    "author": "liangrenhong",
+    "docs": [
+        {
+            "name": "简介",
+            "index": "introDoc",
+            "current": true
+        },
+        {
+            "name": "AP_WEB总需求",
+            "index": "ap_webDoc",
+            "current": false
+        },
+        {
+            "name": "UserAPI设计",
+            "index": "userApiDoc",
+            "current": false
+        },
+        {
+            "name": "RecordsAPI设计",
+            "index": "recordsApiDoc",
+            "current": false
+        },
+        {
+            "name": "AP数据库设计",
+            "index": "dbDoc",
+            "current": false
+        },
+        {
+            "name": "音乐播放器",
+            "index": "musicPlayerDoc",
+            "current": false
+        },
+        {
+            "name": "聊天室",
+            "index": "chatRoomDoc",
+            "current": false
+        },
+        {
+            "name": "爱心鱼",
+            "index": "loveFishDoc",
+            "current": false
+        },
+        {
+            "name": "应用平台桌面版",
+            "index": "apDesktopDoc",
+            "current": false
+        },
+        {
+            "name": "电脑远程控制工具",
+            "index": "pcControlDoc",
+            "current": false
+        },
+        {
+            "name": "Git常用命令",
+            "index": "gitUsageDoc",
+            "current": false
+        },
+        {
+            "name": "Linux知识",
+            "index": "linuxDoc",
+            "current": false
+        },
+        {
+            "name": "实用工具推荐",
+            "index": "toolsDoc",
+            "current": false
+        }
+    ]
 }
