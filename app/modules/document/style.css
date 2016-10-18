@@ -6,7 +6,7 @@
 
 .document ::-webkit-scrollbar-track {
     border-radius: 10px;
-    background-color: #ffffff !important;
+    background-color: none;
 }
 
 .commentContent:focus{

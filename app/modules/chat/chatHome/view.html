@@ -45,7 +45,7 @@
         <i class="fa fa-search searchButton" aria-hidden="true"></i>
         <div style="display:none" class="searchContainer">
             <template v-for="user in allUsers | filterBy filterName in 'name' | orderBy 'name'">
-                <div class="oneUser button">
+                <div class="oneUser button" transition="oneUser">
                     <img v-bind:src="user.face" width="20" height="20" class="oneUserFace">
                     <img v-bind:src="user.status" width="20" height="20" class="oneUserStatus">
                     <span class="oneUserName">{{ user.name }}</span>
