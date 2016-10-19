@@ -45,10 +45,10 @@
 
 .chatting{
     height: 54px;
-    width: 54px;
+    width: 60px;
     position: relative;
-    border-radius: 3px;
-    margin: 2px auto;
+    /* border-radius: 3px; */
+    /* margin: 2px auto; */
 }
 
 .chatting:hover{

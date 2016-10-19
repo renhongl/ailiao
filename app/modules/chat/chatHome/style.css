@@ -265,16 +265,16 @@
 .groups {
     height: 366px;
     border-radius: 3px;
-    width: 98%;
+    width: 100%;
     margin: 0 auto;
     overflow-y: auto;
     overflow-x: hidden;
 }
 
 .groups .group {
-    border: 1px solid #219ec5;
-    border-radius: 3px;
-    padding-left: 25px;
+    /*border: 1px solid #219ec5; */
+    /* border-radius: 3px; */
+    padding-left: 29px;
     height: 35px;
     margin-top: 1px;
     position: relative;
@@ -298,13 +298,13 @@
     border-top: 7px solid transparent;
     border-bottom: 7px solid transparent;
     top: 9px;
-    left: 5px;
+    left: 11px;
 }
 
 .groups .user {
     height: 50px;
     margin-top: 1px;
-    border-radius: 3px;
+    border-radius: 0px;
     padding-left: 20px;
     position: relative;
     background: #219ec5;
@@ -384,7 +384,7 @@
     position: absolute;
     z-index: 10020;
     /* left: 3px; */
-    border-radius: 3px;
+    border-radius: 0px;
     background: #219ec5;
     top: 35px;
     overflow-y: auto;
@@ -393,9 +393,10 @@
 .oneUser-transition {
     transition: all .3s ease;
     height: 50px;
-    width: 98%;
-    margin: 1px auto;
-    border-radius: 3px;
+    width: 100%; 
+    margin: 0px;
+    padding-left: 3px;
+    /* border-radius: 3px; */
     position: relative;
     background: #219ec5;
 }

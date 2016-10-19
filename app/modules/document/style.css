@@ -17,7 +17,7 @@
 
 .docNavbar{
     height: 100%;
-    width: 200px;
+    width: 147px;
     float:left;
     padding-top: 50px;
 }
@@ -25,9 +25,9 @@
 .docNavbar li{
     height: 30px;
     font-size: 1em;
-    width: 78%;
+    width: 100%;
     margin: 1px auto;
-    border-radius: 3px;
+    /* border-radius: 3px; */
     list-style-type: none;
     padding-left: 10px;
     line-height: 30px;
