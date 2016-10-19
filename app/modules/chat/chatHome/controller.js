@@ -51,6 +51,10 @@ define(['Controller'], function (Controller) {
                     removeOneGroup: that._removeOneGroup.bind(that),
                     addOneGroup: that._addOneGroup.bind(that),
                     logout: that._logout.bind(that),
+		    leaveStatus: that._leaveStatus.bind(that),
+		    leaveFaceStore: that._leaveFaceStore.bind(that),
+		    leaveGroupManager: that._leaveGroupManager.bind(that),
+		    leaveAddToGroup: that._leaveAddToGroup.bind(that),
                 }
             };
             this.vue = new AP.Vue(config);
@@ -131,6 +135,23 @@ define(['Controller'], function (Controller) {
                 $('.toolsUL').toggle();
             });
         }
+	
+	_leaveAddToGroup(e){
+	    $(e.target).hide();
+	}
+	
+	_leaveGroupManager(e){
+	    $(e.target).hide();
+	    $('.toolsUL').hide();
+	}
+
+	_leaveFaceStore(e){
+	    $(e.target).hide();
+	}
+
+	_leaveStatus(e){
+	    $(e.target).hide();
+	}
 
         _initAll(args) {
             this.vue.name = args.infor.name;

@@ -28,6 +28,7 @@ require.config({
         bootstrap: 'libs/bootstrap/js/bootstrap.min',
         bootstrapSwitch: 'libs/bootstrap/js/bootstrap-switch.min',
         Vue: 'libs/vue',
+	dropzone: 'libs/dropzone',
 
     }
 });

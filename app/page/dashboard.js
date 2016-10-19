@@ -48,7 +48,7 @@ define([], function () {
                 show: false,
                 showTitle: true,
                 settings: {
-                    width: AP.width * 0.55,
+                    width: AP.width * 0.6,
                     height: AP.height,
                     x: AP.width * 0.5 / 2,
                     y: 0,

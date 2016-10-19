@@ -32,6 +32,11 @@ define(['Controller'], function (Controller) {
                     toggleFaceChoose: that._toggleFaceChoose.bind(that),
                     chooseOneFace: that._chooseOneFace.bind(that),
                     shakeOnce: that._shakeOnce.bind(that),
+		    enterOneChatting: that._enterOneChatting.bind(that),
+		    leaveOneChatting: that._leaveOneChatting.bind(that),
+		    leaveFaceChoose: that._leaveFaceChoose.bind(that),
+		    toggleUploadStore: that._toggleUploadStore.bind(that),
+		    uploadImg: that._uploadImg.bind(that),
                 },
             };
             this.vue = new AP.Vue(config);
@@ -42,6 +47,18 @@ define(['Controller'], function (Controller) {
         }
 
         _handleEvents() {
+
+	    
+	    $('#upload').dropzone({url: '/uploadImg'});
+	    Dropzone.options.upload = {
+	        paramName: 'file',
+		maxFilesize: 2,
+		accept: function(file, done){
+		    debugger;
+		}
+	    }
+
+
             this._refreshYourInfor();
             this._refreshCurrentInfor();
 
@@ -84,6 +101,34 @@ define(['Controller'], function (Controller) {
                 this._receivedMsg(msg);
             });
         }
+
+
+	_uploadImg(){
+	    $('#upload').dropzone({url: '/uploadImg'});
+	    Dropzone.options.upload = {
+	        paramName: 'file',
+		maxFilesize: 2,
+		accept: function(file, done){
+		    debugger;
+		}
+	    }
+	}
+
+	_toggleUploadStore(){
+	    $('.uploadStore').toggle();
+	}
+
+	_leaveFaceChoose(e){
+	    $(e.target).hide();
+	}
+
+	_leaveOneChatting(e){
+	    $(e.target).find('.removeChatting').hide();
+	}
+
+	_enterOneChatting(e){
+ 	    $(e.target).find('.removeChatting').show();
+	}
 
         _shakeOnce(){
             if(this.vue.current.status === '/images/offline.jpg' || this.vue.current.status === ''){

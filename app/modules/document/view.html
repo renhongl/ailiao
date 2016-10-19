@@ -5,6 +5,7 @@
             <li v-for="doc in docs" v-bind:class="{'selected': doc.current}" v-on:click="changeDoc" class="button">{{ doc.name }}</li>
         </ul>
     </div>
+    <div class="docRight">
     <div class="docContent">
         
     </div>
@@ -27,5 +28,6 @@
                 </div>
             </template>
         </div>
+    </div>
     </div>
 </div>

@@ -105,7 +105,7 @@
     top: 0px;
     left: 1px;
     font-size: 1em;
-    display: inline;
+    display: none;
     z-index: 60;
     opacity: 0.3;
 }
@@ -199,7 +199,7 @@
 .chatFoot .tools{
     width: 100%;
     height: 18%;
-    padding-left: 5px;
+    padding-left: 0px;
 }
 
 .chatFoot .editContent{
@@ -257,7 +257,7 @@
 .chatRoom .chatFoot i{
     display: inline-block;
     color: #000;
-    margin-top: 2px;
+    margin-top: 0px;
     margin-left: 0;
 }
 
@@ -294,3 +294,13 @@
     border: 1px solid #219ec5;
 }
 
+.uploadStore{
+    width: 96%;
+    position: absolute;
+    height: 38%;
+    top:34%;
+    background: #fff;
+    left: 10px;
+    box-shadow: 0 0 10px #000;
+    display: none;
+}

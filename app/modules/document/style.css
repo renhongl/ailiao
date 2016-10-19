@@ -17,19 +17,20 @@
 
 .docNavbar{
     height: 100%;
-    width: 147px;
+    width: 20%;
     float:left;
     padding-top: 50px;
+    background: #85cee4;
 }
 
 .docNavbar li{
     height: 30px;
     font-size: 1em;
     width: 100%;
-    margin: 1px auto;
+    margin: 0px auto;
     /* border-radius: 3px; */
     list-style-type: none;
-    padding-left: 10px;
+    padding-left: 10%;
     line-height: 30px;
 }
 
@@ -45,11 +46,11 @@
 
 .navbarTitle{
     font-weight: bold;
-    padding-left: 22px;
+    padding-left: 30px;
 }
 
 .docContent{
-    width: 70%;
+    width: 85%;
     float: right;
 }
 
@@ -96,7 +97,7 @@
 }
 
 .docFoot{
-    width: 70%;
+    width: 85%;
     float: right;
 }
 
@@ -178,4 +179,11 @@
 
 .likeNumber:hover{
     color: red;
+}
+
+.docRight{
+    height: 100%;
+    width: 80%;
+    float: right;
+    overflow-y: auto;
 }

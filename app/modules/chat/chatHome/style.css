@@ -263,7 +263,7 @@
 }
 
 .groups {
-    height: 366px;
+    height: 364px;
     border-radius: 3px;
     width: 100%;
     margin: 0 auto;
@@ -336,21 +336,16 @@
 .user i {
     display: inline-block;
     position: relative;
-    /* top: 17px; */
-    /* right: 40px; */
     float: right;
-    margin-right: 15px;
-    margin-top: 14px;
-    /* border: 1px solid red; */
-    width: 25px;
-    height: 25px;
+    width: 51px;
+    height: 100%;
     text-align: center;
-    line-height: 25px;
+    line-height: 50px;
+    border-radius: 0px;
 }
 
 .user i:hover {
-    background: #219ec5;
-    border-radius: 3px;
+    background: #ff7c7c;
     color: #fff;
 }
 
@@ -452,19 +447,17 @@
 
 .oneUser .fa-plus {
     position: absolute;
-    top: 14px;
-    right: 21px;
+    right: 0px;
     display: inline-block;
-    width: 25px;
-    height: 25px;
+    width: 51px;
+    height: 100%;
     /* padding: 2px; */
     text-align: center;
-    line-height: 25px;
+    line-height: 50px;
 }
 
 .oneUser .fa-plus:hover {
-    background: #219ec5;
-    border-radius: 3px;
+    background: #ff7c7c;
     color: #fff;
 }
 
@@ -536,17 +529,17 @@
     height: 27px;
     margin: 0 auto;
     border-radius: 3px;
+    line-height: 27px;
 }
 
 .tools i {
     display: inline-block;
-    width: 25px;
-    height: 25px;
-    margin-top: 0px;
-    margin-left: 5px;
-    line-height: 25px;
+    width: 35px;
+    height: 30px;
+    margin: 0px;
+    line-height: 30px;
     text-align: center;
-    border-radius: 3px;
+    padding: 0;
     color: #fff;
 }
 

@@ -5,7 +5,7 @@
     </div>
     <div class="head">
         <img class="face" v-bind:src="face" v-on:click="toggleFaceStore" class="button"/>
-	    <div class="faceStore button">
+	    <div class="faceStore button" v-on:mouseleave="leaveFaceStore">
             <img src="/images/f1.jpg">
             <img src="/images/f2.jpg">
             <img src="/images/f3.jpg">
@@ -23,7 +23,7 @@
             <div class="statusValue button">
                 <img v-bind:src="status">
             </div>
-            <ul class="statusSelect button">
+            <ul class="statusSelect button" v-on:mouseleave="leaveStatus">
                 <li><img src="/images/online.png"><span>在线</span></li>
                 <li><img src="/images/offline.jpg"><span>离线</span></li>
                 <li><img src="/images/busy.jpg"><span>忙碌</span></li>
@@ -51,7 +51,7 @@
                     <span class="oneUserName">{{ user.name }}</span>
                     <span class="oneUserIntro">{{ user.intro }}</span>
                     <i class="fa fa-plus button" aria-hidden="true" v-on:click="showGroups" tipy="添加" v-bind:class="{ 'hide': addedUsers.indexOf(user.name) !== -1 || user.name === name}"></i>
-                    <div class="addToGroup">
+                    <div class="addToGroup" v-on:mouseleave="leaveAddToGroup">
                         <span class="addTitle">添加到：</span><hr/>
                         <span v-for="group in groups" v-on:click="addToGroup" class="button">{{ group.name }}</span>
                     </div>
@@ -85,7 +85,7 @@
         </ul>
         <i class="fa fa-book button docsButton" aria-hidden="true" v-on:click="showDocs"></i>
     </div>
-    <div class="groupManager">
+    <div class="groupManager" v-on:mouseleave="leaveGroupManager">
         <h4>分组列表：</h4><hr>
         <template v-for="group in groups">
             <div>

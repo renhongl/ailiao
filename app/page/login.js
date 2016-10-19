@@ -13,7 +13,7 @@ define([], function () {
                 settings: {
                     width: 430,
                     height: 430,
-                    x: AP.width * 0.35,
+                    x: AP.width * 0.5 - 215,
                     y: 100,
                 },
                 content: {
@@ -31,7 +31,7 @@ define([], function () {
                 settings: {
                     width: 430,
                     height: 430,
-                    x: AP.width * 0.35,
+                    x: AP.width * 0.5 -215,
                     y: 100,
                 },
                 content: {

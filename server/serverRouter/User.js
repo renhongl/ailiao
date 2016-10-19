@@ -2,6 +2,7 @@
 
 const MongoDB = require('../core/MongoDB');
 const assert = require('assert');
+const fs = require('fs');
 
 class User {
     constructor(app) {
@@ -16,6 +17,13 @@ class User {
         this._queryByName();
         this._addToGroup();
         this._removeUser();
+	this._uploadImg();
+    }
+
+    _uploadImg(){
+        this.app.post('/uploadImg', function(req, res){
+	    console.log(req.body.files);
+	});
     }
 
     _removeUser() {
