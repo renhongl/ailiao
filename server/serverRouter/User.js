@@ -22,7 +22,7 @@ class User {
 
     _uploadImg(){
         this.app.post('/uploadImg', function(req, res){
-	    console.log(req.body.files);
+	    console.log(req.body);
 	});
     }
 

@@ -1,56 +1,57 @@
 <div class="chatRoom">
-    <audio class="msgVoice"></audio>
-    <div class="chatNavbar">
-        <template v-for="chatting in chattings">
-            <div class="chatting button" v-bind:class="{'current': chatting.current}" v-on:click="selectChatting" v-on:mouseenter="enterOneChatting" v-on:mouseleave="leaveOneChatting">
-                <span class="chattingName">{{ chatting.name }}</span>
-                <img v-bind:src="chatting.face" class="chattingFace">
-                <img v-bind:src="chatting.status" class="chattingStatus">
-                <i class="fa fa-times-circle button removeChatting" aria-hidden="true" v-on:click="removeChatting"></i>
-            </div>
-        </template>
-    </div>
-    <div class="chatRecord">
-        <div class="chatHeader">
-            <span class="currentName">{{ current.name }}</span>
-            <span class="currentIntro">{{ current.intro }}</span>
-        </div>
-        <div class="chatContent button">
-            <template v-for="record in records.records">
-                <div v-bind:class="{'you': record.name === records.you, 'notYou': record.name === records.notYou}">
-                    <span class="time button">{{ record.time }}</span>
-                    <img class="img button" v-bind:src="record.name === records.you ? you.face: current.face">
-                    <div class="recordP button" v-html="record.content"></div>
-                    <span class="recordFoot"></span>
-                </div>
-            </template>
-        </div>
-        <div class="chatFoot">
-            <div class="tools">
-                <i class="fa fa-smile-o button" aria-hidden="true" v-on:click="toggleFaceChoose"></i>
-                <i class="fa fa-bolt button" aria-hidden="true" v-on:click="shakeOnce"></i>
-		<i class="fa fa-file-image-o button" aria-hidden="true" v-on:click="toggleUploadStore"></i>
-            </div>
-            <div class="uploadStore">
-	    	<div class="imgStore"></div>
-                <div class="imgUploadDiv">
-		    <form action="/uploadImg" class="dropzone" id="upload">
-			<div class="fallback">
-			    <input name="file" type="file" multiple/>
+	<audio class="msgVoice"></audio>
+	<div class="chatNavbar">
+		<template v-for="chatting in chattings">
+			<div class="chatting button" v-bind:class="{'current': chatting.current}" v-on:click="selectChatting" v-on:mouseenter="enterOneChatting"
+				v-on:mouseleave="leaveOneChatting">
+				<span class="chattingName">{{ chatting.name }}</span>
+				<img v-bind:src="chatting.face" class="chattingFace">
+				<img v-bind:src="chatting.status" class="chattingStatus">
+				<i class="fa fa-times-circle button removeChatting" aria-hidden="true" v-on:click="removeChatting"></i>
 			</div>
-		    </form>
-		</div> 
-            </div>
-            <div class="faceChoose" v-on:mouseleave="leaveFaceChoose">
-                <template v-for="face in faces">
-                    <img v-bind:src="face" class="button" v-on:click="chooseOneFace">
-                </template>
-            </div>
-            <div class="button editContent" contentEditable="true"></div>
-            <div class="oprate">
-                <button type="button" class="button" v-on:click="sendTo" v-on:keyup.enter="sendTo" v-bind:class="{'disabled': current.status === '/images/offline.jpg'}">发送</button>
-                <button type="button" class="button" v-on:click="removeChatting">关闭</button>
-            </div>
-        </div>
-    </div>
+		</template>
+	</div>
+	<div class="chatRecord">
+		<div class="chatHeader">
+			<span class="currentName">{{ current.name }}</span>
+			<span class="currentIntro">{{ current.intro }}</span>
+		</div>
+		<div class="chatContent button">
+			<template v-for="record in records.records">
+				<div v-bind:class="{'you': record.name === records.you, 'notYou': record.name === records.notYou}">
+					<span class="time button">{{ record.time }}</span>
+					<img class="img button" v-bind:src="record.name === records.you ? you.face: current.face">
+					<div class="recordP button" v-html="record.content"></div>
+					<span class="recordFoot"></span>
+				</div>
+			</template>
+		</div>
+		<div class="chatFoot">
+			<div class="tools">
+				<i class="fa fa-smile-o button" aria-hidden="true" v-on:click="toggleFaceChoose"></i>
+				<i class="fa fa-bolt button" aria-hidden="true" v-on:click="shakeOnce"></i>
+				<i class="fa fa-file-image-o button" aria-hidden="true" v-on:click="toggleUploadStore"></i>
+			</div>
+			<div class="uploadStore">
+				<div class="imgStore"></div>
+				<div class="imgUploadDiv">
+					<form action="/uploadImg" class="dropzone" id="upload">
+						<div class="fallback">
+							<input name="file" type="file" multiple/>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="faceChoose" v-on:mouseleave="leaveFaceChoose">
+				<template v-for="face in faces">
+					<img v-bind:src="face" class="button" v-on:click="chooseOneFace">
+				</template>
+			</div>
+			<div class="button editContent" contentEditable="true"></div>
+			<div class="oprate">
+				<button type="button" class="button" v-on:click="sendTo" v-on:keyup.enter="sendTo" v-bind:class="{'disabled': current.status === '/images/offline.jpg'}">发送</button>
+				<button type="button" class="button" v-on:click="removeChatting">关闭</button>
+			</div>
+		</div>
+	</div>
 </div>

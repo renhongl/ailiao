@@ -3,7 +3,7 @@
 }
 
 .register .row{
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .register .registerBt{
@@ -27,6 +27,21 @@
     margin-top: 29px;
 }
 
+.backToLogin{
+    display: inline-block;
+    height: 30px;
+    width: 50px;
+    margin-left: 10px;
+    line-height: 30px;
+    color: #219ec5;
+    background: #fff;
+}
 
+.backToLogin:hover{
+    cursor: pointer;
+    color: #219ec5;
+}
 
-
+.register .fa-user,.register .fa-lock{
+    color: #219ec5;
+}

@@ -3,7 +3,7 @@
 }
 
 .login .row{
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .login #loginButton{
@@ -14,7 +14,7 @@
 }
 
 .login #registerButton{
-    color: blue;
+    color: #219ec5;
     text-decoration: underline;
 }
 
@@ -43,3 +43,6 @@
     margin-top: 29px;
 }
 
+.login i{
+    color: #219ec5;
+}

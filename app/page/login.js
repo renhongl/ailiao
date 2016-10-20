@@ -11,10 +11,10 @@ define([], function () {
                 show: true,
                 showTitle: false,
                 settings: {
-                    width: 430,
-                    height: 430,
-                    x: AP.width * 0.5 - 215,
-                    y: 100,
+                    width: AP.width,
+                    height: AP.height,
+                    x: 0,
+                    y: 0,
                 },
                 content: {
                     name:'login',
@@ -27,12 +27,12 @@ define([], function () {
                 id: 'register',
                 type: 'dialog',
                 show: false,
-                showTitle: true,
+                showTitle: false,
                 settings: {
-                    width: 430,
-                    height: 430,
-                    x: AP.width * 0.5 -215,
-                    y: 100,
+                    width: 0,
+                    height: AP.height,
+                    x: 0,
+                    y: 0,
                 },
                 content: {
                     name:'register',

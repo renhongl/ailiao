@@ -31,7 +31,7 @@ define([], function () {
                 settings: {
                     width: 550,
                     height: 550,
-                    x: 600,
+                    x: 350,
                     y: 20,
                 },
                 content: {
@@ -48,9 +48,9 @@ define([], function () {
                 show: false,
                 showTitle: true,
                 settings: {
-                    width: AP.width * 0.6,
+                    width: AP.width * 0.5,
                     height: AP.height,
-                    x: AP.width * 0.5 / 2,
+                    x: AP.width * 0.5,
                     y: 0,
                 },
                 content: {

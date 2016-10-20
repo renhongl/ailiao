@@ -18,24 +18,22 @@
         
         <p><strongs>打包：</strong></p>
         <p> 1. 现在来谈谈Python打包的问题。我使用的是cx_Freeze，首先下载的Python，
-[cx_Freeze](https://sourceforge.net/projects/cx-freeze/files/4.3.3/)
-版本、位数都需要一致。安装的时候添加上Python路径，cx_Freeze将会安装在
+cx_Freeze版本、位数都需要一致。安装的时候添加上Python路径，cx_Freeze将会安装在
 Scripts文件夹中，如果此文件夹没有cxfreeze.bat文件，就用Python运行
 cxfreeze-postinstall，就会生成bat文件，然后再命令行中测试是否可以
 使用cxfreeze命令。正常的话，cxfreeze就安装好了，现在可以去Python项目
-的文件夹运行命令`cxfreeze main.py --target-dir dist`，一切正常的话，
+的文件夹运行命令<code>cxfreeze main.py --target-dir dist</code>，一切正常的话，
 就会在文件夹中多一个dist文件夹，里面就有打包好的main.ext，命令中的
 main.py是你的程序执行的入口文件。不过，一般不会一次正常，会出现各种各样
 的错误。其中有个错误是丢失.DLL文件，这个时候需要下载个
-[Dependency Walker](http://www.dependencywalker.com/),
-打开其中的.exe文件，点击File，open，选择刚才dist文件夹中.pyw或者.exe文件，
+Dependency Walker打开其中的.exe文件，点击File，open，选择刚才dist文件夹中.pyw或者.exe文件，
 在左边的树中查看需要的.Dll文件，有问号的就是需要的，具体原因还没研究过。
 复制它们的名字去下载下来，然后放到Python项目中，这时候应该就可以成功了。</p>
 
     <p>2. 很开心纠结这么久终于打包成功了，但是有的项目需要显示GUI界面，并不需要
 命令窗口，而我的项目是需要悄悄在后台运行，才能体现出它的特点，所以可以
 使用另一个命令来打包，将只显示GUI界面，如果没有做，就什么都不显示，只能
-在进程中看到。命令是：`cxfreeze main.py --target-dir dist --base-name=Win32GUI`</p>
+在进程中看到。命令是：<code>cxfreeze main.py --target-dir dist --base-name=Win32GUI</code></p>
 
     </div>
 </div>

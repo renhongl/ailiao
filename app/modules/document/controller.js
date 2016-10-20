@@ -24,6 +24,11 @@ define(['Controller'], function(Controller) {
                     changeDoc: that._changeDoc.bind(that),
                     addLike: that._addLike.bind(that),
                     addComment: that._addComment.bind(that),
+                },
+                computed: {
+                    commentCount: function(){
+                        return this.currentDoc.comments.length;
+                    }
                 }
             };
             this.vue = new AP.Vue(config);

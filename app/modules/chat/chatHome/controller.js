@@ -1,4 +1,4 @@
-define(['Controller'], function (Controller) {
+define(['Controller'], function(Controller) {
     'use strict';
     class controller extends Controller {
         constructor(obj, $container, config) {
@@ -24,10 +24,10 @@ define(['Controller'], function (Controller) {
                     msgView: true,
                 },
                 computed: {
-                    addedUsers: function(){
+                    addedUsers: function() {
                         let users = [];
-                        for(let group of this.groups){
-                            for(let user of group.users){
+                        for (let group of this.groups) {
+                            for (let user of group.users) {
                                 users.push(user.name);
                             }
                         }
@@ -51,21 +51,20 @@ define(['Controller'], function (Controller) {
                     removeOneGroup: that._removeOneGroup.bind(that),
                     addOneGroup: that._addOneGroup.bind(that),
                     logout: that._logout.bind(that),
-		    leaveStatus: that._leaveStatus.bind(that),
-		    leaveFaceStore: that._leaveFaceStore.bind(that),
-		    leaveGroupManager: that._leaveGroupManager.bind(that),
-		    leaveAddToGroup: that._leaveAddToGroup.bind(that),
+                    leaveStatus: that._leaveStatus.bind(that),
+                    leaveFaceStore: that._leaveFaceStore.bind(that),
+                    leaveGroupManager: that._leaveGroupManager.bind(that),
+                    leaveAddToGroup: that._leaveAddToGroup.bind(that),
                 }
             };
             this.vue = new AP.Vue(config);
         }
 
         _renderTree() {
-            
+
         }
 
         _handleEvents() {
-
             $.subscribe('userInfo-loaded', (o, args) => {
                 this._initAll(args);
             });
@@ -73,9 +72,9 @@ define(['Controller'], function (Controller) {
             window.onbeforeunload = () => {
                 this.vue.status = '/images/offline.jpg';
                 this._setStatus();
-            }
+            };
 
-            $('.chatHome .intro').on('focus', function () {
+            $('.chatHome .intro').on('focus', function() {
                 $('.chatHome .introFoot').css({
                     background: '#fff',
                     borderRight: '1px solid #85cee4',
@@ -84,7 +83,7 @@ define(['Controller'], function (Controller) {
                 });
             });
 
-            $('.chatHome .intro').on('blur', function () {
+            $('.chatHome .intro').on('blur', function() {
                 $('.chatHome .introFoot').css({
                     background: '#85cee4',
                     borderRight: '1px solid #85cee4',
@@ -93,7 +92,7 @@ define(['Controller'], function (Controller) {
                 });
             });
 
-            $('.statusValue').on('click', function () {
+            $('.statusValue').on('click', function() {
                 $('.statusSelect').toggle();
             });
 
@@ -106,7 +105,7 @@ define(['Controller'], function (Controller) {
                 this._setStatus();
             });
 
-            $('.items i').on('click', function () {
+            $('.items i').on('click', function() {
                 $('.items i').removeClass('selected');
                 $(this).addClass('selected');
             });
@@ -114,7 +113,7 @@ define(['Controller'], function (Controller) {
             $('.search').on('focus', () => {
                 $('.searchContainer').show();
                 $('.fa-search').addClass('fa-times').removeClass('fa-search');
-                $('.searchDiv .fa-times').on('click', function () {
+                $('.searchDiv .fa-times').on('click', function() {
                     $('.searchContainer').hide();
                     $('.searchDiv .fa-times').addClass('fa-search').removeClass('fa-times');
                 });
@@ -131,27 +130,27 @@ define(['Controller'], function (Controller) {
                 $('.faceStore').hide();
             });
 
-            $('.toggleTools').on('click', function () {
+            $('.toggleTools').on('click', function() {
                 $('.toolsUL').toggle();
             });
         }
-	
-	_leaveAddToGroup(e){
-	    $(e.target).hide();
-	}
-	
-	_leaveGroupManager(e){
-	    $(e.target).hide();
-	    $('.toolsUL').hide();
-	}
 
-	_leaveFaceStore(e){
-	    $(e.target).hide();
-	}
+        _leaveAddToGroup(e) {
+            $(e.target).hide();
+        }
 
-	_leaveStatus(e){
-	    $(e.target).hide();
-	}
+        _leaveGroupManager(e) {
+            $(e.target).hide();
+            $('.toolsUL').hide();
+        }
+
+        _leaveFaceStore(e) {
+            $(e.target).hide();
+        }
+
+        _leaveStatus(e) {
+            $(e.target).hide();
+        }
 
         _initAll(args) {
             this.vue.name = args.infor.name;
@@ -188,11 +187,11 @@ define(['Controller'], function (Controller) {
             }
         }
 
-        _logout(){
+        _logout() {
             location = AP.Constant.BASE_SERVER;
         }
 
-        _addOneGroup(){
+        _addOneGroup() {
             let group = {
                 name: '新组',
                 users: []
@@ -200,31 +199,51 @@ define(['Controller'], function (Controller) {
             this.vue.groups.push(group);
         }
 
-        _removeOneGroup(e){
+        _removeOneGroup(e) {
             let removeGroup = $(e.target).parent().find('input').val();
             let count = 0;
-            for(let group of this.vue.groups){
-                if(group.name === removeGroup){
+            for (let group of this.vue.groups) {
+                if (group.name === removeGroup) {
                     this.vue.groups.splice(count, 1);
                     return;
-                }else{
+                } else {
                     count++;
                 }
             }
         }
 
-        _saveGroupChanges(){
+        _saveGroupChanges() {
             $('.groupManager').hide();
             this._setGroup();
             $.publish('needRefresh');
         }
 
-        _toggleGroupManager(){
+        _toggleGroupManager() {
             $('.groupManager').toggle();
         }
 
-        _showDocs(){
-            $('#Documents').toggle();
+        _showDocs() {
+            if($('#Documents').css('display') === 'none'){
+                $('#Documents').css({
+                    left: AP.width,
+                    top: 0,
+                    width: 0,
+                });
+                $('#Documents').toggle();
+                $('#Documents').animate({
+                    left: AP.width * 0.5,
+                    width: AP.width * 0.5,
+                });
+            }else{
+                $('#Documents').animate({
+                    left: AP.width,
+                    width: 0,
+                });
+                setTimeout(function(){
+                    $('#Documents').toggle();
+                }, 500);
+            }
+            
         }
 
         _switchMsgView() {
@@ -247,7 +266,9 @@ define(['Controller'], function (Controller) {
 
         _addChatting(e) {
             let name = $(e.target).parent().find('.userName').text();
-            $.publish('addChatting', { name: name });
+            $.publish('addChatting', {
+                name: name
+            });
         }
 
         _toggleFaceStore() {
@@ -350,7 +371,7 @@ define(['Controller'], function (Controller) {
                 groups: this.vue.groups,
 
             };
-            let callback = function (result) {
+            let callback = function(result) {
                 if (result.status === 'error') {
                     new AP.Message('error', result.text);
                 } else {
@@ -366,7 +387,7 @@ define(['Controller'], function (Controller) {
                 name: this.vue.name,
                 groups: this.vue.groups,
             };
-            let callback = function (result) {
+            let callback = function(result) {
                 if (result.status === 'error') {
                     new AP.Message('error', result.text);
                 } else {
@@ -382,7 +403,7 @@ define(['Controller'], function (Controller) {
                 name: this.vue.name,
                 face: this.vue.face,
             };
-            let callback = function (result) {
+            let callback = function(result) {
                 if (result.status === 'error') {
                     new AP.Message('error', result.text);
                 } else {
@@ -398,7 +419,7 @@ define(['Controller'], function (Controller) {
                 name: this.vue.name,
                 email: this.vue.email,
             };
-            let callback = function (result) {
+            let callback = function(result) {
                 if (result.status === 'error') {
                     new AP.Message('error', result.text);
                 } else {
@@ -414,7 +435,7 @@ define(['Controller'], function (Controller) {
                 name: this.vue.name,
                 status: this.vue.status,
             };
-            let callback = function (result) {
+            let callback = function(result) {
                 if (result.status === 'error') {
                     new AP.Message('error', result.text);
                 } else {
@@ -430,7 +451,7 @@ define(['Controller'], function (Controller) {
                 name: this.vue.name,
                 intro: this.vue.intro,
             };
-            let callback = function (result) {
+            let callback = function(result) {
                 if (result.status === 'error') {
                     new AP.Message('error', result.text);
                 } else {

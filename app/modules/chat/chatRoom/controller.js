@@ -1,4 +1,4 @@
-define(['Controller'], function (Controller) {
+define(['Controller'], function(Controller) {
     'use strict';
     class controller extends Controller {
         constructor(obj, $container, config) {
@@ -32,11 +32,10 @@ define(['Controller'], function (Controller) {
                     toggleFaceChoose: that._toggleFaceChoose.bind(that),
                     chooseOneFace: that._chooseOneFace.bind(that),
                     shakeOnce: that._shakeOnce.bind(that),
-		    enterOneChatting: that._enterOneChatting.bind(that),
-		    leaveOneChatting: that._leaveOneChatting.bind(that),
-		    leaveFaceChoose: that._leaveFaceChoose.bind(that),
-		    toggleUploadStore: that._toggleUploadStore.bind(that),
-		    uploadImg: that._uploadImg.bind(that),
+                    enterOneChatting: that._enterOneChatting.bind(that),
+                    leaveOneChatting: that._leaveOneChatting.bind(that),
+                    leaveFaceChoose: that._leaveFaceChoose.bind(that),
+                    toggleUploadStore: that._toggleUploadStore.bind(that),
                 },
             };
             this.vue = new AP.Vue(config);
@@ -47,17 +46,16 @@ define(['Controller'], function (Controller) {
         }
 
         _handleEvents() {
-
-	    
-	    $('#upload').dropzone({url: '/uploadImg'});
-	    Dropzone.options.upload = {
-	        paramName: 'file',
-		maxFilesize: 2,
-		accept: function(file, done){
-		    debugger;
-		}
-	    }
-
+            $('#upload').dropzone({
+                url: '/uploadImg'
+            });
+            Dropzone.options.upload = {
+                paramName: 'file',
+                maxFilesize: 2,
+                accept: function(file, done) {
+                    debugger;
+                }
+            }
 
             this._refreshYourInfor();
             this._refreshCurrentInfor();
@@ -100,88 +98,148 @@ define(['Controller'], function (Controller) {
             AP.socket.on(localStorage.name, (msg) => {
                 this._receivedMsg(msg);
             });
+
+            // Dropzone
+
+
+            var dropzone = new Dropzone('#upload', {
+                previewTemplate: document.querySelector('#preview-template').innerHTML,
+                parallelUploads: 2,
+                thumbnailHeight: 120,
+                thumbnailWidth: 120,
+                maxFilesize: 3,
+                filesizeBase: 1000,
+                thumbnail: function(file, dataUrl) {
+                    if (file.previewElement) {
+                        file.previewElement.classList.remove("dz-file-preview");
+                        var images = file.previewElement.querySelectorAll("[data-dz-thumbnail]");
+                        for (var i = 0; i < images.length; i++) {
+                            var thumbnailElement = images[i];
+                            thumbnailElement.alt = file.name;
+                            thumbnailElement.src = dataUrl;
+                        }
+                        setTimeout(function() {
+                            file.previewElement.classList.add("dz-image-preview");
+                        }, 1);
+                    }
+                }
+
+            });
+
+
+            // Now fake the file upload, since GitHub does not handle file uploads
+            // and returns a 404
+
+            var minSteps = 6,
+                maxSteps = 60,
+                timeBetweenSteps = 100,
+                bytesPerStep = 100000;
+
+            dropzone.uploadFiles = function(files) {
+                var self = this;
+
+                for (var i = 0; i < files.length; i++) {
+
+                    var file = files[i];
+                    totalSteps = Math.round(Math.min(maxSteps, Math.max(minSteps, file.size / bytesPerStep)));
+
+                    for (var step = 0; step < totalSteps; step++) {
+                        var duration = timeBetweenSteps * (step + 1);
+                        setTimeout(function(file, totalSteps, step) {
+                            return function() {
+                                file.upload = {
+                                    progress: 100 * (step + 1) / totalSteps,
+                                    total: file.size,
+                                    bytesSent: (step + 1) * file.size / totalSteps
+                                };
+
+                                self.emit('uploadprogress', file, file.upload.progress, file.upload.bytesSent);
+                                if (file.upload.progress == 100) {
+                                    file.status = Dropzone.SUCCESS;
+                                    self.emit("success", file, 'success', null);
+                                    self.emit("complete", file);
+                                    self.processQueue();
+                                }
+                            };
+                        }(file, totalSteps, step), duration);
+                    }
+                }
+            }
         }
 
 
-	_uploadImg(){
-	    $('#upload').dropzone({url: '/uploadImg'});
-	    Dropzone.options.upload = {
-	        paramName: 'file',
-		maxFilesize: 2,
-		accept: function(file, done){
-		    debugger;
-		}
-	    }
-	}
 
-	_toggleUploadStore(){
-	    $('.uploadStore').toggle();
-	}
+        _toggleUploadStore() {
+            $('.uploadStore').toggle();
+        }
 
-	_leaveFaceChoose(e){
-	    $(e.target).hide();
-	}
+        _leaveFaceChoose(e) {
+            $(e.target).hide();
+        }
 
-	_leaveOneChatting(e){
-	    $(e.target).find('.removeChatting').hide();
-	}
+        _leaveOneChatting(e) {
+            $(e.target).find('.removeChatting').hide();
+        }
 
-	_enterOneChatting(e){
- 	    $(e.target).find('.removeChatting').show();
-	}
+        _enterOneChatting(e) {
+            $(e.target).find('.removeChatting').show();
+        }
 
-        _shakeOnce(){
-            if(this.vue.current.status === '/images/offline.jpg' || this.vue.current.status === ''){
+        _shakeOnce() {
+            if (this.vue.current.status === '/images/offline.jpg' || this.vue.current.status === '') {
                 return;
             }
             $('.editContent').html('抖了你一下');
             this._sendTo();
         }
 
-        _chooseOneFace(e){
+        _chooseOneFace(e) {
             let url = $(e.target).attr('src');
-            $('.editContent').html($('.editContent').html() + `<img src='${ url }'>`) ;
+            $('.editContent').html($('.editContent').html() + `<img src='${ url }'>`);
             $('.faceChoose').hide();
         }
 
-        _initFaces(){
+        _initFaces() {
             let url = AP.Constant.BASE_SERVER;
-            for(let i = 1; i < 133; i++){
+            for (let i = 1; i < 133; i++) {
                 this.vue.faces.push(`${ url }/images/qqFace/${ i }.gif`);
             }
         }
 
-        _toggleFaceChoose(){
+        _toggleFaceChoose() {
             $('.faceChoose').toggle();
         }
 
         _playVoice(msg) {
             let audio = document.querySelector('.msgVoice');
-            if(msg.content === '抖了你一下'){
+            if (msg.content === '抖了你一下') {
                 audio.setAttribute("src", this.vue.msgVoiceSource[1]);
-            }else{
+            } else {
                 audio.setAttribute("src", this.vue.msgVoiceSource[0]);
             }
             audio.play();
         }
 
-        _shake(){
-            let {top, left} = $('#ChatRoom').css(['top', 'left']);
+        _shake() {
+            let {
+                top,
+                left
+            } = $('#ChatRoom').css(['top', 'left']);
             let count = 0;
-            let shakeThread = setInterval(function(){
-                if(count % 2 === 0){
+            let shakeThread = setInterval(function() {
+                if (count % 2 === 0) {
                     $('#ChatRoom').css({
                         top: parseInt(top.split('px')[0]) - 5,
                         left: parseInt(left.split('px')[0]) - 5
                     });
-                }else{
+                } else {
                     $('#ChatRoom').css({
                         top: top,
                         left: left
                     });
                 }
                 count++;
-                if(count >= 150){
+                if (count >= 150) {
                     clearInterval(shakeThread);
                 }
             }, 10);
@@ -206,35 +264,42 @@ define(['Controller'], function (Controller) {
 
             if (!itsMe) {
                 if (!windowShowing) {
-                    $('#ChatRoom').show();
-                    this._addChatting({ name: msg.from });
+                    this._openChatRoom();
+                    this._addChatting({
+                        name: msg.from
+                    });
                     this._updateContent(msg);
-
                 } else if (windowShowing && !inChattings) {
-                    this._addChatting({ name: msg.from });
+                    this._addChatting({
+                        name: msg.from
+                    });
                     this._updateContent(msg);
 
                 } else if (windowShowing && inChattings && !isCurrent) {
                     this._selectChatting('event', msg.from);
                     this._updateContent(msg);
-                }else if(windowShowing && inChattings && isCurrent){
+                } else if (windowShowing && inChattings && isCurrent) {
                     this._updateContent(msg);
                 }
 
                 if (this.vue.msgView) {
-            	    let url = AP.Constant.QUERY_BY_NAME + '?name=' + msg.from;
-            	    let callback = (result) => {
-                        new AP.Message('message', { fromUser: msg.from, content: msg.content, face: result.result.face });
-            	    };
-            	    AP.Ajax.get(url, callback)
+                    let url = AP.Constant.QUERY_BY_NAME + '?name=' + msg.from;
+                    let callback = (result) => {
+                        new AP.Message('message', {
+                            fromUser: msg.from,
+                            content: msg.content,
+                            face: result.result.face
+                        });
+                    };
+                    AP.Ajax.get(url, callback)
                 }
                 if (this.vue.openVioce) {
                     this._playVoice(msg);
                 }
-                if(msg.content === '抖了你一下'){
+                if (msg.content === '抖了你一下') {
                     this._shake();
                 }
-            }else{
+            } else {
                 this._updateContent(msg);
             }
         }
@@ -243,12 +308,12 @@ define(['Controller'], function (Controller) {
             setTimeout(() => {
                 let record = {
                     name: msg.from,
-                    time: new Date().toISOString().split('.')[0].replace(/T/g,' '),
+                    time: new Date().toISOString().split('.')[0].replace(/T/g, ' '),
                     content: msg.content,
                 };
                 this.vue.records.records.push(record);
                 this._saveRecords(this.vue.records);
-                setTimeout(function(){
+                setTimeout(function() {
                     $('.chatContent').scrollTop($('.chatContent')[0].scrollHeight);
                 }, 100);
             }, 500);
@@ -265,7 +330,7 @@ define(['Controller'], function (Controller) {
         _refreshChatContent(msg) {
             let record = {
                 name: msg.from,
-                time: new Date().toISOString().split('.')[0].replace(/T/g,' '),
+                time: new Date().toISOString().split('.')[0].replace(/T/g, ' '),
                 face: msg.from === this.vue.you.name ? this.vue.you.face : this.vue.current.face,
                 content: msg.content,
             };
@@ -355,7 +420,7 @@ define(['Controller'], function (Controller) {
             this.vue.chattings = tempChattings;
 
             if (this.vue.chattings.length === 0) {
-                $('#ChatRoom').hide();
+                this._hideChatRoom();
             }
         }
 
@@ -386,8 +451,30 @@ define(['Controller'], function (Controller) {
             this._getRecordsFromDB();
         }
 
-        _addChatting(args) {
+        _hideChatRoom() {
+            $('#ChatRoom').animate({
+                left: 　450,
+                top: 200,
+                width: 0,
+                height: 0,
+            }, 500);
+            setTimeout(function() {
+                $('#ChatRoom').hide();
+            }, 500);
+        }
+
+        _openChatRoom() {
+            $('#ChatRoom').css({
+                left: 350,
+                top: 20,
+                width: 550,
+                height: 550,
+            });
             $('#ChatRoom').show();
+        }
+
+        _addChatting(args) {
+            this._openChatRoom();
             let url = AP.Constant.QUERY_BY_NAME + '?name=' + args.name;
             let callback = (result) => {
                 let chatting = result.result;

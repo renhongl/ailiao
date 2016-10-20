@@ -33,6 +33,21 @@ define(['Controller'], function (Controller) {
 
         _regiser(){
             $.publish('register-show');
+            setTimeout(function(){
+                $("#register").animate({
+                    left: 0,
+                    top: 0,
+                    width: AP.width,
+                }, 500);
+            }, 500);
+
+            setTimeout(function(){
+                $("#login").animate({
+                    left: AP.width,
+                    top: 0,
+                    width: 0,
+                }, 500);
+            }, 500);
         }
 
         _login(){

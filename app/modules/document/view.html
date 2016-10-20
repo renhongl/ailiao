@@ -13,6 +13,7 @@
         <div class="toComment">
             <div>
                 <span>阅读({{ currentDoc.read }})</span>
+                <span class="commentCount">评论({{ commentCount }})</span>
                 <span class="likeNumber button" v-on:click="addLike"><i class="fa fa-heart button" aria-hidden="true"></i>({{ currentDoc.like.length }})</span>
             </div>
             <textarea class="commentContent button"></textarea>

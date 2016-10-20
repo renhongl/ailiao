@@ -9,23 +9,8 @@
             "current": true
         },
         {
-            "name": "AP_WEB总需求",
+            "name": "AP_WEB文档",
             "index": "ap_webDoc",
-            "current": false
-        },
-        {
-            "name": "UserAPI设计",
-            "index": "userApiDoc",
-            "current": false
-        },
-        {
-            "name": "RecordsAPI设计",
-            "index": "recordsApiDoc",
-            "current": false
-        },
-        {
-            "name": "AP数据库设计",
-            "index": "dbDoc",
             "current": false
         },
         {

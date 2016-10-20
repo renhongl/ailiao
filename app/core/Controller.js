@@ -29,11 +29,9 @@ define([], function() {
                         display: 'none',
                     });
                     $.subscribe(`${obj.id}-show`, () => {
-                        setTimeout(function(){
-                            $('.dialog').removeClass('current');
-                            $dialog.addClass('current');
-                            $dialog.fadeIn();
-                        }, 1000);
+                        $('.dialog').removeClass('current');
+                        $dialog.addClass('current');
+                        $dialog.fadeIn();
                     });
                 }
                 $dialog.css({

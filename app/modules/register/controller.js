@@ -1,12 +1,11 @@
-
-define(['Controller'], function (Controller) {
+define(['Controller'], function(Controller) {
     'use strict';
     class controller extends Controller {
         constructor(obj, $container, config) {
             super(obj, $container, config);
         }
 
-        _runVue(){
+        _runVue() {
             let that = this;
             let config = {
                 el: '.register',
@@ -22,6 +21,26 @@ define(['Controller'], function (Controller) {
             this.vue = new AP.Vue(config);
         }
 
+        _handleEvents() {
+            $('.backToLogin').on('click', function() {
+                setTimeout(function() {
+                    $("#register").animate({
+                        left: 0,
+                        top: 0,
+                        width: 0,
+                    }, 500);
+                }, 500);
+
+                setTimeout(function() {
+                    $("#login").animate({
+                        left: 0,
+                        top: 0,
+                        width: AP.width,
+                    }, 500);
+                }, 500);
+            });
+        }
+
         _register() {
             if (this.vue.verify()) {
                 let url = AP.Constant.REGISTER;
@@ -29,10 +48,24 @@ define(['Controller'], function (Controller) {
                     userName: this.vue.userName,
                     password: this.vue.password,
                 };
-                AP.Ajax.post(url, postData, function (result) {
+                AP.Ajax.post(url, postData, function(result) {
                     new AP.Message('success', '账号注册成功！');
-                    setTimeout(function(){
-                        $('#register').fadeOut();
+                    setTimeout(function() {
+                        setTimeout(function() {
+                            $("#register").animate({
+                                left: 0,
+                                top: 0,
+                                width: 0,
+                            }, '5000');
+                        }, 500);
+
+                        setTimeout(function() {
+                            $("#login").animate({
+                                left: 0,
+                                top: 0,
+                                width: AP.width,
+                            }, '5000');
+                        }, 500);
                     }, 1000);
                 });
             }

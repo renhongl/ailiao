@@ -1,13 +1,13 @@
 <div>
     <div class="oneTitle">
-        AP_WEB 总需求
+        AP_WEB 文档
     </div><hr>
     <div class="oneContent">
         <p><strong>介绍：</strong>AP_WEB是想把电脑应用AP用网页的形式展示出来。</p>
 
         <p><strong>TODO List：</strong></p>
 
-        <textarea class="code button" disabled>
+        <pre>
 1.加所有的过渡效果。
 2.图片上传发送。
 4.浏览器兼容问题（CSS3兼容，ES6兼容）。
@@ -15,11 +15,11 @@
 7.个人信息,可上头。
 0.修Tipy插。
 8.图片太大问题。
-        </textarea>
+        </pre>
 
         <p><strong>前端：</strong></p>
 
-        <textarea class="code button" disabled>
+        <pre>
 封装基本功能：
     模块父类Controller.js、Model.js
     Ajax请求Ajax.js。
@@ -41,11 +41,11 @@
     Bootstrap, 
     Angular, 
     vue。  
-        </textarea>
+        </pre>
 
         <p><strong>后端：</strong></p>
 
-        <textarea class="code button" disabled>
+        <pre>
 nodejs做运行环境。
 mongodb做数据库。
 express写api。
@@ -55,8 +55,326 @@ http端口：8080。
 websocket端口： 9090。
 ws地址：lrh.ws.viphk.ngrok.cc
 端口id：8e48bec17c19d609,a82af62b7986363f
-        </textarea>
+        </pre>
 
 
     </div>
+
+
+    <div class="oneTitle">
+        User API 设计
+    </div><hr>
+    <div class="oneContent">
+        <p><strong>API描述:</strong>登陆</p>
+        <p><strong>Method：</strong>POST</p>
+        <p><strong>URL: </strong>/login</p>
+        <p><strong>Parameters：</strong></p>
+        <table class="table table-condensed">
+            <tr><th>Key</th><th>Value</th><th>Required</th><th>Discribe</th></tr>
+            <tr><td>userName</td><td>string</td><td>yes</td><td>用户名</td></tr>
+            <tr><td>password</td><td>string</td><td>yes<td>用户密码</td></tr>
+        </table>
+        <p><strong>Response：</strong></p>
+        <pre>
+{
+    "status": "success",
+    "result": {
+        "name": "大漠如风",
+        "intro": "今天天气真好。",
+        "face": "/images/f1.png",
+        "status": "/images/online.png"
+    }
+}
+        </pre><hr>
+
+
+        <p><strong>API描述:</strong>注册</p>
+        <p><strong>Method：</strong>POST</p>
+        <p><strong>URL: </strong>/register</p>
+        <p><strong>Parameters：</strong></p>
+        <table class="table table-condensed">
+            <tr><th>Key</th><th>Value</th><th>Required</th><th>Discribe</th></tr>
+            <tr><td>userName</td><td>string</td><td>yes</td><td>用户名</td></tr>
+            <tr><td>password</td><td>number</td><td>no<td>用户密码</td></tr>
+        </table>
+        <p><strong>Response：</strong></p>
+        <pre>
+{
+    "status": "success",
+    "text": "注册成功"
+}
+        </pre><hr>
+
+
+        <p><strong>API描述:</strong>查询用户信息</p>
+        <p><strong>Method：</strong>GET</p>
+        <p><strong>URL: </strong>/getInfor</p>
+        <p><strong>Parameters：</strong></p>
+        <table class="table table-condensed">
+            <tr><th>Key</th><th>Value</th><th>Required</th><th>Discribe</th></tr>
+            <tr><td>name</td><td>string</td><td>yes</td><td>用户名</td></tr>
+        </table>
+        <p><strong>Response：</strong></p>
+        <pre>
+{
+    "status": "success",
+    "result": {
+        "infor": {
+            "name": "user1",
+            "intro": "Hello Everyone",
+            "face": "/images/f1.png",
+            "status": "/images/online.png"
+        }
+    }
+}
+        </pre><hr>
+
+
+        <p><strong>API描述:</strong>设置用户信息</p>
+        <p><strong>Method：</strong>POST</p>
+        <p><strong>URL: </strong>/setInfor</p>
+        <p><strong>Parameters：</strong></p>
+        <table class="table table-condensed">
+            <tr><th>Key</th><th>Value</th><th>Required</th><th>Discribe</th></tr>
+            <tr><td>name</td><td>string</td><td>yes</td><td>用户名</td></tr>
+            <tr><td>email</td><td>string</td><td>no</td><td>邮箱</td></tr>
+            <tr><td>face</td><td>string</td><td>no</td><td>头像</td></tr>
+            <tr><td>intro</td><td>string</td><td>no</td><td>自我介绍</td></tr>
+            <tr><td>status</td><td>string</td><td>no</td><td>状态</td></tr>
+        </table>
+        <p><strong>Response：</strong></p>
+        <pre>
+{
+    "status": "success",
+    "result": "success"
+}
+        </pre><hr>
+
+
+        <p><strong>API描述:</strong>查询所有用户</p>
+        <p><strong>Method：</strong>GET</p>
+        <p><strong>URL: </strong>/queryAll</p>
+        <p><strong>Parameters：</strong></p>
+        <table class="table table-condensed">
+            <tr><th>Key</th><th>Value</th><th>Required</th><th>Discribe</th></tr>
+        </table>
+        <p><strong>Response：</strong></p>
+        <pre>
+{
+    "status": "success",
+    "result": [
+        {
+            "name": "user1",
+            "intro": "Hello Everyone",
+            "face": "/images/f1.png",
+            "status": "/images/online.png"
+        },
+        {
+            "name": "user2",
+            "intro": "Hello Everyone",
+            "face": "/images/f1.png",
+            "status": "/images/online.png"
+        }
+    ]
+}
+        </pre><hr>
+
+
+        <p><strong>API描述:</strong>通过用户名查询用户信息</p>
+        <p><strong>Method：</strong>GET</p>
+        <p><strong>URL: </strong>/queryByName</p>
+        <p><strong>Parameters：</strong></p>
+        <table class="table table-condensed">
+            <tr><th>Key</th><th>Value</th><th>Required</th><th>Discribe</th></tr>
+            <tr><td>name</td><td>string</td><td>yes</td><td>用户名</td></tr>
+        </table>
+        <p><strong>Response：</strong></p>
+        <pre>
+{
+    "status": "success",
+    "result": {
+            "name": "user1",
+            "intro": "Hello Everyone",
+            "face": "/images/f1.png",
+            "status": "/images/online.png"
+    }
+}
+        </pre><hr>
+
+
+        <p><strong>API描述:</strong>添加一个用户为好友</p>
+        <p><strong>Method：</strong>POST</p>
+        <p><strong>URL: </strong>/addToGroup</p>
+        <p><strong>Parameters：</strong></p>
+        <table class="table table-condensed">
+            <tr><th>Key</th><th>Value</th><th>Required</th><th>Discribe</th></tr>
+            <tr><td>name</td><td>string</td><td>yes</td><td>哪个用户要添加</td></tr>
+            <tr><td>addUser</td><td>string</td><td>yes</td><td>要添加的用户的用户名</td></tr>
+            <tr><td>addGroup</td><td>string</td><td>yes</td><td>要添加到的分组的名称</td></tr>
+        </table>
+        <p><strong>Response：</strong></p>
+        <pre>
+{
+    "status": "success"
+}
+        </pre><hr>
+
+
+        <p><strong>API描述:</strong>将用户中好友中删除</p>
+        <p><strong>Method：</strong>DELETE</p>
+        <p><strong>URL: </strong>/removeUser</p>
+        <p><strong>Parameters：</strong></p>
+        <table class="table table-condensed">
+            <tr><th>Key</th><th>Value</th><th>Required</th><th>Discribe</th></tr>
+            <tr><td>user</td><td>string</td><td>yes</td><td>哪个用户要删除</td></tr>
+            <tr><td>removeUser</td><td>string</td><td>yes</td><td>要删除的用户的用户名</td></tr>
+        </table>
+        <p><strong>Response：</strong></p>
+        <pre>
+{
+    "status": "success"
+}
+        </pre>
+
+
+
+    </div>
+
+
+    <div class="oneTitle">
+        Record API 设计
+    </div><hr>
+    <div class="oneContent">
+        <p><strong>API描述:</strong>保存聊天记录</p>
+        <p><strong>Method：</strong>POST</p>
+        <p><strong>URL: </strong>/saveRecord</p>
+        <p><strong>Parameters：</strong></p>
+        <table class="table table-condensed">
+            <tr><th>Key</th><th>Value</th><th>Required</th><th>Discribe</th></tr>
+            <tr><td>you</td><td>string</td><td>yes</td><td>当前使用者的用户名</td></tr>
+            <tr><td>notYou</td><td>string</td><td>yes<td>当前使用者的聊天对象</td></tr>
+            <tr><td>records</td><td>object</td><td>yes<td>一个对象，包含you, notYou, records属性</td></tr>
+        </table>
+        <p><strong>Response：</strong></p>
+        <pre>
+{
+    "status": "success",
+}
+        </pre><hr>
+
+
+        <p><strong>API描述:</strong>查询两个人的聊天记录</p>
+        <p><strong>Method：</strong>POST</p>
+        <p><strong>URL: </strong>/getRecord</p>
+        <p><strong>Parameters：</strong></p>
+        <table class="table table-condensed">
+            <tr><th>Key</th><th>Value</th><th>Required</th><th>Discribe</th></tr>
+            <tr><td>you</td><td>string</td><td>yes</td><td>当前使用者的用户名</td></tr>
+            <tr><td>notYou</td><td>string</td><td>yes<td>当前使用者的聊天对象</td></tr>
+        </table>
+        <p><strong>Response：</strong></p>
+        <pre>
+{
+    "status": "success",
+    "result": {
+        "you": "user1",
+        "notYou": "user2",
+        "records": [
+            "name": "user2",
+            "time": "2016-10-10 12:34:21",
+            "content": "今天下雨了。"
+        ]
+    }
+}
+        </pre>
+    </div>
+
+
+    <div class="oneTitle">
+		AP 数据库设计
+	</div>
+	<hr>
+	<div class="oneContent">
+		<p><strong>数据库名称：</strong>ap</p>
+		<p><strong>包含集合：</strong>user, record, comment</p>
+		<p><strong>user:</strong></p>
+		<pre>
+{
+    "name" : "大漠如风",
+    "pwd": "123456",
+    "face": "/images/f1.png",
+    "status": "/images/online.png",
+    "intro": "今天天气很好。",
+    "email": "123@163.com",
+    "groups": [
+        {
+            "name": "管理员组",
+            "users": [
+                {
+                    "name": "斗鱼",
+                    "intro": "今天下雨。",
+                    "face": "/images/f1.png",
+                    "status": "/images/1.png"
+                }
+            ]
+        }
+    ]
+}
+        </pre><br/>
+		<p><strong>record:</strong></p>
+		<pre>
+{
+    "you": "大漠如风",
+    "notYou": "斗鱼",
+    "records": [
+        {
+            "name": "大漠如风",
+            "time": "2016-10-10 14:21:32",
+            "content": "你好啊，我是大漠如风"
+        }
+    ]
+}
+        </pre><br/>
+
+
+
+		<p><strong>comment:</strong></p>
+		<pre>
+{
+        name: '',
+        index: '',
+        read: 0,
+        like: [],
+        comments: [
+        {
+            name: 'test1',
+            face: '/images/f1.jpg',
+            time: '2016-10-10 20:10:12',
+            comment: '一个评论'
+        },
+        {
+            name: 'test2',
+            face: '/images/f2.jpg',
+            time: '2016-10-10 20:10:12',
+            comment: '两个个评论'
+        }
+    ],
+    }
+}
+        </pre><br/>
+
+
+		<p><strong>Token生成方法:</strong></p>
+		<pre>
+function guid() {
+    return 'xxxxxxxx-xxxx-4xxx
+    -yxxx-xxxxxxxxxxxx'
+    .replace(/[xy]/g, function(c) {
+        var r = Math.random()*16 | 
+        0, v = c == 'x' ? r : (r&0x3|0x8);
+        return v.toString(16);
+    });
+}
+        </pre>
+	</div>
 </div>

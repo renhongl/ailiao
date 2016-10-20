@@ -24,14 +24,14 @@
 }
 
 .docNavbar li{
-    height: 30px;
-    font-size: 1em;
+    height: 35px;
+    font-size: 0.8em;
     width: 100%;
     margin: 0px auto;
     /* border-radius: 3px; */
     list-style-type: none;
     padding-left: 10%;
-    line-height: 30px;
+    line-height: 35px;
 }
 
 .docNavbar li:hover{
@@ -52,6 +52,7 @@
 .docContent{
     width: 85%;
     float: right;
+    
 }
 
 .docContent .oneTitle{
@@ -69,10 +70,16 @@
 
 .docContent .code{
     padding: 20px;
-    background: #e6e2e2;
+    background: #f1eded;
     border-radius: 3px;
     width: 80%;
-    height: 300px !important; 
+    height: auto;
+    border: none;
+}
+
+.oneContent pre{
+    width: 80%;
+    border: none;
 }
 
 .docContent textarea{
@@ -90,10 +97,12 @@
 .docContent img{
     width: 80%;
     margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 .docContent p{
     width: 80%;
+    
 }
 
 .docFoot{
@@ -186,4 +195,9 @@
     width: 80%;
     float: right;
     overflow-y: auto;
+    font-size: 0.8em;
+}
+
+.commentCount{
+    margin-left: 10px;
 }
