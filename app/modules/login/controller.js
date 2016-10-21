@@ -17,7 +17,8 @@ define(['Controller'], function (Controller) {
                 methods: {
                     login: that._login.bind(that),
                     register: that._regiser.bind(that),
-                    verify: that._verify.bind(that)
+                    verify: that._verify.bind(that),
+                    goToSetPwd: that._goToSetPwd.bind(that),
                 }
             };
             this.vue = new AP.Vue(config);
@@ -29,6 +30,25 @@ define(['Controller'], function (Controller) {
                     this._login();
                 }
             });
+        }
+
+        _goToSetPwd(){
+            $.publish('ResetPwd-show');
+            setTimeout(function(){
+                $("#ResetPwd").animate({
+                    left: 0,
+                    top: 0,
+                    width: AP.width,
+                }, 500);
+            }, 500);
+
+            setTimeout(function(){
+                $("#login").animate({
+                    left: AP.width,
+                    top: 0,
+                    width: 0,
+                }, 500);
+            }, 500);
         }
 
         _regiser(){

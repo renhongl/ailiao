@@ -7,15 +7,18 @@
 }
 
 .login #loginButton{
-        width: 100%;
+    width: 53%;
     background: #219ec5;
     color: white;
     border: none;
 }
 
 .login #registerButton{
+    width: 45%;
     color: #219ec5;
-    text-decoration: underline;
+    border: none;
+    outline: none;
+    background: #cccccc;
 }
 
 .login #registerButton:hover{
@@ -50,4 +53,17 @@
 .col-md-4{
     padding-left: 5%;
     padding-right: 5%;
+}
+
+.changePwdRow{
+    margin-top: 10px !important;
+}
+
+.changePwdRow span{
+    font-size: 0.9em;
+    color: gray;
+}
+
+.changePwdRow span:hover{
+    color: #219ec5;
 }

@@ -1,0 +1,75 @@
+.module .resetPwd{
+    height: 100%;
+}
+
+.resetPwd .row{
+    margin-top: 20px;
+}
+
+
+.resetPwd .name{
+    font-size: 27px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.resetPwd .name div{
+    text-align: left;
+    font-size: 20px;
+    margin-top: 29px;
+}
+
+.toLogin{
+    display: inline-block;
+    height: 30px;
+    width: 50px;
+    margin-left: 10px;
+    line-height: 30px;
+    color: #219ec5;
+    background: #fff;
+}
+
+.toLogin:hover{
+    cursor: pointer;
+    color: #219ec5;
+}
+
+.resetPwd .fa-user,.resetPwd .fa-lock{
+    color: #219ec5;
+}
+
+.col-md-4{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.saveReset{
+    width: 100%;
+    background: #219ec5;
+    color: #fff;
+    border: none;
+}
+
+.saveReset:hover{
+    width: 100%;
+    background: #219ec5;
+    color: #fff;
+    border: none;
+}
+
+#verify{
+    width: 60%;
+    border-radius: 3px;
+}
+
+#verifyButton{
+    border: none;
+    background: #219ec5;
+    border-radius: 3px;
+    height: 34px;
+    margin-left: 32px;
+    color: #fff;
+    font-size: 0.9em;
+}

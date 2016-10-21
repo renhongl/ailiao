@@ -40,6 +40,24 @@ define([], function () {
                     type: 'module',
                 }
             },
+            {   
+                name: 'resetPwd',
+                id: 'ResetPwd',
+                type: 'dialog',
+                show: false,
+                showTitle: false,
+                settings: {
+                    width: 0,
+                    height: AP.height,
+                    x: 0,
+                    y: 0,
+                },
+                content: {
+                    name:'resetPwd',
+                    id: 'resetPwd',
+                    type: 'module',
+                }
+            },
         ]
     };
 

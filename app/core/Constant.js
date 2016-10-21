@@ -43,6 +43,9 @@ define([], function() {
     Constant.GET_COMMENT = Constant.BASE_SERVER + 'getComment';
     Constant.SAVE_COMMENT = Constant.BASE_SERVER + 'saveComment';
     Constant.UPDATE_COMMENT = Constant.BASE_SERVER + 'updateComment';
+
+    //For reset
+    Constant.RESET_PWD = Constant.BASE_SERVER + 'resetPwd';
     
     return Constant;
 });

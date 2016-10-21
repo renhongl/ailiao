@@ -18,15 +18,16 @@
             </div>
         </div>
     </div>
-
-    <div class="row">
+    <div class="row changePwdRow">
+        <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 registerRow">
+            <span v-on:click="goToSetPwd">忘记密码？</span>
+        </div>
+    </div>
+    <div class="row changePwdRow">
         <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4">
             <button type="button" class="btn btn-default button" id="loginButton" v-on:click="login">登录</button>
+            <button type="button" class="btn btn-default button" id="registerButton" v-on:click="register">注册</button>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 registerRow">
-            <span>新用户?点击<span id="registerButton" class="button" v-on:click="register">这里</span>注册</span>
-        </div>
-    </div>
+    
 </div>
