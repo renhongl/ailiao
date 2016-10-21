@@ -45,3 +45,8 @@
 .register .fa-user,.register .fa-lock{
     color: #219ec5;
 }
+
+.col-md-4{
+    padding-left: 5%;
+    padding-right: 5%;
+}

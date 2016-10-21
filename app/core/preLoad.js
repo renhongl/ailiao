@@ -26,7 +26,7 @@ define(['jquery'], function($) {
                 src: '/images/loading.gif',
             }).css({
                 display: 'block',
-                margin: '0 43%',
+                margin: '0 auto',
                 paddingTop: '100px',
             });
 

@@ -8,5 +8,7 @@ class Config{}
 Config.WS_PORT = 9090;
 Config.SERVER_PORT = 8080;
 Config.TEST = false;
+Config.EMAIL_SERVER = 'liang_renhong@126.com',
+Config.EMAIL_PWD = 'lrh1116';
 
 module.exports = Config;

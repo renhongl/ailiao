@@ -1,4 +1,4 @@
-define(['Controller'], function(Controller) {
+define(['Controller'], function (Controller) {
     'use strict';
     class controller extends Controller {
         constructor(obj, $container, config) {
@@ -46,17 +46,6 @@ define(['Controller'], function(Controller) {
         }
 
         _handleEvents() {
-            $('#upload').dropzone({
-                url: '/uploadImg'
-            });
-            Dropzone.options.upload = {
-                paramName: 'file',
-                maxFilesize: 2,
-                accept: function(file, done) {
-                    debugger;
-                }
-            }
-
             this._refreshYourInfor();
             this._refreshCurrentInfor();
 
@@ -98,76 +87,7 @@ define(['Controller'], function(Controller) {
             AP.socket.on(localStorage.name, (msg) => {
                 this._receivedMsg(msg);
             });
-
-            // Dropzone
-
-
-            var dropzone = new Dropzone('#upload', {
-                previewTemplate: document.querySelector('#preview-template').innerHTML,
-                parallelUploads: 2,
-                thumbnailHeight: 120,
-                thumbnailWidth: 120,
-                maxFilesize: 3,
-                filesizeBase: 1000,
-                thumbnail: function(file, dataUrl) {
-                    if (file.previewElement) {
-                        file.previewElement.classList.remove("dz-file-preview");
-                        var images = file.previewElement.querySelectorAll("[data-dz-thumbnail]");
-                        for (var i = 0; i < images.length; i++) {
-                            var thumbnailElement = images[i];
-                            thumbnailElement.alt = file.name;
-                            thumbnailElement.src = dataUrl;
-                        }
-                        setTimeout(function() {
-                            file.previewElement.classList.add("dz-image-preview");
-                        }, 1);
-                    }
-                }
-
-            });
-
-
-            // Now fake the file upload, since GitHub does not handle file uploads
-            // and returns a 404
-
-            var minSteps = 6,
-                maxSteps = 60,
-                timeBetweenSteps = 100,
-                bytesPerStep = 100000;
-
-            dropzone.uploadFiles = function(files) {
-                var self = this;
-
-                for (var i = 0; i < files.length; i++) {
-
-                    var file = files[i];
-                    totalSteps = Math.round(Math.min(maxSteps, Math.max(minSteps, file.size / bytesPerStep)));
-
-                    for (var step = 0; step < totalSteps; step++) {
-                        var duration = timeBetweenSteps * (step + 1);
-                        setTimeout(function(file, totalSteps, step) {
-                            return function() {
-                                file.upload = {
-                                    progress: 100 * (step + 1) / totalSteps,
-                                    total: file.size,
-                                    bytesSent: (step + 1) * file.size / totalSteps
-                                };
-
-                                self.emit('uploadprogress', file, file.upload.progress, file.upload.bytesSent);
-                                if (file.upload.progress == 100) {
-                                    file.status = Dropzone.SUCCESS;
-                                    self.emit("success", file, 'success', null);
-                                    self.emit("complete", file);
-                                    self.processQueue();
-                                }
-                            };
-                        }(file, totalSteps, step), duration);
-                    }
-                }
-            }
         }
-
-
 
         _toggleUploadStore() {
             $('.uploadStore').toggle();
@@ -226,7 +146,7 @@ define(['Controller'], function(Controller) {
                 left
             } = $('#ChatRoom').css(['top', 'left']);
             let count = 0;
-            let shakeThread = setInterval(function() {
+            let shakeThread = setInterval(function () {
                 if (count % 2 === 0) {
                     $('#ChatRoom').css({
                         top: parseInt(top.split('px')[0]) - 5,
@@ -244,7 +164,6 @@ define(['Controller'], function(Controller) {
                 }
             }, 10);
         }
-
 
         /**
          * 1:如果是窗口没打开，说明没有一个正在聊天的。那么，显示窗口，并添加这个人，保存聊天记录，并且当前变成他。
@@ -313,7 +232,7 @@ define(['Controller'], function(Controller) {
                 };
                 this.vue.records.records.push(record);
                 this._saveRecords(this.vue.records);
-                setTimeout(function() {
+                setTimeout(function () {
                     $('.chatContent').scrollTop($('.chatContent')[0].scrollHeight);
                 }, 100);
             }, 500);
@@ -458,7 +377,7 @@ define(['Controller'], function(Controller) {
                 width: 0,
                 height: 0,
             }, 500);
-            setTimeout(function() {
+            setTimeout(function () {
                 $('#ChatRoom').hide();
             }, 500);
         }

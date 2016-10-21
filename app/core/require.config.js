@@ -28,7 +28,9 @@ require.config({
         bootstrap: 'libs/bootstrap/js/bootstrap.min',
         bootstrapSwitch: 'libs/bootstrap/js/bootstrap-switch.min',
         Vue: 'libs/vue',
-	dropzone: 'libs/dropzone',
-
+	    dropzone: 'libs/dropzone',
+        fileupload: 'libs/jqueryFileUpload/jquery.fileupload',
+        iframeTransport: 'libs/jqueryFileUpload/jquery.iframe-transport',
+        widget: 'libs/jqueryFileUpload/jquery.ui.widget',
     }
 });
