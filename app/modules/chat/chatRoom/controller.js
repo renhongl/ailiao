@@ -372,8 +372,8 @@ define(['Controller'], function (Controller) {
 
         _hideChatRoom() {
             $('#ChatRoom').animate({
-                left: 　450,
-                top: 200,
+                left: 10,
+                top: 10,
                 width: 0,
                 height: 0,
             }, 500);
@@ -384,8 +384,8 @@ define(['Controller'], function (Controller) {
 
         _openChatRoom() {
             $('#ChatRoom').css({
-                left: 350,
-                top: 20,
+                left: 10,
+                top: 10,
                 width: 550,
                 height: 550,
             });

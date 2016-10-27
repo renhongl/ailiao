@@ -7,14 +7,14 @@
 }
 
 .login #loginButton{
-    width: 53%;
+    width: 63%;
     background: #219ec5;
     color: white;
     border: none;
 }
 
 .login #registerButton{
-    width: 45%;
+    width: 35%;
     color: #219ec5;
     border: none;
     outline: none;

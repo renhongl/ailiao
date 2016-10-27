@@ -10,6 +10,7 @@ class User {
         this.app = app;
         this.currentDB = 'ap';
         this.userCollection = 'user';
+        this.removeTime = 6000 * 30;
         this._login();
         this._regiser();
         this._getInfor();
@@ -18,14 +19,35 @@ class User {
         this._queryByName();
         this._addToGroup();
         this._removeUser();
-        this._resetPwd();
+        this._getCode();
     }
 
-    _resetPwd(){
-        this.app.get('/resetPwd', (req, res) => {
+    _removeCode(email){
+        setTimeout(() => {
+            let queryData = {
+                email: email
+            };
+            let updateData = {
+                code: ''
+            };
+            let callback = (result) => {
+                let collection = db.collection(this.userCollection);
+                collection.updateOne(queryData, {$set: updateData}, (err, result) => {
+                    assert.equal(null, err);
+                    db.close();
+                });
+            };
+            new MongoDB(this.currentDB, callback);
+        }, this.removeTime);
+    }
+
+    _getCode(){
+        this.app.get('/getCode', (req, res) => {
             let email = req.query.email;
-            let code = '10010';
-            //new Email(email, '重置密码', '你的验证码是：' + code);
+            let code = '';
+            for(let i = 0; i < 5; i++){
+                code += Math.floor(Math.random() * 10);
+            }
             let queryData = {
                 email: email
             };
@@ -34,13 +56,15 @@ class User {
             };
             let callback = (db) => {
                 let collection = db.collection(this.userCollection);
-                collection.updateOne(queryData, {$set: updateData}, function(err, result){
+                collection.updateOne(queryData, {$set: updateData}, (err, result) => {
                     assert.equal(null, err);
                     db.close();
                     if(result.result.n === 1){
-                        res.send({status: 'success'});
+                        new Email(email, '重置密码', '你的验证码是：' + code);
+                        this._removeCode(email);
+                        res.send({status: 'success', text: '验证码已发往你的邮箱，请查收。30分钟内有效。'});
                     }else{
-                        res.send({status: 'error', text: '没有此邮箱。'});
+                        res.send({status: 'error', text: '没有此邮箱，或许你需要注册账号。'});
                     }
                 });
             };
@@ -269,12 +293,15 @@ class User {
 
     _getInfor() {
         this.app.get('/getInfor', (req, res) => {
-            let queryData = {
+            let queryByName = {
                 name: req.query.name,
+            };
+            let queryByEmail = {
+                email: req.query.name,
             };
             let callback = (db) => {
                 let collection = db.collection(this.userCollection);
-                collection.find(queryData).toArray(function (err, result) {
+                collection.find({$or: [queryByName, queryByEmail]}, {pwd: 0}).toArray(function (err, result) {
                     assert.equal(null, err);
                     db.close();
                     if (result.length !== 0) {

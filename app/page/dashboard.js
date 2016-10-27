@@ -31,8 +31,8 @@ define([], function () {
                 settings: {
                     width: 550,
                     height: 550,
-                    x: 350,
-                    y: 20,
+                    x: 10,
+                    y: 10,
                 },
                 content: {
                     name: 'chat/chatRoom',

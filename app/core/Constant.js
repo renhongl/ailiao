@@ -45,7 +45,7 @@ define([], function() {
     Constant.UPDATE_COMMENT = Constant.BASE_SERVER + 'updateComment';
 
     //For reset
-    Constant.RESET_PWD = Constant.BASE_SERVER + 'resetPwd';
+    Constant.GET_CODE = Constant.BASE_SERVER + 'getCode';
     
     return Constant;
 });

@@ -60,7 +60,7 @@
 }
 
 #verify{
-    width: 60%;
+    width: 65%;
     border-radius: 3px;
 }
 
@@ -69,7 +69,12 @@
     background: #219ec5;
     border-radius: 3px;
     height: 34px;
-    margin-left: 32px;
     color: #fff;
     font-size: 0.9em;
+    width: 30%;
+    float: right;
+}
+
+.getCodeDiv{
+    width: 100%;
 }
