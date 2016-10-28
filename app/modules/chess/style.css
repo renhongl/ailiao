@@ -1,0 +1,57 @@
+.module .chess{
+    height: 100%;
+}
+
+.chessContainer{
+    /*border: 1px solid;*/
+    height: 60%;
+    width: 60%;
+    float: left;
+    margin-top: 5%;
+}
+
+.currentPutContainer{
+    /*border: 1px solid;*/
+    height: 10%;
+}
+
+.otherInforContainer{
+    width: 20%;
+    /*border: 1px solid;*/
+    height: 20%;
+    margin-top: 30%;
+    float: right;
+}
+
+.yourInforContainer{
+    width: 20%;
+    /*border: 1px solid;*/
+    height: 20%;
+    margin-top: 30%;
+    float: left;
+}
+
+.oneContainer{
+    width: 10%; 
+    height: 10%; 
+    border: 1px solid;
+    float:left;
+}
+
+.black{
+    background: black;
+    width: 80%;
+    height: 80%;
+    display: inline-block;
+    border-radius: 50%;
+    margin: 10%;
+}
+
+.gray{
+    background: gray;
+    width: 80%;
+    height: 80%;
+    display: inline-block;
+    border-radius: 50%;
+    margin: 10%;
+}

@@ -35,7 +35,7 @@ define(['Controller'], function (Controller) {
                     enterOneChatting: that._enterOneChatting.bind(that),
                     leaveOneChatting: that._leaveOneChatting.bind(that),
                     leaveFaceChoose: that._leaveFaceChoose.bind(that),
-                    toggleUploadStore: that._toggleUploadStore.bind(that),
+                    toPlayChess: that._toPlayChess.bind(that),
                 },
             };
             this.vue = new AP.Vue(config);
@@ -87,10 +87,15 @@ define(['Controller'], function (Controller) {
             AP.socket.on(localStorage.name, (msg) => {
                 this._receivedMsg(msg);
             });
+
+            AP.socket.on(localStorage.name + '-startChess', () => {
+                $('#ChessDialog').show();
+            });
         }
 
-        _toggleUploadStore() {
-            $('.uploadStore').toggle();
+        _toPlayChess(e){
+            AP.socket.emit('toPlayChess', this.vue.you.name, this.vue.current.name);
+            $.publish('fromYou');
         }
 
         _leaveFaceChoose(e) {
@@ -372,7 +377,7 @@ define(['Controller'], function (Controller) {
 
         _hideChatRoom() {
             $('#ChatRoom').animate({
-                left: 10,
+                left: 350,
                 top: 10,
                 width: 0,
                 height: 0,
@@ -384,7 +389,7 @@ define(['Controller'], function (Controller) {
 
         _openChatRoom() {
             $('#ChatRoom').css({
-                left: 10,
+                left: 350,
                 top: 10,
                 width: 550,
                 height: 550,

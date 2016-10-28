@@ -8,6 +8,7 @@
 
 const Server = require('./Server');
 const Forward = require('../wsRouter/Forward');
+const Chess = require('../wsRouter/Chess');
 
 class WebSocket extends Server{
     constructor(port){
@@ -30,6 +31,7 @@ class WebSocket extends Server{
 
     _addRouter(io, socket){
         new Forward(io, socket);
+        new Chess(io, socket);
     }
 }
 

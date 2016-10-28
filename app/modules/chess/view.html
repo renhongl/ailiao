@@ -1,0 +1,21 @@
+<div class="chess">
+    <div class="yourInforContainer">
+        
+    </div>
+    <div class="otherInforContainer">
+        
+    </div>
+    <div class="currentPutContainer">
+        
+    </div>
+    <div class="chessContainer">
+        <template v-for="row in container" track-by="$index">
+            <template v-for="one in row" track-by="$index">
+                <div class="oneContainer button" v-on:click="putOne">
+                    <span v-if="one" v-bind:class="{'black': one === 1, 'gray': one === 2}"></span>
+                </div>
+            </template>
+            <br>
+        </template>
+    </div>
+</div>

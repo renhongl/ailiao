@@ -30,13 +30,7 @@
 			<div class="tools">
 				<i class="fa fa-smile-o button" aria-hidden="true" v-on:click="toggleFaceChoose"></i>
 				<i class="fa fa-bolt button" aria-hidden="true" v-on:click="shakeOnce"></i>
-				<i class="fa fa-file-image-o button" aria-hidden="true" v-on:click="toggleUploadStore"></i>
-			</div>
-			<div class="uploadStore">
-				<div class="imgStore"></div>
-				<div class="imgUploadDiv">
-					
-				</div>
+				<i class="fa fa-file-image-o button" aria-hidden="true" v-on:click="toPlayChess"></i>
 			</div>
 			<div class="faceChoose" v-on:mouseleave="leaveFaceChoose">
 				<template v-for="face in faces">

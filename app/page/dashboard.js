@@ -31,7 +31,7 @@ define([], function () {
                 settings: {
                     width: 550,
                     height: 550,
-                    x: 10,
+                    x: 350,
                     y: 10,
                 },
                 content: {
@@ -56,6 +56,25 @@ define([], function () {
                 content: {
                     name: 'document',
                     id: 'document',
+                    type: 'module',
+                    showTitle: true,
+                }
+            },
+            {   
+                name: 'ChessDialog',
+                id: 'ChessDialog',
+                type: 'dialog',
+                show: false,
+                showTitle: true,
+                settings: {
+                    width: AP.width * 0.5,
+                    height: AP.width * 0.5,
+                    x: 400,
+                    y: 0,
+                },
+                content: {
+                    name: 'chess',
+                    id: 'chess',
                     type: 'module',
                     showTitle: true,
                 }
