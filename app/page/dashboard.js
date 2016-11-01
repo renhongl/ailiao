@@ -67,8 +67,8 @@ define([], function () {
                 show: false,
                 showTitle: true,
                 settings: {
-                    width: AP.width * 0.5,
-                    height: AP.width * 0.5,
+                    width: AP.width * 0.48,
+                    height: AP.width * 0.51,
                     x: 400,
                     y: 0,
                 },

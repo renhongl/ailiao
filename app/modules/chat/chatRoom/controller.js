@@ -96,6 +96,7 @@ define(['Controller'], function (Controller) {
         _toPlayChess(e){
             AP.socket.emit('toPlayChess', this.vue.you.name, this.vue.current.name);
             $.publish('fromYou');
+            AP.socket.emit('putOne', localStorage.name, this.vue.container);
         }
 
         _leaveFaceChoose(e) {

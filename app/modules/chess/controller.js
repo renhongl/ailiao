@@ -13,18 +13,8 @@ define(['Controller'], function(Controller) {
                 data: {
                     fromYou: false,
                     waite: false,
-                    container: [
-                        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                    ]
+                    container: this.config.container,
+                    other: '',
                 },
                 methods: {
                     putOne: that._putOne.bind(that),
@@ -42,18 +32,21 @@ define(['Controller'], function(Controller) {
                 this.vue.fromYou = true;
             });
 
-            AP.socket.on('refresh', (from, container) => {
+            AP.socket.on('refresh', (from,to, container) => {
+                debugger;
                 if(from !== localStorage.name){
                     this.vue.waite = false;
                 }
                 this.vue.container = container;
             });
+
+            
         }
 
         _putOne(e){
             if(!this.vue.waite){
-                let row = Math.floor($('.chessContainer div').index($(e.target)) / 10);
-                let col = $('.chessContainer div').index($(e.target)) % 10;
+                let row = Math.floor($('.chessContainer div').index($(e.target)) / 20);
+                let col = $('.chessContainer div').index($(e.target)) % 20;
                 if(row < 0 || col < 0){
                     new AP.Message('infor', '这里已经走过了。');
                     return;

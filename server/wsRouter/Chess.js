@@ -31,7 +31,11 @@ class Chess{
         });
 
         this.socket.on('putOne', (from, container) => {
-            this.io.sockets.emit('refresh', from, container);
+            if(from === this.from){
+                this.io.sockets.emit('refresh', from,this.to, container);
+            }else{
+                this.io.sockets.emit('refresh', from,this.from, container);
+            }
         });
     }
 }
