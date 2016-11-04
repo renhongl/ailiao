@@ -20,11 +20,11 @@ define([], function() {
     Constant.DEFAULT_CURRENT = {};
 
     //For User
-    // Constant.BASE_SERVER = 'http://renhongl.viphk.ngrok.org/';
-    // Constant.WS_SERVER = 'ws://lrh.ws.viphk.ngrok.org/';
+    Constant.BASE_SERVER = 'http://renhongl.viphk.ngrok.org/';
+    Constant.WS_SERVER = 'ws://lrh.ws.viphk.ngrok.org/';
 
-    Constant.BASE_SERVER = 'http://127.0.0.1:8080/';
-    Constant.WS_SERVER = 'ws://127.0.0.1:9090/';
+    // Constant.BASE_SERVER = 'http://127.0.0.1:8080/';
+    // Constant.WS_SERVER = 'ws://127.0.0.1:9090/';
 
     Constant.LOGIN = Constant.BASE_SERVER + 'login';
     Constant.REGISTER = Constant.BASE_SERVER + 'register';
