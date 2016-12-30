@@ -1,1 +1,1 @@
-[https://renhongl.github.io/2016/11/24/%E5%BA%94%E7%94%A8%E5%B9%B3%E5%8F%B0WEB/](https://renhongl.github.io/2016/11/24/%E5%BA%94%E7%94%A8%E5%B9%B3%E5%8F%B0WEB/ "文档")
+[点击这里查看文档](https://renhongl.github.io/2016/11/24/%E5%BA%94%E7%94%A8%E5%B9%B3%E5%8F%B0WEB/)
